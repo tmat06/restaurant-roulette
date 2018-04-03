@@ -7,8 +7,10 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { HashRouter } from 'react-router-dom';
 
 ReactDOM.render(
-    <MuiThemeProvider>
-        <App />
-    </MuiThemeProvider>
+    <HashRouter>
+        <MuiThemeProvider>
+            <App />
+        </MuiThemeProvider>
+    </HashRouter>
     , document.getElementById('root'));
 registerServiceWorker();

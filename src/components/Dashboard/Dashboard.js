@@ -10,7 +10,7 @@ export default class Dashboard extends Component{
 
     render(){
         return(
-            <div>
+            <div style={{backgroundColor: 'grey', height: '100vh', width: '100%'}}>
                 Dashboard
             </div>
         )
