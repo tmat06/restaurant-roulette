@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import Nav from './../Nav/Nav';
 
 export default class Profile extends Component{
     constructor(){
@@ -11,7 +10,6 @@ export default class Profile extends Component{
     render(){
         return(
             <div>
-                <Nav />
                 Profile Baby
             </div>
         )
