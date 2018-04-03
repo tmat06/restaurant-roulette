@@ -16,9 +16,9 @@ export default function Auth() {
             <div className='loginMenu'>
                 <div></div>
                 <div className='title'><strong>Restaurant Roulette</strong></div>
-                <MainButton name="LOGIN" icon={<Face />} wholeWidth={false} onClick={() => {
-                    
-                }}/>
+                <a href={process.env.REACT_APP_LOGIN}>
+                    <MainButton name="LOGIN" icon={<Face />} wholeWidth={false} />
+                </a>
             </div>
             <div>
             </div>

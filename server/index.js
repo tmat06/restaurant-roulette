@@ -63,7 +63,16 @@ passport.deserializeUser((id, done) => {
         done(null, loggedInUser[0]);
     }) //runs after each endpoint is hit after log in, puts info on req.user
 })
+app.get('/auth', passport.authenticate('auth0'));
+app.get('/auth/callback', passport.authenticate('auth0',{
+    successRedirect: 'http://localhost:3000/#/dashboard', //after build it will need to change from 3000 to 3005
+    failureRedirect: 'http://localhost:3000'
+}))
 
+app.get('/auth/logout', (req, res) => {
+    req.logOut();
+    res.redirect('http://localhost:3000/')
+})
 
 
 app.listen(SERVER_PORT, () => console.log(`Magic Happens at Port: ${SERVER_PORT}`))
