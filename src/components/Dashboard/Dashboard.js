@@ -1,17 +1,22 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
+import Nav from './../Nav/Nav';
 
-export default class Dashboard extends Component{
-    constructor(){
+export default class Dashboard extends Component {
+    constructor() {
         super()
-        this.state ={
+        this.state = {
 
         }
     }
 
-    render(){
-        return(
-            <div style={{backgroundColor: 'grey', height: '100vh', width: '100%'}}>
-                Dashboard
+    render() {
+
+        return (
+            <div>
+                <Nav />
+                <div style={{ backgroundColor: 'grey', height: '100vh', width: '100%' }}>
+                    Dashboard
+                </div>
             </div>
         )
     }
