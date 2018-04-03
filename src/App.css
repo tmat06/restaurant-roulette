@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css?family=Carter+One');
+
+.App {
+  text-align: center;
+  width: 100%;
+  height: 100vh;
+}
+.auth{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: #F64548;
+  height: 100vh;
+  width: 100%;
+}
+.authHeader{
+  display: flex;
+  justify-content: space-around;
+}
+
+.signUpButton{
+  background-color: #FFE49F;
+  box-shadow: 1px 1px 1px black;
+  border-radius: 25px;
+}
+
+.loginMenu{
+  display: flex;
+  align-items: center;
+  background-color: #FFE49F;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 30vh;
+  width: 50%;
+  margin: 0 auto;
+  border-radius: 25px;
+  box-shadow: 1px 1px 3px black;
+}
+.title{
+  font-size: 30px;
+}
