@@ -39,3 +39,7 @@
 .title{
   font-size: 30px;
 }
+.search-box{
+  background-color: pink;
+  width: 50% !important;
+}
