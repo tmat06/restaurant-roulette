@@ -6,7 +6,7 @@ const style = {
     fontFamily: 'Carter One, cursive',
     fontSize: 20,
     borderRadius: 25,
-    cursor: 'pointer',
+    // cursor: 'pointer',
     hoverColor: "#FFA880",
     textAlign: 'left'
 }

@@ -5,14 +5,16 @@ import { getUserInfo } from './../../ducks/reducer';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import MotionStyledComp from './../MotionStyledComp/MotionStyledComp';
 
 class Dashboard extends Component {
     constructor() {
         super()
         this.state = {
             username: '',
+            pic: '',
             address: 'Provo, UT'
-
+            
         }
         this.onChange = (address) => this.setState({
             address
@@ -25,7 +27,8 @@ class Dashboard extends Component {
         axios.get('/auth/me').then(results => {
             // console.log('results', results)
             this.setState({
-                username: results.data.display_name
+                username: results.data.display_name,
+                pic: results.data.img
             })
         })
     }
@@ -33,7 +36,10 @@ class Dashboard extends Component {
     handleEnter() {
         geocodeByAddress(this.state.address)
             .then(results => getLatLng(results[0]))
-            .then(latLng => console.log('Success', latLng))
+            .then(latLng => {
+                console.log('Success', latLng)
+                this.props.history.push('/spin-results')
+            })
             .catch(error => console.log('error', error))
     }
 
@@ -92,6 +98,11 @@ class Dashboard extends Component {
                     <Link to='/spin-results'><button onClick={() => this.handleEnter()}>SpinResults</button></Link>
                     <br />
                     <a href="/auth/logout"><button>LogOut</button></a>
+                    <br />
+                    <img src={this.state.pic} style={{height: '400px', width: '400px'}} />
+                    <br />
+                    <Link to='/motion-styled-comp'><button>Transitions</button></Link>
+                    <MotionStyledComp name="name"/>
                 </div>
             </div>
         )

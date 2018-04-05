@@ -42,9 +42,9 @@ passport.use(new Auth0Strategy({
     const db = app.get('db')
 
     db.find_user([profile.id]).then( userResult => {
-        console.log('profile', profile)
+        // console.log('profile', profile)
         if(!userResult[0]){
-            console.log('yyyyyyy')
+            console.log('New Member')
             db.create_user([
                 profile.id,
                 profile.displayName,
@@ -53,7 +53,7 @@ passport.use(new Auth0Strategy({
                 return done(null, createdUser[0].id)
             })
         } else {
-            console.log('xxxxxx')
+            console.log('Previous Member')
             return done(null, userResult[0].id)
         }
     })
