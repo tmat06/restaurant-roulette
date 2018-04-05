@@ -95,10 +95,6 @@ class Dashboard extends Component {
                     <button onClick={() => this.handleEnter()}>add restaurant search to redux</button>
                     <br />
 
-                    <br />
-                    <button onClick={() => this.axiosCall()}>Axios Call</button>
-                    <br />
-
                     <a href="/auth/logout"><button>LogOut</button></a>
                     <br />
                     <img src={this.props.user.img} style={{ height: '400px', width: '400px' }} />
