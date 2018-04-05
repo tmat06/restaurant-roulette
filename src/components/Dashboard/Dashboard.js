@@ -91,11 +91,7 @@ class Dashboard extends Component {
 
                     <br />
                     <Link to='/spin-results'><button onClick={() => this.handleEnter()}>SpinResults</button></Link>
-
                     <br />
-                    <button onClick={() => this.handleEnter()}>add restaurant search to redux</button>
-                    <br />
-
                     <a href="/auth/logout"><button>LogOut</button></a>
                     <br />
                     <img src={this.props.user.img} alt="dog" style={{ height: '400px', width: '400px' }} />
