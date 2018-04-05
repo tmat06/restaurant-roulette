@@ -14,7 +14,7 @@ function FriendsList(props) {
                 return(
                     <div key={i}>
                         <h2>{val.name}</h2>
-                        <img src={val.img} height="100px" width="100px"/>
+                        <img src={val.img} alt="tommy" height="100px" width="100px"/>
                     </div>
                 )
             })}
