@@ -8,6 +8,7 @@ import FriendsList from './components/FriendsList/FriendsList';
 import RestaurantPage from './components/RestaurantPage/RestaurantPage';
 import RunnerUps from './components/RunnerUps/RunnerUps';
 import GoogleDirections from './components/GoogleDirections/GoogleDirections';
+import MotionStyledComp from './components/MotionStyledComp/MotionStyledComp';
 
 export default (
     <Switch>
@@ -18,5 +19,6 @@ export default (
         <Route component={RestaurantPage} path='/restaurant-page'/>
         <Route component={RunnerUps} path='/runner-up'/>
         <Route component={GoogleDirections} path='/google-directions'/>
+        <Route component={MotionStyledComp} path='/motion-styled-comp'/>
     </Switch>
 )

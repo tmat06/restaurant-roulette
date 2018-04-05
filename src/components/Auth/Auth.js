@@ -11,7 +11,6 @@ export default function Auth(props) {
                 <div></div>
                 <div></div>
                 <div className='signUpButton'>
-                    <MainButton name="Sign Up" icon={<Face />} wholeWidth={false} style={{ backgroundColor: '#FFE49F' }} />
                 </div>
             </div>
             <div className='loginMenu'>
