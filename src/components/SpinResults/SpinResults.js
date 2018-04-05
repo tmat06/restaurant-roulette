@@ -1,14 +1,22 @@
 import React, {Component} from 'react';
 import Nav from './../Nav/Nav';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
-export default class SpinResult extends Component{
+
+class SpinResults extends Component{
     render(){
-        console.log(this.props)
         return(
             <div>
                 <Nav />
                 Spin REsults 
+                {this.props.restaurantList.map((val, i) => {
+                    return(
+                        <div>
+                            <p>{val.name}</p>
+                        </div>
+                    )
+                })}
                 <Link to='/dashboard'><button>Dashboard</button></Link>               
                 <Link to='/restaurant-page'><button>Restaurant</button></Link>               
                 <Link to='/runner-up'><button>Runner Ups</button></Link>               
@@ -18,3 +26,13 @@ export default class SpinResult extends Component{
         )
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        user: state.user,
+        restaurantSearch: state.restaurantSearch,
+        restaurantList: state.restaurantList,
+    };
+}
+
+export default connect(mapStateToProps)(SpinResults);
