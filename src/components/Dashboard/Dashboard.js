@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Nav from './../Nav/Nav';
 import { Link } from 'react-router-dom';
-import { getUserInfo } from './../../ducks/reducer';
+import { getUserInfo, updateRestaurantSearch } from './../../ducks/reducer';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
@@ -11,27 +11,15 @@ class Dashboard extends Component {
     constructor() {
         super()
         this.state = {
-            username: '',
-            pic: '',
             address: 'Provo, UT'
-            
         }
         this.onChange = (address) => this.setState({
             address
         })
-
     }
     componentDidMount() {
-
         this.props.getUserInfo();
-        axios.get('/auth/me').then(results => {
-            // console.log('results', results)
-            this.setState({
-                username: results.data.display_name,
-                pic: results.data.img
-            })
-        })
-    }
+    } 
 
     handleEnter() {
         geocodeByAddress(this.state.address)
@@ -43,9 +31,17 @@ class Dashboard extends Component {
             .catch(error => console.log('error', error))
     }
 
+    // axiosCall(){
+    //     axios.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&type=restaurant&keyword=cruise&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8')
+    //     .then((res) => {
+    //         console.log('axios is gettin jiggy with it')
+    //         console.log('res', res)
+    //     })
+    // }
+
     render() {
-        console.log('dashboard', this.props.user);
-        console.log('this.state.address', this.state.address)
+        console.log('dashboard', this.props);
+        console.log('dashboard', this.state);
         const inputProps = {
             value: this.state.address,
             onChange: this.onChange
@@ -91,15 +87,23 @@ class Dashboard extends Component {
                     <Link to='/friends-list'><button>Invite Friends</button></Link>
                     <br />
                     <div>
-                        <PlacesAutocomplete inputProps={inputProps} highlightFirstSuggestion={true} styles={myStyles} onEnterKeyDown={() => this.handleEnter()} />
+                        <PlacesAutocomplete inputProps={inputProps} highlightFirstSuggestion={true} styles={myStyles} options={{types: ['(cities)']}} onEnterKeyDown={() => this.handleEnter()} />
                     </div>
 
                     <br />
                     <Link to='/spin-results'><button onClick={() => this.handleEnter()}>SpinResults</button></Link>
+
                     <br />
+                    <button onClick={() => this.props.updateRestaurantSearch(this.state.address)}>add restaurant search to redux</button>
+                    <br />
+
+                    {/* <br />
+                    <button onClick={() => this.axiosCall()}>Axios Call</button>
+                    <br /> */}
+
                     <a href="/auth/logout"><button>LogOut</button></a>
                     <br />
-                    <img src={this.state.pic} style={{height: '400px', width: '400px'}} />
+                    <img src={this.props.user.img} style={{height: '400px', width: '400px'}} />
                     <br />
                     <Link to='/motion-styled-comp'><button>Transitions</button></Link>
                     <MotionStyledComp name="name"/>
@@ -111,8 +115,9 @@ class Dashboard extends Component {
 
 function mapStateToProps(state) {
     return {
-        user: state.user
+        user: state.user,
+        restaurantSearch: state.restaurantSearch
     };
 }
 
-export default connect(mapStateToProps, { getUserInfo })(Dashboard);
+export default connect(mapStateToProps, { getUserInfo, updateRestaurantSearch })(Dashboard);

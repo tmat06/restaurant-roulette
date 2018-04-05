@@ -22,7 +22,7 @@ const Content = styled.div`
 class MotionStyledComp extends Component {
 
   render() {
-    console.log("this.props on motion", this.props.name)
+    // console.log("this.props on motion", this.props.name)
     return (
       <Motion
         defaultStyle={ { width: 0 } }
