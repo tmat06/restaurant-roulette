@@ -8,16 +8,9 @@ const initialState = {
         img: ''
     },
     restaurantSearch: {
-        restaurant: '',
+        restaurant: {},
     },
-    restaurantList: {
-        restaurantList: []
-    },
-    otherRestaurant: {
-        restaurantWinner: '',
-        favoriteRestaurants: [],
-        addedRestaurants: []
-    }
+    restaurantList: []
 }
 
 const UPDATE_USER_INFO = 'UPDATE_USER_INFO';
@@ -30,11 +23,9 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, { user: action.payload });
 
         case UPDATE_RESTAURANT_SEARCH:
-            console.log('hit')
             return Object.assign({}, state, { restaurantSearch: action.payload });
 
         case UPDATE_RESTAURANT_LIST:
-            console.log('hit restaurant Search')
             return Object.assign({}, state, { restaurantList: action.payload });
 
         default:
@@ -52,11 +43,10 @@ export function getUserInfo() {
     }
 }
 
-export function updateRestaurantSearch(address) {
-    console.log('hit in function')
+export function updateRestaurantSearch(latLng) {
     return {
         type: UPDATE_RESTAURANT_SEARCH,
-        payload: address
+        payload: latLng
     }
 }
 export function updateRestaurantList(restaurantList) {

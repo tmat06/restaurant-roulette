@@ -5,6 +5,7 @@ const passport = require('passport');
 const session = require('express-session')
 const Auth0Strategy = require('passport-auth0')
 const cors = require('cors');
+const axios = require('axios');
 require('dotenv').config();
 
 const {
@@ -90,10 +91,11 @@ app.get('/auth/logout', (req, res) => {
 })
 
 // app.get('/google/results', (req, res) => {
-//     app.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&type=restaurant&keyword=cruise&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8')
-//     .then((res) => {
-//         console.log('axios working?')
+//     app.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.2338438,-111.65853370000002&radius=500&type=restaurant&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8', 
+//     (req, res) => {
+//         console.log('req', req.body)
 //         console.log('res', res)
+//         res.status(200).json(res.body)
 //     })
 // })
 

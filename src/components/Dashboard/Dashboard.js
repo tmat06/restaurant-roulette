@@ -19,29 +19,26 @@ class Dashboard extends Component {
     }
     componentDidMount() {
         this.props.getUserInfo();
-    } 
+    }
 
     handleEnter() {
         geocodeByAddress(this.state.address)
             .then(results => getLatLng(results[0]))
             .then(latLng => {
                 console.log('Success', latLng)
-                this.props.history.push('/spin-results')
+                this.props.updateRestaurantSearch(latLng);
+                axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.2338438,-111.65853370000002&radius=500&type=restaurant&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8`)
+                    .then((res) => {
+                        this.props.updateRestaurantList(res.data.results)
+                    })
+                this.props.history.push('/spin-results');
             })
             .catch(error => console.log('error', error))
     }
 
-    axiosCall(){
-        axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.2338438,-111.65853370000002&radius=500&type=restaurant&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8`)
-        .then((res) => {
-            console.log('res', res.data.results)
-            this.props.updateRestaurantList(res.data.results)
-        })
-    }
-
     render() {
-        console.log('dashboard', this.props);
-        console.log('dashboard', this.state);
+        // console.log('dashboard', this.props);
+        // console.log('dashboard', this.state);
         const inputProps = {
             value: this.state.address,
             onChange: this.onChange
@@ -76,7 +73,7 @@ class Dashboard extends Component {
 
             },
         }
-        console.log(process.env.API_KEY)
+        console.log('this.props.restaurantList', this.props.restaurantList)
         return (
             <div>
                 <Nav />
@@ -88,14 +85,14 @@ class Dashboard extends Component {
                     <Link to='/friends-list'><button>Invite Friends</button></Link>
                     <br />
                     <div>
-                        <PlacesAutocomplete inputProps={inputProps} highlightFirstSuggestion={true} styles={myStyles} options={{types: ['(cities)']}} onEnterKeyDown={() => this.handleEnter()} />
+                        <PlacesAutocomplete inputProps={inputProps} highlightFirstSuggestion={true} styles={myStyles} options={{ types: ['(cities)'] }} onEnterKeyDown={() => this.handleEnter()} />
                     </div>
 
                     <br />
                     <Link to='/spin-results'><button onClick={() => this.handleEnter()}>SpinResults</button></Link>
 
                     <br />
-                    <button onClick={() => this.props.updateRestaurantSearch(this.state.address)}>add restaurant search to redux</button>
+                    <button onClick={() => this.handleEnter()}>add restaurant search to redux</button>
                     <br />
 
                     <br />
@@ -104,10 +101,11 @@ class Dashboard extends Component {
 
                     <a href="/auth/logout"><button>LogOut</button></a>
                     <br />
-                    <img src={this.props.user.img} style={{height: '400px', width: '400px'}} />
+                    <img src={this.props.user.img} style={{ height: '400px', width: '400px' }} />
                     <br />
+
                     <Link to='/motion-styled-comp'><button>Transitions</button></Link>
-                    <MotionStyledComp name="name"/>
+                    <MotionStyledComp name="name" />
                 </div>
             </div>
         )
@@ -118,7 +116,7 @@ function mapStateToProps(state) {
     return {
         user: state.user,
         restaurantSearch: state.restaurantSearch,
-        restaurantList: state.restaurantList
+        restaurantList: state.restaurantList,
     };
 }
 
