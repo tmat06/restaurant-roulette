@@ -27,7 +27,7 @@ class Dashboard extends Component {
             .then(latLng => {
                 console.log('Success', latLng)
                 this.props.updateRestaurantSearch(latLng);
-                axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.2338438,-111.65853370000002&radius=500&type=restaurant&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8`)
+                axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${this.props.restaurantSearch.lat},${this.props.restaurantSearch.lng}&radius=5000&type=restaurant&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8`)
                     .then((res) => {
                         this.props.updateRestaurantList(res.data.results)
                     })
@@ -73,7 +73,8 @@ class Dashboard extends Component {
 
             },
         }
-        console.log('this.props.restaurantList', this.props.restaurantList)
+        // console.log('this.props.restaurantSearch', this.props.restaurantSearch)
+        // console.log('this.props.restaurantList', this.props.restaurantList)
         return (
             <div>
                 <Nav />
@@ -97,7 +98,7 @@ class Dashboard extends Component {
 
                     <a href="/auth/logout"><button>LogOut</button></a>
                     <br />
-                    <img src={this.props.user.img} style={{ height: '400px', width: '400px' }} />
+                    <img src={this.props.user.img} alt="dog" style={{ height: '400px', width: '400px' }} />
                     <br />
 
                     <Link to='/motion-styled-comp'><button>Transitions</button></Link>
