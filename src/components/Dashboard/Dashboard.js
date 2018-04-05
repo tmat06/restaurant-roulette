@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Nav from './../Nav/Nav';
 import { Link } from 'react-router-dom';
-import { getUserInfo, updateRestaurantSearch } from './../../ducks/reducer';
+import { getUserInfo, updateRestaurantSearch, updateRestaurantList } from './../../ducks/reducer';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
@@ -31,13 +31,13 @@ class Dashboard extends Component {
             .catch(error => console.log('error', error))
     }
 
-    // axiosCall(){
-    //     axios.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&type=restaurant&keyword=cruise&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8')
-    //     .then((res) => {
-    //         console.log('axios is gettin jiggy with it')
-    //         console.log('res', res)
-    //     })
-    // }
+    axiosCall(){
+        axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.2338438,-111.65853370000002&radius=500&type=restaurant&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8`)
+        .then((res) => {
+            console.log('res', res.data.results)
+            this.props.updateRestaurantList(res.data.results)
+        })
+    }
 
     render() {
         console.log('dashboard', this.props);
@@ -76,6 +76,7 @@ class Dashboard extends Component {
 
             },
         }
+        console.log(process.env.API_KEY)
         return (
             <div>
                 <Nav />
@@ -97,9 +98,9 @@ class Dashboard extends Component {
                     <button onClick={() => this.props.updateRestaurantSearch(this.state.address)}>add restaurant search to redux</button>
                     <br />
 
-                    {/* <br />
+                    <br />
                     <button onClick={() => this.axiosCall()}>Axios Call</button>
-                    <br /> */}
+                    <br />
 
                     <a href="/auth/logout"><button>LogOut</button></a>
                     <br />
@@ -116,8 +117,9 @@ class Dashboard extends Component {
 function mapStateToProps(state) {
     return {
         user: state.user,
-        restaurantSearch: state.restaurantSearch
+        restaurantSearch: state.restaurantSearch,
+        restaurantList: state.restaurantList
     };
 }
 
-export default connect(mapStateToProps, { getUserInfo, updateRestaurantSearch })(Dashboard);
+export default connect(mapStateToProps, { getUserInfo, updateRestaurantSearch, updateRestaurantList })(Dashboard);

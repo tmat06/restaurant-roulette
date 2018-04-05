@@ -4,6 +4,7 @@ const massive = require('massive');
 const passport = require('passport');
 const session = require('express-session')
 const Auth0Strategy = require('passport-auth0')
+const cors = require('cors');
 require('dotenv').config();
 
 const {
@@ -18,6 +19,7 @@ const {
 
 const app = express();
 app.use(bodyParser.json());
+app.use(cors());
 
 massive(CONNECTION_STRING).then(db => {
     app.set('db', db);
@@ -87,5 +89,12 @@ app.get('/auth/logout', (req, res) => {
     res.redirect('http://localhost:3000/')
 })
 
+// app.get('/google/results', (req, res) => {
+//     app.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=500&type=restaurant&keyword=cruise&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8')
+//     .then((res) => {
+//         console.log('axios working?')
+//         console.log('res', res)
+//     })
+// })
 
 app.listen(SERVER_PORT, () => console.log(`Magic Happens at Port: ${SERVER_PORT}`))
