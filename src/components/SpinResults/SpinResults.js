@@ -17,7 +17,7 @@ class SpinResults extends Component {
 
     render() {
         // console.log(this.props.restaurantList[1])
-        console.log('this.props in render', this.props)
+        // console.log('this.props in render', this.props)
 
         return (
             <div>
@@ -26,9 +26,8 @@ class SpinResults extends Component {
                 {this.props.restaurantList.map((val, i) => {
                     if (val.opening_hours) {
                         if (val.opening_hours.open_now) {
-                            console.log('will it hit restaurantDisplay')
                             return (
-                                <RestaurantDisplay name={val.name} photoRef={val.photos[0]}/>
+                                <RestaurantDisplay name={val.name} photoRef={val.photos[0]} />
                             )
                         }
                     }
