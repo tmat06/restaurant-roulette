@@ -2,21 +2,33 @@ import React, { Component } from 'react';
 import Nav from './../Nav/Nav';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import RestaurantDisplay from './../RestaurantDisplay/RestaurantDisplay';
 
 
 class SpinResults extends Component {
+    constructor() {
+        super()
+        this.state = {
+            img: ''
+        }
+    }
+
+
+
     render() {
+        // console.log(this.props.restaurantList[1])
+        console.log('this.props in render', this.props)
+
         return (
             <div>
                 <Nav />
-                Spin REsults
+                Spin Results
                 {this.props.restaurantList.map((val, i) => {
                     if (val.opening_hours) {
                         if (val.opening_hours.open_now) {
+                            console.log('will it hit restaurantDisplay')
                             return (
-                                <div key={i}>
-                                    <p>{val.name}</p>
-                                </div>
+                                <RestaurantDisplay name={val.name} photoRef={val.photos[0]}/>
                             )
                         }
                     }

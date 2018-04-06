@@ -11,6 +11,7 @@ const initialState = {
         restaurant: {},
     },
     restaurantList: [],
+    currentLocation: {},
     friends: [
         {
             name: 'Tommy',
