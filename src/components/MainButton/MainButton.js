@@ -20,6 +20,11 @@ export default function MainButton(props){
         icon={props.icon}
         labelStyle={{fontSize: 30}}
         fullWidth={props.wholeWidth}
+        onClick={() => {
+            if(props.handleToggle){
+                props.handleToggle()}
+            }
+        }
         />
     )
 }
