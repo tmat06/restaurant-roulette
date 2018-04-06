@@ -43,4 +43,17 @@
   background-color: pink;
   width: 50% !important;
 }
+.map-container{
+  display: flex;
+  justify-content: space-between;
 
+}
+.side-map-menu{
+  background-color: rgb(133, 46, 60);
+  height: 100vh;
+  width: 300px;
+}
+.google-map{
+  height: 100vh;
+  width: 80%;
+}

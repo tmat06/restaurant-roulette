@@ -29,6 +29,7 @@ class Dashboard extends Component {
                 this.props.updateRestaurantSearch(latLng);
                 axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${this.props.restaurantSearch.lat},${this.props.restaurantSearch.lng}&radius=5000&type=restaurant&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8`)
                     .then((res) => {
+                        console.log('moving through to updateREstaurantList action', res.data.results)
                         this.props.updateRestaurantList(res.data.results)
                     })
                 this.props.history.push('/spin-results');
