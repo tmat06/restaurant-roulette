@@ -11,20 +11,25 @@ const style = {
     textAlign: 'left'
 }
 
-export default function MainButton(props){
+export default function MainButton(props) {
     return (
         <FlatButton
-        label={props.name}
-        labelPosition="after"
-        style={style}
-        icon={props.icon}
-        labelStyle={{fontSize: 30}}
-        fullWidth={props.wholeWidth}
-        onClick={() => {
-            if(props.handleToggle){
-                props.handleToggle()}
+            label={props.name}
+            labelPosition="after"
+            style={style}
+            icon={props.icon}
+            labelStyle={{ fontSize: 30 }}
+            fullWidth={props.wholeWidth}
+            onClick={() => {
+                if (props.handleToggle) {
+                    props.handleToggle()
+                }
+                if (props.selectField) {
+                    props.selectField(props.primaryName)
+                }
             }
-        }
+            }
+
         />
     )
 }

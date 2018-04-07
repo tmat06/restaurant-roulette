@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import MainButton from './../MainButton/MainButton';
 import Drawer from 'material-ui/Drawer';
-import { connect } from 'react-redux';
 
 
 export default class Nav extends Component {

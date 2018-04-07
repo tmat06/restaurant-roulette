@@ -1,39 +1,73 @@
 import React, { Component } from 'react';
 import Nav from './../Nav/Nav';
 import { Link } from 'react-router-dom';
-import { getUserInfo, updateRestaurantSearch, updateRestaurantList } from './../../ducks/reducer';
+import { getUserInfo, updateRestaurantSearch, updateRestaurantList, locationSearch } from './../../ducks/reducer';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import MotionStyledComp from './../MotionStyledComp/MotionStyledComp';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+
 
 class Dashboard extends Component {
     constructor() {
         super()
         this.state = {
-            address: 'Provo, UT'
+            address: 'Provo, UT',
+            selectField: '5000',
+            cityOrAddress: '(cities)'
+
         }
         this.onChange = (address) => this.setState({
             address
         })
+        this.selectField = this.selectField.bind(this);
+        this.updateSelect = this.updateSelect.bind(this);
+        this.updateCityOrAddress = this.updateCityOrAddress.bind(this);
     }
     componentDidMount() {
         this.props.getUserInfo();
+        if (this.props.currentLocation) {
+            this.setState({
+                address: this.props.currentLocation
+            })
+        }
+
+    }
+
+    selectField(name) {
+        this.setState({
+            selectField: name
+        })
     }
 
     handleEnter() {
+        this.props.locationSearch(this.state.address)
         geocodeByAddress(this.state.address)
             .then(results => getLatLng(results[0]))
             .then(latLng => {
                 console.log('Success', latLng)
                 this.props.updateRestaurantSearch(latLng);
-                axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${this.props.restaurantSearch.lat},${this.props.restaurantSearch.lng}&radius=5000&type=restaurant&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8`)
+                axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${this.props.restaurantSearch.lat},${this.props.restaurantSearch.lng}&radius=${this.state.selectField}&type=restaurant&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8`)
                     .then((res) => {
                         this.props.updateRestaurantList(res.data.results)
                     })
                 this.props.history.push('/spin-results');
             })
             .catch(error => console.log('error', error))
+    }
+
+    updateSelect(e, i, value) {
+        this.setState({
+            selectField: value
+        })
+    }
+
+    updateCityOrAddress(e, i, value) {
+        this.setState({
+            cityOrAddress: value
+        })
     }
 
     render() {
@@ -73,6 +107,8 @@ class Dashboard extends Component {
 
             },
         }
+        // console.log('this.props', this.props)
+        // console.log('this.state.selectField', this.state.selectField)
         // console.log('this.props.restaurantSearch', this.props.restaurantSearch)
         // console.log('this.props.restaurantList', this.props.restaurantList)
         return (
@@ -86,7 +122,29 @@ class Dashboard extends Component {
                     <Link to='/friends-list'><button>Invite Friends</button></Link>
                     <br />
                     <div>
-                        <PlacesAutocomplete inputProps={inputProps} highlightFirstSuggestion={true} styles={myStyles} options={{ types: ['(cities)'] }} onEnterKeyDown={() => this.handleEnter()} />
+                        <SelectField
+                            floatingLabelText="Distance"
+                            value={this.state.selectField}
+                            onChange={this.updateSelect}
+                        >
+                            <MenuItem value={'50'} primaryText='50 m' />
+                            <MenuItem value={'500'} primaryText='500 m' />
+                            <MenuItem value={'5000'} primaryText='5000 m' />
+                            <MenuItem value={'50000'} primaryText='50000 m' />
+                        </SelectField>
+
+
+                        <SelectField
+                            floatingLabelText="City or Address"
+                            value={this.state.cityOrAddress}
+                            onChange={this.updateCityOrAddress}
+                        >
+                            <MenuItem value={'(cities)'} primaryText='City' />
+                            <MenuItem value={'address'} primaryText='Address' />
+                        </SelectField>
+                    </div>
+                    <div>
+                        <PlacesAutocomplete inputProps={inputProps} highlightFirstSuggestion={true} styles={myStyles} options={{ types: [this.state.cityOrAddress] }} onEnterKeyDown={() => this.handleEnter()} />
                     </div>
 
                     <br />
@@ -110,7 +168,8 @@ function mapStateToProps(state) {
         user: state.user,
         restaurantSearch: state.restaurantSearch,
         restaurantList: state.restaurantList,
+        currentLocation: state.currentLocation,
     };
 }
 
-export default connect(mapStateToProps, { getUserInfo, updateRestaurantSearch, updateRestaurantList })(Dashboard);
+export default connect(mapStateToProps, { getUserInfo, updateRestaurantSearch, updateRestaurantList, locationSearch })(Dashboard);
