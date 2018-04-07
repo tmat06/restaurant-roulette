@@ -11,7 +11,7 @@ const initialState = {
         restaurant: {},
     },
     restaurantList: [],
-    currentLocation: {},
+    currentLocation: '',
     friends: [
         {
             name: 'Tommy',
@@ -39,6 +39,7 @@ const initialState = {
 const UPDATE_USER_INFO = 'UPDATE_USER_INFO';
 const UPDATE_RESTAURANT_SEARCH = 'UPDATE_RESTAURANT_SEARCH';
 const UPDATE_RESTAURANT_LIST = 'UPDATE_RESTAURANT_LIST';
+const LOCATION_SEARCH = 'LOCATION_SEARCH';
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
@@ -50,6 +51,9 @@ export default function reducer(state = initialState, action) {
 
         case UPDATE_RESTAURANT_LIST:
             return Object.assign({}, state, { restaurantList: action.payload });
+
+        case LOCATION_SEARCH:
+            return Object.assign({}, state, { currentLocation: action.payload });
 
         default:
             return state;
@@ -67,6 +71,7 @@ export function getUserInfo() {
 }
 
 export function updateRestaurantSearch(latLng) {
+    console.log('hit restaurantSearch', latLng)
     return {
         type: UPDATE_RESTAURANT_SEARCH,
         payload: latLng
@@ -77,5 +82,11 @@ export function updateRestaurantList(restaurantList) {
     return {
         type: UPDATE_RESTAURANT_LIST,
         payload: restaurantList
+    }
+}
+export function locationSearch(address) {
+    return{
+        type: LOCATION_SEARCH,
+        payload: address
     }
 }

@@ -1,32 +1,27 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import { Link } from 'react-router-dom';
 
-export default class RestaurantDisplay extends Component{
-    constructor(){
+export default class RestaurantDisplay extends Component {
+    constructor() {
         super()
         this.state = {
-            img: ''
+            img: '',
         }
     }
 
-    componentDidMount() {
-        console.log('this.props.photoRef.photo_reference', this.props.photoRef.photo_reference)
-        let photo =  this.props.photoRef.photo_reference
-        console.log(photo)
-        axios.get(`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${photo}&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8`)
-        .then(results => {
-            this.setState({
-                img: results.config.url
-            })
-            // console.log('results', results)
-        })
-    }
 
-    render(){
-        return(
+    render() {
+        // console.log('props', this.props)
+        return (
             <div>
                 {this.props.name}
-                {this.state.img}
+                <Link to='/restaurant-page'><button>RestaurantPage</button></Link>
+                <br/>
+
+                <img src= {`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${this.props.photoRef.photo_reference}&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8`} alt="restaurant pic"/>
+
+                <br/>
+                <p>Rating: {this.props.rating}</p>
             </div>
         )
     }

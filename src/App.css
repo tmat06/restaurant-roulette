@@ -49,6 +49,9 @@
 
 }
 .side-map-menu{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   background-color: rgb(133, 46, 60);
   height: 100vh;
   width: 300px;
@@ -57,3 +60,14 @@
   height: 100vh;
   width: 80%;
 }
+.side-map-buttons{
+  background-color: pink;
+  height: 30px;
+  width: 100%;
+  
+}
+.side-map-buttons:hover{
+  background-color: grey;
+  border-left: 3px solid blue;
+}
+
