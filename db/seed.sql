@@ -4,3 +4,11 @@ CREATE TABLE IF NOT EXISTS Users (
     display_name TEXT,
     img TEXT
 );
+
+CREATE TABLE IF NOT EXISTS Restaurants (
+    id SERIAL PRIMARY KEY,
+    list_name TEXT,
+    name TEXT,
+    rating TEXT,
+    user_id TEXT
+);

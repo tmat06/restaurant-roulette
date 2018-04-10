@@ -77,7 +77,6 @@ app.get('/auth/callback', passport.authenticate('auth0',{
 }))
 
 app.get('/auth/me', function(req, res){
-    // console.log('req from server', req)
     if(req.user){
         res.status(200).send(req.user);
     } else {
@@ -90,13 +89,20 @@ app.get('/auth/logout', (req, res) => {
     res.redirect('http://localhost:3000/')
 })
 
-// app.get('/google/results', (req, res) => {
-//     app.get('https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=40.2338438,-111.65853370000002&radius=500&type=restaurant&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8', 
-//     (req, res) => {
-//         console.log('req', req.body)
-//         console.log('res', res)
-//         res.status(200).json(res.body)
-//     })
-// })
+app.post('/savedLists/:listName', (req, res) => {
+    req.body.restaurantList.map((val, i) => {
+        return app.get('db').save_list(req.params.listName, val.name, val.rating, req.body.user.auth_id)
+    })
+    res.sendStatus(200);
+})
+
+app.get('/savedLists', (req, res) => {
+    app.get('db').display_favorites(req.user.id)
+    .then(results => {
+        res.status(200).json(results);
+    })
+})
+
+
 
 app.listen(SERVER_PORT, () => console.log(`Magic Happens at Port: ${SERVER_PORT}`))
