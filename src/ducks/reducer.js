@@ -12,6 +12,7 @@ const initialState = {
     },
     restaurantList: [],
     currentLocation: '',
+    favoriteRestaurants: [],
     friends: [
         {
             name: 'Tommy',
@@ -40,6 +41,8 @@ const UPDATE_USER_INFO = 'UPDATE_USER_INFO';
 const UPDATE_RESTAURANT_SEARCH = 'UPDATE_RESTAURANT_SEARCH';
 const UPDATE_RESTAURANT_LIST = 'UPDATE_RESTAURANT_LIST';
 const LOCATION_SEARCH = 'LOCATION_SEARCH';
+const DELETE_RESTAURANT_FROM_LIST = 'DELETE_RESTAURANT_FROM_LIST';
+const UPDATE_FAVORITE_RESTAURANTS = 'UPDATE_FAVORITE_RESTAURANTS';
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
@@ -54,6 +57,12 @@ export default function reducer(state = initialState, action) {
 
         case LOCATION_SEARCH:
             return Object.assign({}, state, { currentLocation: action.payload });
+        
+        case DELETE_RESTAURANT_FROM_LIST:
+            return Object.assign({}, state, { restaurantList: action.payload });
+        
+        case UPDATE_FAVORITE_RESTAURANTS:
+            return Object.assign({}, state, { favoriteRestaurants: action.payload });
 
         default:
             return state;
@@ -90,3 +99,19 @@ export function locationSearch(address) {
         payload: address
     }
 }
+
+export function deleteRestaurantFromList(newList){
+    return{
+        type: DELETE_RESTAURANT_FROM_LIST,
+        payload: newList
+    }
+}
+
+export function updateFavoriteRestaurants(favoriteList){
+    return{
+        type: UPDATE_FAVORITE_RESTAURANTS,
+        payload: favoriteList
+    }
+}
+
+

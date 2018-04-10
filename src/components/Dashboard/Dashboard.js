@@ -15,7 +15,7 @@ class Dashboard extends Component {
         super()
         this.state = {
             address: 'Provo, UT',
-            selectField: '5000',
+            selectField: '500',
             cityOrAddress: '(cities)'
 
         }
@@ -128,9 +128,11 @@ class Dashboard extends Component {
                             onChange={this.updateSelect}
                         >
                             <MenuItem value={'50'} primaryText='50 m' />
+                            <MenuItem value={'100'} primaryText='100 m' />
                             <MenuItem value={'500'} primaryText='500 m' />
+                            <MenuItem value={'1000'} primaryText='1000 m' />
                             <MenuItem value={'5000'} primaryText='5000 m' />
-                            <MenuItem value={'50000'} primaryText='50000 m' />
+                            <MenuItem value={'10000'} primaryText='10000 m' />
                         </SelectField>
 
 

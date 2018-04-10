@@ -48,11 +48,14 @@
   justify-content: space-between;
 
 }
+.side-container{
+  background-color: rgb(133, 46, 60);
+
+}
 .side-map-menu{
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  background-color: rgb(133, 46, 60);
   height: 100vh;
   width: 300px;
 }
@@ -70,4 +73,9 @@
   background-color: grey;
   border-left: 3px solid blue;
 }
+.profilePic{
+  height: 200px;
+  width: 200px;
+  border-radius: 200px;
 
+}

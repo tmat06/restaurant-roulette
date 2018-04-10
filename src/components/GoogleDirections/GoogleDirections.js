@@ -3,7 +3,7 @@ import GoogleMapReact from 'google-map-react';
 import Nav from './../Nav/Nav';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-const AnyReactComponent = ({ text }) => <div>{ text }</div>;
+const AnyReactComponent = ({ text }) => <div>{text}</div>;
 
 class GoogleDirections extends Component {
 
@@ -19,31 +19,38 @@ class GoogleDirections extends Component {
             <div>
                 <Nav />
                 <div className="map-container">
-                    <div className='side-map-menu'>
+                    <div className='side-container'>
                         <Link to='/spin-results'><button>Spin Results</button></Link>
-                        {this.props.restaurantList.map((val, i) => {
-                            return <div className='side-map-buttons'>
-                                {val.name}
-                            </div>
-                        })}
+                        <div className='side-map-menu'>
+                            {this.props.restaurantList.map((val, i) => {
+                                if (val.opening_hours.open_now) {
+                                return <div className='side-map-buttons' key={i}>
+                                    {val.name}
+                                </div>
+                                }
+                            })}
+                        
+                        </div>
                     </div>
                     <div className='google-map'>
                         <GoogleMapReact
                             defaultCenter={this.props.restaurantSearch}
                             defaultZoom={this.props.zoom}>
-                            <AnyReactComponent 
-                            lat={this.props.restaurantSearch.lat}
-                            lng={this.props.restaurantSearch.lng}
-                            text='You are Here'
+                            <AnyReactComponent
+                                lat={this.props.restaurantSearch.lat}
+                                lng={this.props.restaurantSearch.lng}
+                                text='You are Here'
                             />
                             {
                                 this.props.restaurantList.map((val, i) => {
-
-                                    return <AnyReactComponent
-                                        lat={val.geometry.location.lat}
-                                        lng={val.geometry.location.lng}
-                                        text={val.name}
-                                    />
+                                    if (val.opening_hours.open_now) {
+                                        return <AnyReactComponent
+                                            lat={val.geometry.location.lat}
+                                            lng={val.geometry.location.lng}
+                                            text={val.name}
+                                            key={i}
+                                        />
+                                    }
 
                                 })
                             }
