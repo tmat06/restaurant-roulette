@@ -33,11 +33,6 @@ class Profile extends Component {
 
     }
 
-    componentDidMount(){
-        console.log('console did mount?')
-
-    }
-
     render() {
         console.log('this.props in render', this.props)
         // this.favoriteList();
@@ -49,7 +44,7 @@ class Profile extends Component {
                 
                 {this.favoriteList()}
                 {this.props.favoriteRestaurants.map((val, i) => {
-                    return <ProfileButton index={i} listName={val.list_name} />
+                    return <ProfileButton index={i} listName={val.list_name} key={i} />
                 })}
             </div>
         )

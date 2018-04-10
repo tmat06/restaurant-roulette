@@ -90,6 +90,7 @@ app.get('/auth/logout', (req, res) => {
 })
 
 app.post('/savedLists/:listName', (req, res) => {
+    console.log(req.body.restaurantList)
     req.body.restaurantList.map((val, i) => {
         return app.get('db').save_list(req.params.listName, val.name, val.rating, req.body.user.auth_id)
     })
