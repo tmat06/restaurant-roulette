@@ -17,6 +17,7 @@ class SpinResults extends Component {
     }
 
     handleSave() {
+        console.log(this.props.restaurantList)
         axios.post(`/savedLists/${this.props.currentLocation}`, this.props)
             .then((res) => {
                 alert('saved ', res)
@@ -34,7 +35,10 @@ class SpinResults extends Component {
 
     createRestaurantList(restaurantList) {
         console.log('yep')
+        console.log('this.props', this.props)
+        console.log('this.props.restaurantList', this.props.restaurantList)
         return restaurantList.map((val, i) => {
+            console.log('val spinresults', val)
             if (val.opening_hours) {
                 if (val.opening_hours.open_now) {
                     // console.log('val.photos', val)

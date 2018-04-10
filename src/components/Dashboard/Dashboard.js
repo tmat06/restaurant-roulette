@@ -16,8 +16,8 @@ class Dashboard extends Component {
         this.state = {
             address: 'Provo, UT',
             selectField: '500',
-            cityOrAddress: '(cities)'
-
+            cityOrAddress: '(cities)',
+            openOrClosed: true
         }
         this.onChange = (address) => this.setState({
             address
@@ -51,7 +51,17 @@ class Dashboard extends Component {
                 this.props.updateRestaurantSearch(latLng);
                 axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${this.props.restaurantSearch.lat},${this.props.restaurantSearch.lng}&radius=${this.state.selectField}&type=restaurant&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8`)
                     .then((res) => {
-                        this.props.updateRestaurantList(res.data.results)
+                        if (this.state.openOrClosed) {
+                            let newList =[]
+                            res.data.results.map((val, i) => {
+                                if(val.opening_hours.open_now){
+                                    newList.push(val)
+                                }
+                            })
+                            this.props.updateRestaurantList(newList)
+                        } else {
+                            this.props.updateRestaurantList(res.data.results)
+                        }
                     })
                 this.props.history.push('/spin-results');
             })
@@ -144,6 +154,7 @@ class Dashboard extends Component {
                             <MenuItem value={'(cities)'} primaryText='City' />
                             <MenuItem value={'address'} primaryText='Address' />
                         </SelectField>
+
                     </div>
                     <div>
                         <PlacesAutocomplete inputProps={inputProps} highlightFirstSuggestion={true} styles={myStyles} options={{ types: [this.state.cityOrAddress] }} onEnterKeyDown={() => this.handleEnter()} />
