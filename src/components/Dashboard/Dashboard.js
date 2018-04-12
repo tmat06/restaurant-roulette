@@ -44,6 +44,8 @@ class Dashboard extends Component {
 
     handleEnter() {
         this.props.locationSearch(this.state.address)
+        console.log('this.state.address', this.state.address)
+        console.log('geocode')
         geocodeByAddress(this.state.address)
             .then(results => getLatLng(results[0]))
             .then(latLng => {
@@ -51,21 +53,44 @@ class Dashboard extends Component {
                 this.props.updateRestaurantSearch(latLng);
                 axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${this.props.restaurantSearch.lat},${this.props.restaurantSearch.lng}&radius=${this.state.selectField}&type=restaurant&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8`)
                     .then((res) => {
-                        if (this.state.openOrClosed) {
-                            let newList =[]
-                            res.data.results.map((val, i) => {
-                                if(val.opening_hours.open_now){
-                                    newList.push(val)
+                        if (!res.data.results.length) {
+                            this.props.updateRestaurantList([{
+                                name: "NO RESTAURANTS ARE NEARBY :(",
+                                opening_hours: {
+                                    open_now: true
                                 }
-                            })
-                            this.props.updateRestaurantList(newList)
+                            }])
                         } else {
-                            this.props.updateRestaurantList(res.data.results)
+                            if (this.state.openOrClosed) {
+                                let newList = []
+                                // console.log('hit after axios', res.data.results)
+                                res.data.results.map((val, i) => {
+
+                                    // console.log('val', val)
+                                    if (val.opening_hours && val.opening_hours.open_now) {
+                                        newList.push(val)
+                                    }
+                                })
+                                if (!newList.length) {
+                                    this.props.updateRestaurantList([{
+                                        name: "NO RESTAURANTS ARE NEARBY :(",
+                                        opening_hours: {
+                                            open_now: true
+                                        }
+                                    }]);
+                                } else {
+                                    this.props.updateRestaurantList(newList)
+
+                                }
+                            } else {
+                                this.props.updateRestaurantList(res.data.results)
+                            }
                         }
                     })
                 this.props.history.push('/spin-results');
             })
             .catch(error => console.log('error', error))
+
     }
 
     updateSelect(e, i, value) {

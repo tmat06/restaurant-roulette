@@ -17,11 +17,28 @@ class SpinResults extends Component {
     }
 
     handleSave() {
-        console.log(this.props.restaurantList)
-        axios.post(`/savedLists/${this.props.currentLocation}`, this.props)
-            .then((res) => {
-                alert('saved ', res)
+        console.log('this.props', this.props)
+        console.log('this.props.currentLocation', this.props.currentLocation)
+        console.log('this.props.user_id', this.props.user.auth_id)
+        axios.get(`/favoriteLists/${this.props.currentLocation}/${this.props.user.auth_id}`)
+            .then(results => {
+                console.log('results.data.length', results.data.length)
+                if (results.data.length != 0) {
+                    console.log('duplicate', results)
+                    alert('duplicate')
+                } else {
+                    axios.post('/favoriteLists', { currentLocation: this.props.currentLocation })
+                        .then((res) => {
+                            axios.post(`/savedLists/${this.props.currentLocation}/${res.data[0].id}`, this.props)
+                                .then((res) => {
+                                    alert('saved ', res)
+                                })
+                        })
+                }
             })
+
+
+
     }
 
     handleDelete(index) {
@@ -34,11 +51,11 @@ class SpinResults extends Component {
     // }
 
     createRestaurantList(restaurantList) {
-        console.log('yep')
-        console.log('this.props', this.props)
-        console.log('this.props.restaurantList', this.props.restaurantList)
+        // console.log('yep')
+        // console.log('this.props', this.props)
+        // console.log('this.props.restaurantList', this.props.restaurantList)
         return restaurantList.map((val, i) => {
-            console.log('val spinresults', val)
+            // console.log('val spinresults', val)
             if (val.opening_hours) {
                 if (val.opening_hours.open_now) {
                     // console.log('val.photos', val)

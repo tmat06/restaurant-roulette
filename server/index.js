@@ -89,10 +89,23 @@ app.get('/auth/logout', (req, res) => {
     res.redirect('http://localhost:3000/')
 })
 
-app.post('/savedLists/:listName', (req, res) => {
-    console.log(req.body.restaurantList)
+app.get('/favoriteLists/:name/:user_id', (req, res) => {
+    app.get('db').check_duplicates(req.params.name, req.params.user_id)
+    .then(results => {
+        res.status(200).json(results)
+    })
+})
+
+app.post('/favoriteLists', (req, res) => {
+    app.get('db').create_list(req.body.currentLocation)
+    .then(results => {
+        res.status(200).json(results);
+    })
+})
+
+app.post('/savedLists/:listName/:index', (req, res) => {
     req.body.restaurantList.map((val, i) => {
-        return app.get('db').save_list(req.params.listName, val.name, val.rating, req.body.user.auth_id)
+        return app.get('db').save_list(req.params.listName, val.name, val.rating, req.body.user.auth_id, req.params.index)
     })
     res.sendStatus(200);
 })
@@ -104,6 +117,19 @@ app.get('/savedLists', (req, res) => {
     })
 })
 
+app.delete('/savedLists/:listName', (req, res) => {
+    app.get('db').delete_favorites(req.params.listName)
+    .then(results => {
+        res.status(200).json(results);
+    })
+})
+
+app.put('/savedLists/:listName/:user_id/:newName', (req, res) => {
+    app.get('db').edit_favorites_name(req.params.user_id, req.params.listName, req.params.newName)
+    .then(results => {
+        res.status(200).json(results);
+    })
+})
 
 
 app.listen(SERVER_PORT, () => console.log(`Magic Happens at Port: ${SERVER_PORT}`))

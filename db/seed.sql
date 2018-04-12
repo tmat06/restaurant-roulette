@@ -10,5 +10,11 @@ CREATE TABLE IF NOT EXISTS Restaurants (
     list_name TEXT,
     name TEXT,
     rating TEXT,
-    user_id TEXT
+    user_id TEXT,
+    saved_id TEXT
+);
+
+CREATE TABLE IF NOT EXISTS FavoriteLists (
+    id SERIAL PRIMARY KEY,
+    name TEXT
 );

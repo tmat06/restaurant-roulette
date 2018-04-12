@@ -15,17 +15,19 @@ class Profile extends Component {
     }
 
     favoriteList() {
-        console.log("this.props", this.props)
+        // console.log("this.props", this.props)
         if (this.props.user.auth_id && this.state.flip) {
             console.log('has auth_id', this.props)
             axios.get('/savedLists', this.props.user.id)
                 .then((res) => {
-                    console.log('res', res)
+                    // console.log('res', res)
                     // this.setState({
                     //     favoriteRestaurants: [...res.data]
                     // })
                     this.props.updateFavoriteRestaurants(res.data)
-                    this.state.flip = false;
+                    this.setState({
+                        flip: false
+                    });
                 })
         } else{
             console.log('no auth_id yet')
@@ -34,7 +36,7 @@ class Profile extends Component {
     }
 
     render() {
-        console.log('this.props in render', this.props)
+        // console.log('this.props in render', this.props)
         // this.favoriteList();
         return (
             <div>
@@ -44,7 +46,7 @@ class Profile extends Component {
                 
                 {this.favoriteList()}
                 {this.props.favoriteRestaurants.map((val, i) => {
-                    return <ProfileButton index={i} listName={val.list_name} key={i} />
+                    return <ProfileButton index={i} listName={val.list_name} key={i} authID={this.props.user.auth_id}/>
                 })}
             </div>
         )
