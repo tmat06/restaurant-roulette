@@ -131,5 +131,12 @@ app.put('/savedLists/:listName/:user_id/:newName', (req, res) => {
     })
 })
 
+app.get('/retrieveList/:listName/:user_id', (req, res) => {
+    app.get('db').find_favorites(req.params.listName, req.params.user_id)
+    .then(results => {
+        res.status(200).json(results);
+    })
+})
+
 
 app.listen(SERVER_PORT, () => console.log(`Magic Happens at Port: ${SERVER_PORT}`))
