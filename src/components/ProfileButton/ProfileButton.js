@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import { updateRestaurantList } from './../../ducks/reducer';
 
-export default class ProfileButton extends Component {
+class ProfileButton extends Component {
     constructor() {
         super()
         this.state = {
@@ -19,7 +21,7 @@ export default class ProfileButton extends Component {
     }
 
 
-    handleUpdate(e){
+    handleUpdate(e) {
         this.setState({
             newName: e.target.value
         })
@@ -33,16 +35,36 @@ export default class ProfileButton extends Component {
             })
     }
 
+    updateRedux(props){
+        axios.get(`/retrieveList/${props.listName}/${props.authID}`)
+        .then(res => {
+            this.props.updateRestaurantList(res.data)
+            alert('redux updated')
+        })
+    }
+
     render() {
 
         return (
             <div key={this.props.index}>
-                <button>{this.props.listName}</button>
+                <button onClick={() => this.updateRedux(this.props)}>{this.props.listName}</button>
                 <button onClick={() => this.deleteFavoriteRestaurant(this.props.listName)}>delete?</button>
-                <input placeholder="new nickname" onChange={(e) => this.handleUpdate(e)}/>
+                <input placeholder="new nickname" onChange={(e) => this.handleUpdate(e)} />
                 <button onClick={() => this.updateName(this.props)}>change name</button>
             </div>
         )
 
     }
 }
+
+function mapStateToProps(state) {
+    return {
+        user: state.user,
+        restaurantSearch: state.restaurantSearch,
+        restaurantList: state.restaurantList,
+        currentLocation: state.currentLocation,
+    }
+
+}
+
+export default connect(mapStateToProps, {updateRestaurantList})(ProfileButton);
