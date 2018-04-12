@@ -44,6 +44,8 @@ class Dashboard extends Component {
 
     handleEnter() {
         this.props.locationSearch(this.state.address)
+        console.log('this.state.address', this.state.address)
+        console.log('geocode')
         geocodeByAddress(this.state.address)
             .then(results => getLatLng(results[0]))
             .then(latLng => {

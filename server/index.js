@@ -90,8 +90,6 @@ app.get('/auth/logout', (req, res) => {
 })
 
 app.get('/favoriteLists/:name/:user_id', (req, res) => {
-    console.log('req.params.name', req.params.name)
-    console.log('req.params.user_id', req.params.user_id)
     app.get('db').check_duplicates(req.params.name, req.params.user_id)
     .then(results => {
         res.status(200).json(results)
@@ -119,8 +117,15 @@ app.get('/savedLists', (req, res) => {
     })
 })
 
-app.delete('/savedLists/:index/:listName', (req, res) => {
-    app.get('db').delete_favorites(req.params.index, req.params.listName)
+app.delete('/savedLists/:listName', (req, res) => {
+    app.get('db').delete_favorites(req.params.listName)
+    .then(results => {
+        res.status(200).json(results);
+    })
+})
+
+app.put('/savedLists/:listName/:user_id/:newName', (req, res) => {
+    app.get('db').edit_favorites_name(req.params.user_id, req.params.listName, req.params.newName)
     .then(results => {
         res.status(200).json(results);
     })
