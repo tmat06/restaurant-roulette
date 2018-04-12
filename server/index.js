@@ -89,10 +89,25 @@ app.get('/auth/logout', (req, res) => {
     res.redirect('http://localhost:3000/')
 })
 
-app.post('/savedLists/:listName', (req, res) => {
-    console.log(req.body.restaurantList)
+app.get('/favoriteLists/:name/:user_id', (req, res) => {
+    console.log('req.params.name', req.params.name)
+    console.log('req.params.user_id', req.params.user_id)
+    app.get('db').check_duplicates(req.params.name, req.params.user_id)
+    .then(results => {
+        res.status(200).json(results)
+    })
+})
+
+app.post('/favoriteLists', (req, res) => {
+    app.get('db').create_list(req.body.currentLocation)
+    .then(results => {
+        res.status(200).json(results);
+    })
+})
+
+app.post('/savedLists/:listName/:index', (req, res) => {
     req.body.restaurantList.map((val, i) => {
-        return app.get('db').save_list(req.params.listName, val.name, val.rating, req.body.user.auth_id)
+        return app.get('db').save_list(req.params.listName, val.name, val.rating, req.body.user.auth_id, req.params.index)
     })
     res.sendStatus(200);
 })
@@ -104,6 +119,12 @@ app.get('/savedLists', (req, res) => {
     })
 })
 
+app.delete('/savedLists/:index/:listName', (req, res) => {
+    app.get('db').delete_favorites(req.params.index, req.params.listName)
+    .then(results => {
+        res.status(200).json(results);
+    })
+})
 
 
 app.listen(SERVER_PORT, () => console.log(`Magic Happens at Port: ${SERVER_PORT}`))
