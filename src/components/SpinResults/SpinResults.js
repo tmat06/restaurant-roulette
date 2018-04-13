@@ -18,8 +18,8 @@ class SpinResults extends Component {
 
     handleSave() {
         console.log('this.props', this.props)
-        console.log('this.props.currentLocation', this.props.currentLocation)
-        console.log('this.props.user_id', this.props.user.auth_id)
+        // console.log('this.props.currentLocation', this.props.currentLocation)
+        // console.log('this.props.user_id', this.props.user.auth_id)
         axios.get(`/favoriteLists/${this.props.currentLocation}/${this.props.user.auth_id}`)
             .then(results => {
                 console.log('results.data.length', results.data.length)

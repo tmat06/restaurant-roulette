@@ -43,8 +43,8 @@ class Dashboard extends Component {
     }
 
     handleEnter() {
-        this.props.locationSearch(this.state.address)
         console.log('this.state.address', this.state.address)
+        this.props.locationSearch(this.state.address)
         console.log('geocode')
         geocodeByAddress(this.state.address)
             .then(results => getLatLng(results[0]))
@@ -54,10 +54,16 @@ class Dashboard extends Component {
                 axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${this.props.restaurantSearch.lat},${this.props.restaurantSearch.lng}&radius=${this.state.selectField}&type=restaurant&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8`)
                     .then((res) => {
                         if (!res.data.results.length) {
+
                             this.props.updateRestaurantList([{
                                 name: "NO RESTAURANTS ARE NEARBY :(",
                                 opening_hours: {
                                     open_now: true
+                                },
+                                geometry: {
+                                    location: {
+                                        latLng
+                                    }
                                 }
                             }])
                         } else {
@@ -71,17 +77,7 @@ class Dashboard extends Component {
                                         newList.push(val)
                                     }
                                 })
-                                if (!newList.length) {
-                                    this.props.updateRestaurantList([{
-                                        name: "NO RESTAURANTS ARE NEARBY :(",
-                                        opening_hours: {
-                                            open_now: true
-                                        }
-                                    }]);
-                                } else {
-                                    this.props.updateRestaurantList(newList)
-
-                                }
+                                this.props.updateRestaurantList(newList)
                             } else {
                                 this.props.updateRestaurantList(res.data.results)
                             }
@@ -102,6 +98,12 @@ class Dashboard extends Component {
     updateCityOrAddress(e, i, value) {
         this.setState({
             cityOrAddress: value
+        })
+    }
+
+    updateOpenOrClosed(e, i, value) {
+        this.setState({
+            openOrClosed: value
         })
     }
 
@@ -142,7 +144,7 @@ class Dashboard extends Component {
 
             },
         }
-        // console.log('this.props', this.props)
+        console.log('this.props', this.props)
         // console.log('this.state.selectField', this.state.selectField)
         // console.log('this.props.restaurantSearch', this.props.restaurantSearch)
         // console.log('this.props.restaurantList', this.props.restaurantList)
@@ -157,6 +159,15 @@ class Dashboard extends Component {
                     <Link to='/friends-list'><button>Invite Friends</button></Link>
                     <br />
                     <div>
+                    <SelectField
+                            floatingLabelText="Open or Closed"
+                            value={this.state.openOrClosed}
+                            onChange={this.updateOpenOrClosed}
+                        >
+                            <MenuItem value={true} primaryText='Open' />
+                            <MenuItem value={false} primaryText='Open Or Closed' />
+                        </SelectField>
+
                         <SelectField
                             floatingLabelText="Distance"
                             value={this.state.selectField}

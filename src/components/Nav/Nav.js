@@ -48,7 +48,7 @@ export default class Nav extends Component {
                     open={this.state.open2}
                     openSecondary={true}>
                     <button onClick={() => this.handleToggle('2')}>$-----</button>
-                    <Profile />
+                    <Profile/>
                 </Drawer>
             </div>
             
