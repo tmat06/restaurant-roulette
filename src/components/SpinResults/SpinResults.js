@@ -78,7 +78,6 @@ class SpinResults extends Component {
                 {this.createRestaurantList(this.props.restaurantList)}
 
                 <Link to='/dashboard'><button>Dashboard</button></Link>
-                <Link to='/restaurant-page'><button>Restaurant</button></Link>
                 <Link to='/runner-up'><button>Runner Ups</button></Link>
                 <Link to='/google-directions'><button>Directions</button></Link>
                 <button className="save-restaurant-button" onClick={() => this.handleSave()}>Save Search</button>

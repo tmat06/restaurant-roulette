@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Carter+One');
+@import url('https://fonts.googleapis.com/css?family=Luckiest+Guy');
 
 .App {
   text-align: center;
@@ -8,7 +9,8 @@
 .auth{
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
+  align-items: center;
   background-color: #F64548;
   height: 100vh;
   width: 100%;
@@ -18,27 +20,45 @@
   justify-content: space-around;
 }
 
-.signUpButton{
+.titleContainer{
+  width: 60%;
   background-color: #FFE49F;
+  box-shadow: 1px 1px 1px black;
+  border-radius: 50px;
+  padding: 10px;
+}
+
+.signUpButton{
+  background-color: #F64548;
   box-shadow: 1px 1px 1px black;
   border-radius: 25px;
 }
 
-.loginMenu{
-  display: flex;
-  align-items: center;
-  background-color: #FFE49F;
-  flex-direction: column;
-  justify-content: space-around;
-  height: 30vh;
-  width: 50%;
-  margin: 0 auto;
-  border-radius: 25px;
-  box-shadow: 1px 1px 3px black;
-}
+
+
 .title{
-  font-size: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 90px;
+  color: #F64548;
+  text-shadow: 2px 2px 4px #000;
 }
+
+.restaurantTitle{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.restaurant{
+  display: flex;
+}
+.roulette{
+  display: flex;
+}
+
 .search-box{
   background-color: pink;
   width: 50% !important;

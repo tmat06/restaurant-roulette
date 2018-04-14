@@ -106,6 +106,9 @@ class ProfileButton extends Component {
                     //     favoriteRestaurants: [...res.data]
                     // })
                     this.props.updateFavoriteRestaurants(res.data)
+                    this.setState({
+                        newName: ''
+                    })
             })
         })
     }
@@ -126,7 +129,7 @@ class ProfileButton extends Component {
                 <Link to='/spin-results'><button onClick={() => this.handleEnterSave(this.props.listName, this.state.range)}>{this.props.listName}</button></Link>
                 <input placeholder="distance" onChange={(e) => this.handleDistance(e)} />
                 <button onClick={() => this.deleteFavoriteRestaurant(this.props.listName)}>delete?</button>
-                <input placeholder="new nickname" onChange={(e) => this.handleUpdate(e)} />
+                <input placeholder="new nickname" onChange={(e) => this.handleUpdate(e)} value={this.state.newName}/>
                 <button onClick={() => this.updateName(this.props)}>change name</button>
             </div>
         )
