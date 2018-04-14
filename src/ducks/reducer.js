@@ -86,6 +86,7 @@ export function updateRestaurantSearch(latLng) {
         payload: latLng
     }
 }
+
 export function updateRestaurantList(restaurantList) {
     console.log('hit in updateRestaurantList')
     return {
@@ -93,6 +94,7 @@ export function updateRestaurantList(restaurantList) {
         payload: restaurantList
     }
 }
+
 export function locationSearch(address) {
     return{
         type: LOCATION_SEARCH,

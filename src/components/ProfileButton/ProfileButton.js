@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { getUserInfo, updateRestaurantSearch, updateRestaurantList, locationSearch } from './../../ducks/reducer';
+import { getUserInfo, updateRestaurantSearch, updateRestaurantList, locationSearch, updateFavoriteRestaurants } from './../../ducks/reducer';
 import { Link } from 'react-router-dom';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
@@ -63,13 +63,23 @@ class ProfileButton extends Component {
     }
 
     deleteFavoriteRestaurant(listName) {
-        console.log('props.listName', listName)
+        console.log('bingo banjo', listName)
         axios.delete(`/savedLists/${listName}`)
             .then(res => {
                 alert('saved restaurant has been deleted')
+                console.log(this.props)
+                axios.get('/savedLists', this.props.user.id)
+                .then((res) => {
+                    // console.log('res', res)
+                    // this.setState({
+                    //     favoriteRestaurants: [...res.data]
+                    // })
+                    this.props.updateFavoriteRestaurants(res.data)
             }
             )
     }
+)
+}
 
 
     handleUpdate(e) {
@@ -89,7 +99,15 @@ class ProfileButton extends Component {
         axios.put(`/savedLists/${props.listName}/${props.authID}/${this.state.newName}`)
             .then(res => {
                 alert('name has been updated to ' + this.state.newName)
+                axios.get('/savedLists', this.props.user.id)
+                .then((res) => {
+                    // console.log('res', res)
+                    // this.setState({
+                    //     favoriteRestaurants: [...res.data]
+                    // })
+                    this.props.updateFavoriteRestaurants(res.data)
             })
+        })
     }
 
     updateRedux(props){
@@ -126,4 +144,4 @@ function mapStateToProps(state) {
 
 }
 
-export default connect(mapStateToProps, { getUserInfo, updateRestaurantSearch, updateRestaurantList, locationSearch })(ProfileButton);
+export default connect(mapStateToProps, { getUserInfo, updateRestaurantSearch, updateRestaurantList, locationSearch, updateFavoriteRestaurants })(ProfileButton);

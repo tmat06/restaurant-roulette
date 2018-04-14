@@ -111,6 +111,7 @@ app.post('/savedLists/:listName/:index', (req, res) => {
 })
 
 app.delete('/savedLists/:listName', (req, res) => {
+    console.log('hittin')
     app.get('db').delete_favorites(req.params.listName)
     .then(results => {
         res.status(200).json(results);

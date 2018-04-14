@@ -43,7 +43,8 @@ class SpinResults extends Component {
 
     handleDelete(index) {
         let newList = this.props.restaurantList.splice(index, 1);
-        return deleteRestaurantFromList(newList)
+        deleteRestaurantFromList(newList)
+        console.log('success?')
     }
     // componentDidUpdate(prevProps) {
     //     console.log('this.props.restaurantList', this.props.restaurantList)
@@ -51,26 +52,24 @@ class SpinResults extends Component {
     // }
 
     createRestaurantList(restaurantList) {
-        // console.log('yep')
+        console.log('yep')
         // console.log('this.props', this.props)
         // console.log('this.props.restaurantList', this.props.restaurantList)
         return restaurantList.map((val, i) => {
             // console.log('val spinresults', val)
-            if (val.opening_hours) {
-                if (val.opening_hours.open_now) {
-                    // console.log('val.photos', val)
-                    return (
-                        <RestaurantDisplay name={val.name} photoRef={val.photos ? val.photos[0] : ""} rating={val.rating} key={i} index={i} handleDelete={this.handleDelete} />
-                    )
-                }
-            }
+            // console.log('val.photos', val)
+            return (
+                <div key={i}>
+                    <RestaurantDisplay name={val.name} photoRef={val.photos ? val.photos[0] : ""} rating={val.rating} />
+                    <button onClick={() => this.handleDelete(i)}>Delete</button>
+                </div>
+            )
         })
     }
 
     render() {
         // console.log('this.props.restaurantList', this.props.restaurantList)
         console.log('this.props in render', this.props)
-
         return (
             <div>
                 <Nav />

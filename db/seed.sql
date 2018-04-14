@@ -18,3 +18,8 @@ CREATE TABLE IF NOT EXISTS FavoriteLists (
     id SERIAL PRIMARY KEY,
     name TEXT
 );
+
+-- INSERT INTO Restaurants
+-- (id, list_name, name, rating, user_id, saved_id)
+-- VALUES
+-- (25, 'Provo', 'chocolate pie cafe', 3.8, 'google-oauth2|105268168536098828843', 15);

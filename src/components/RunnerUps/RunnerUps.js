@@ -37,7 +37,7 @@ function RunnerUps(props) {
                 }
                 if (i === 0) {
                     return (
-                        <div>
+                        <div key={i}>
                             <div>Winner is: {val.name}</div>
                             <button>Restaurant Info</button>
                             <button>Directions</button>
