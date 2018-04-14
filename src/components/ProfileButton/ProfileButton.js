@@ -102,7 +102,7 @@ class ProfileButton extends Component {
     }
 
     render() {
-        console.log('this.props in profileButton', this.props)
+        // console.log('this.props in profileButton', this.props)
         return (
             <div key={this.props.index}>
                 <Link to='/spin-results'><button onClick={() => this.handleEnterSave(this.props.listName, this.state.range)}>{this.props.listName}</button></Link>

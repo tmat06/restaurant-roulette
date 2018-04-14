@@ -25,6 +25,7 @@ class Dashboard extends Component {
         this.selectField = this.selectField.bind(this);
         this.updateSelect = this.updateSelect.bind(this);
         this.updateCityOrAddress = this.updateCityOrAddress.bind(this);
+        this.updateOpenOrClosed = this.updateOpenOrClosed.bind(this);
     }
     componentDidMount() {
         this.props.getUserInfo();

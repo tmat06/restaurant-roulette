@@ -8,8 +8,8 @@ import { deleteRestaurantFromList } from './../../ducks/reducer';
 
 
 class SpinResults extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             img: ''
         }

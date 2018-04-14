@@ -30,13 +30,24 @@ function RunnerUps(props) {
             <Link to='/spin-results'><button>Spin Results</button></Link>
             {currentList.map((val, i) => {
                 console.log(val)
+                if (val.name === 'NO RESTAURANTS ARE NEARBY :(') {
+                    return (
+                        <div>Need Restaurants Before We Can Roulette</div>
+                    )
+                }
                 if (i === 0) {
                     return (
-                        <div>Winner is: {val.name}</div>
+                        <div>
+                            <div>Winner is: {val.name}</div>
+                            <button>Restaurant Info</button>
+                            <button>Directions</button>
+                        </div>
                     )
                 } else {
                     return (
-                        <div key={i}>{val.name}</div>
+                        <div key={i}>
+                            {i + 1}. {val.name}
+                        </div>
                     )
 
                 }
