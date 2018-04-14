@@ -99,3 +99,21 @@
   border-radius: 200px;
 
 }
+
+@media (max-width: 880px){
+  .title{
+    font-size: 75px;
+  }
+}
+
+@media (max-width: 750px){
+  .title{
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 360px){
+  .title{
+    font-size: 32px;
+  }
+}

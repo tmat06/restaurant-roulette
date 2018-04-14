@@ -2,13 +2,13 @@ import React from 'react';
 import Face from 'material-ui/svg-icons/action/face';
 import MainButton from './../MainButton/MainButton';
 import Transition from 'react-motion-ui-pack';
-import { Motion, spring } from 'react-motion';
+import { Motion, spring, StaggeredMotion } from 'react-motion';
+import ReactTimeout from 'react-timeout';
 // import Anime from 'react-anime';
 
 export default function Auth(props) {
     let title = ['R', 'e', 's', 't', 'a', 'u', 'r', 'a', 'n', 't']
     let title2 = ['R', 'o', 'u', 'l', 'e', 't', 't', 'e']
-
     return (
         <div className='auth'>
             <div className='authHeader'>
@@ -27,7 +27,7 @@ export default function Auth(props) {
                         component="div"
                         enter={{
                             opacity: 1,
-                            translateX: spring(0, { stiffness: 50, damping: 6.5 })
+                            translateX: spring(0, { stiffness: 50, damping: 7.5 })
                         }}
                         leave={{
                             opacity: 0,
@@ -45,7 +45,7 @@ export default function Auth(props) {
                         component="div"
                         enter={{
                             opacity: 1,
-                            translateX: spring(0, { stiffness: 50, damping: 6.5 })
+                            translateX: spring(0, { stiffness: 50, damping: 7.5 })
                         }}
                         leave={{
                             opacity: 0,
