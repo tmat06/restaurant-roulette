@@ -110,6 +110,14 @@ app.post('/savedLists/:listName/:index', (req, res) => {
     res.sendStatus(200);
 })
 
+app.delete('/savedLists/:listName', (req, res) => {
+    console.log('hittin')
+    app.get('db').delete_favorites(req.params.listName)
+    .then(results => {
+        res.status(200).json(results);
+    })
+})
+
 app.get('/savedLists', (req, res) => {
     app.get('db').display_favorites(req.user.id)
     .then(results => {
@@ -117,12 +125,6 @@ app.get('/savedLists', (req, res) => {
     })
 })
 
-app.delete('/savedLists/:listName', (req, res) => {
-    app.get('db').delete_favorites(req.params.listName)
-    .then(results => {
-        res.status(200).json(results);
-    })
-})
 
 app.put('/savedLists/:listName/:user_id/:newName', (req, res) => {
     app.get('db').edit_favorites_name(req.params.user_id, req.params.listName, req.params.newName)

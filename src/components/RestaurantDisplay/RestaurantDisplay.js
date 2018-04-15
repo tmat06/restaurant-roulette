@@ -11,9 +11,27 @@ export default class RestaurantDisplay extends Component {
 
     imgDisplay() {
         if (this.props.name !== "NO RESTAURANTS ARE NEARBY :(") {
-            return <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${this.props.photoRef.photo_reference}&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8`} alt="restaurant pic" />
+            return (
+                <div>
+                    {this.props.name}
+                    <Link to='/restaurant-page'><button>RestaurantPage</button></Link>
+                    <br />
+                    <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${this.props.photoRef.photo_reference}&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8`} alt="restaurant pic" />
+                    <br />
+                    <p>Rating: {this.props.rating}</p>
+                </div>
+            )
+
         } else {
-            return <img src={'https://i.imgflip.com/1c6w3u.jpg'} alt='old guy shrugging' />
+            return (
+                <div>
+                    {this.props.name}
+                    <br />
+                    <img src={'https://i.imgflip.com/1c6w3u.jpg'} alt='old guy shrugging' />
+                    <br />
+                    <p>Rating: N/A</p>
+                </div>
+            )
         }
     }
 
@@ -21,14 +39,7 @@ export default class RestaurantDisplay extends Component {
         // console.log('props', this.props)
         return (
             <div>
-                {this.props.name}
-                <Link to='/restaurant-page'><button>RestaurantPage</button></Link>
-                <br />
-                <button onClick={() => this.props.handleDelete(this.props.index)}>Delete</button>
-                <br />
                 {this.imgDisplay()}
-                <br />
-                <p>Rating: {this.props.rating}</p>
             </div>
         )
     }
