@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 class Party extends Component{
     constructor(){
@@ -12,6 +13,8 @@ class Party extends Component{
         return(
             <div>
                 Party Baby!
+                <Link to='/friends-list'><button>Invite Friends</button></Link>
+                
             </div>
         )
     }

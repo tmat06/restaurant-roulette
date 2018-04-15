@@ -53,12 +53,13 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, { restaurantSearch: action.payload });
 
         case UPDATE_RESTAURANT_LIST:
+            console.log('in reducer', action.payload)
             return Object.assign({}, state, { restaurantList: action.payload });
 
         case LOCATION_SEARCH:
             return Object.assign({}, state, { currentLocation: action.payload });
         
-        case DELETE_RESTAURANT_FROM_LIST:
+        case DELETE_RESTAURANT_FROM_LIST: //problem lies here, not updating redux correctly. data is passed all the way up to this point.
             return Object.assign({}, state, { restaurantList: action.payload });
         
         case UPDATE_FAVORITE_RESTAURANTS:
@@ -88,7 +89,7 @@ export function updateRestaurantSearch(latLng) {
 }
 
 export function updateRestaurantList(restaurantList) {
-    console.log('hit in updateRestaurantList')
+    console.log('hit in updateRestaurantList', restaurantList)
     return {
         type: UPDATE_RESTAURANT_LIST,
         payload: restaurantList

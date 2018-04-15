@@ -3,7 +3,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { getUserInfo, updateRestaurantSearch, updateRestaurantList, locationSearch, updateFavoriteRestaurants } from './../../ducks/reducer';
 import { Link } from 'react-router-dom';
-import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 
 
 class ProfileButton extends Component {
@@ -131,6 +131,7 @@ class ProfileButton extends Component {
                 <button onClick={() => this.deleteFavoriteRestaurant(this.props.listName)}>delete?</button>
                 <input placeholder="new nickname" onChange={(e) => this.handleUpdate(e)} value={this.state.newName}/>
                 <button onClick={() => this.updateName(this.props)}>change name</button>
+                
             </div>
         )
 

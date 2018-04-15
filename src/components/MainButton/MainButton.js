@@ -1,17 +1,24 @@
 import React from 'react';
 import FlatButton from 'material-ui/FlatButton';
 
-const style = {
+let style = {
     color: '#F64548',
     fontFamily: 'Carter One, cursive',
     fontSize: 20,
     borderRadius: 25,
+    backgroundColor: '#FFE49F',
+    hover: {
+        backgroundColor: "#000000"
+    },
     // cursor: 'pointer',
-    hoverColor: "#FFA880",
+    
     textAlign: 'left'
 }
 
 export default function MainButton(props) {
+    if(props.style){
+        style = Object.assign({}, style, props.style)
+    }
     return (
         <FlatButton
             label={props.name}

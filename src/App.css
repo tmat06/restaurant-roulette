@@ -15,6 +15,7 @@
   height: 100vh;
   width: 100%;
 }
+
 .authHeader{
   display: flex;
   justify-content: space-around;
@@ -27,14 +28,20 @@
   border-radius: 50px;
   padding: 10px;
 }
+.loginButton{
+  padding: 5px;
+}
+.loginButton:hover{
+  background-color: #FFA880;
+  padding: 5px;
+  border-radius: 25px;
+}
 
 .signUpButton{
   background-color: #F64548;
   box-shadow: 1px 1px 1px black;
   border-radius: 25px;
 }
-
-
 
 .title{
   display: flex;
@@ -45,6 +52,8 @@
   font-size: 90px;
   color: #F64548;
   text-shadow: 2px 2px 4px #000;
+
+  
 }
 
 .restaurantTitle{
@@ -58,6 +67,39 @@
 .roulette{
   display: flex;
 }
+
+.navMenu{
+  display: flex;
+  justify-content: space-around;
+  background-color: #FFE49F;
+  padding: 5px;
+  position: relative;
+  z-index: 2;
+}
+
+.dashboardContainer{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+  background-color: #F64548;
+}
+
+.greetingDisplayName{
+  font-family: 'Carter One', cursive;
+  
+  padding: 5px;
+  color: #FFA880;
+  font-size: 60px;
+}
+
+.selectFieldsContainer{
+  padding: 5px;
+  background-color: #FFE49F;
+  border-radius: 25px;
+  color: #F64548;
+}
+
 
 .search-box{
   background-color: pink;
@@ -100,19 +142,19 @@
 
 }
 
-@media (max-width: 880px){
+@media (max-width: 880px){ /* ipad */
   .title{
     font-size: 75px;
   }
 }
 
-@media (max-width: 750px){
+@media (max-width: 750px){ /* between */
   .title{
     font-size: 36px;
   }
 }
 
-@media (max-width: 360px){
+@media (max-width: 360px){ /* smallest iphone 6/7/8*/
   .title{
     font-size: 32px;
   }

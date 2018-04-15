@@ -2,8 +2,7 @@ import React from 'react';
 import Face from 'material-ui/svg-icons/action/face';
 import MainButton from './../MainButton/MainButton';
 import Transition from 'react-motion-ui-pack';
-import { Motion, spring, StaggeredMotion } from 'react-motion';
-import ReactTimeout from 'react-timeout';
+import {spring} from 'react-motion';
 // import Anime from 'react-anime';
 
 export default function Auth(props) {
@@ -74,9 +73,12 @@ export default function Auth(props) {
                             translateX: -700
                         }}
                     >
+                    <div className='loginButton'>
                         <a href={process.env.REACT_APP_LOGIN}>
-                            <MainButton name="LOGIN" icon={<Face />} wholeWidth={false}/>
+                            <MainButton name="LOGIN" icon={<Face />} wholeWidth={false} style={{color: '#F64548'}}/>
                         </a>
+
+                    </div>
                     </Transition>
                 
                 </div>

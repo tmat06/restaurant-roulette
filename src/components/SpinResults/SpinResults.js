@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import RestaurantDisplay from './../RestaurantDisplay/RestaurantDisplay';
 import axios from 'axios';
-import { deleteRestaurantFromList } from './../../ducks/reducer';
+import { updateRestaurantList, deleteRestaurantFromList } from './../../ducks/reducer';
 
 
 class SpinResults extends Component {
@@ -42,9 +42,15 @@ class SpinResults extends Component {
     }
 
     handleDelete(index) {
-        let newList = this.props.restaurantList.splice(index, 1);
-        deleteRestaurantFromList(newList)
+        let oldList = [...this.props.restaurantList];
+        console.log('oldList', oldList)
+        
+        let slicedItem = oldList.splice(index, 1);
+        console.log('slicedItem', slicedItem)
+        console.log('oldList again', oldList)
+        deleteRestaurantFromList(oldList)
         console.log('success?')
+        console.log('this.props.restaurantList', this.props.restaurantList)
     }
     // componentDidUpdate(prevProps) {
     //     console.log('this.props.restaurantList', this.props.restaurantList)
@@ -52,12 +58,8 @@ class SpinResults extends Component {
     // }
 
     createRestaurantList(restaurantList) {
-        console.log('yep')
-        // console.log('this.props', this.props)
         // console.log('this.props.restaurantList', this.props.restaurantList)
         return restaurantList.map((val, i) => {
-            // console.log('val spinresults', val)
-            // console.log('val.photos', val)
             return (
                 <div key={i}>
                     <RestaurantDisplay name={val.name} photoRef={val.photos ? val.photos[0] : ""} rating={val.rating} />
@@ -67,6 +69,7 @@ class SpinResults extends Component {
         })
     }
 
+
     render() {
         // console.log('this.props.restaurantList', this.props.restaurantList)
         console.log('this.props in render', this.props)
@@ -75,7 +78,15 @@ class SpinResults extends Component {
                 <Nav />
                 Spin Results
 
-                {this.createRestaurantList(this.props.restaurantList)}
+                        {this.props.restaurantList.map((val, i) => {
+                    return (
+                        <div key={i}>
+                            <RestaurantDisplay name={val.name} photoRef={val.photos ? val.photos[0] : ""} rating={val.rating} />
+                            <button onClick={() => this.handleDelete(i)}>Delete</button>
+                        </div>
+                    )
+                })
+                }
 
                 <Link to='/dashboard'><button>Dashboard</button></Link>
                 <Link to='/runner-up'><button>Runner Ups</button></Link>
@@ -96,4 +107,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps, { deleteRestaurantFromList })(SpinResults);
+export default connect(mapStateToProps, { updateRestaurantList, deleteRestaurantFromList })(SpinResults);
