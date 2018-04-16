@@ -22,7 +22,6 @@ class SpinResults extends Component {
         // console.log('this.props.user_id', this.props.user.auth_id)
         axios.get(`/favoriteLists/${this.props.currentLocation}/${this.props.user.auth_id}`)
             .then(results => {
-                console.log('results.data.length', results.data.length)
                 if (results.data.length != 0) {
                     console.log('duplicate', results)
                     alert('duplicate')
@@ -43,12 +42,12 @@ class SpinResults extends Component {
 
     handleDelete(index) {
         let oldList = [...this.props.restaurantList];
-        console.log('oldList', oldList)
-        
+        console.log('oldList', oldList[index])
+
         let slicedItem = oldList.splice(index, 1);
         console.log('slicedItem', slicedItem)
         console.log('oldList again', oldList)
-        deleteRestaurantFromList(oldList)
+        this.props.deleteRestaurantFromList(oldList)
         console.log('success?')
         console.log('this.props.restaurantList', this.props.restaurantList)
     }
@@ -76,22 +75,21 @@ class SpinResults extends Component {
         return (
             <div>
                 <Nav />
-                Spin Results
-
-                        {this.props.restaurantList.map((val, i) => {
-                    return (
-                        <div key={i}>
-                            <RestaurantDisplay name={val.name} photoRef={val.photos ? val.photos[0] : ""} rating={val.rating} />
-                            <button onClick={() => this.handleDelete(i)}>Delete</button>
-                        </div>
-                    )
-                })
-                }
-
+                <div className='spinResultsContainer'>
                 <Link to='/dashboard'><button>Dashboard</button></Link>
-                <Link to='/runner-up'><button>Runner Ups</button></Link>
-                <Link to='/google-directions'><button>Directions</button></Link>
-                <button className="save-restaurant-button" onClick={() => this.handleSave()}>Save Search</button>
+                        {this.props.restaurantList.map((val, i) => {
+                        return (
+                            <div key={i}>
+                                <RestaurantDisplay name={val.name} photoRef={val.photos ? val.photos[0] : ""} rating={val.rating} />
+                                <button onClick={() => this.handleDelete(i)}>Delete</button>
+                            </div>
+                        )
+                    })
+                    }
+                    <Link to='/runner-up'><button>Runner Ups</button></Link>
+                    <Link to='/google-directions'><button>Directions</button></Link>
+                    <button className="save-restaurant-button" onClick={() => this.handleSave()}>Save Search</button>
+                </div>
             </div>
 
         )
