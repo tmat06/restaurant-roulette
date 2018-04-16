@@ -93,6 +93,13 @@
   font-size: 60px;
 }
 
+.filterTitle{
+  font-family: 'Carter One', cursive;
+  font-size: 30px;
+  padding: 0;
+  margin: 0;
+}
+
 .selectFieldsContainer{
   padding: 5px;
   background-color: #FFE49F;
@@ -100,11 +107,12 @@
   color: #F64548;
 }
 
-
-.search-box{
-  background-color: pink;
-  width: 50% !important;
+.autoComplete{
+  display: flex;
+  justify-content: center;
+  outline: none;
 }
+
 .map-container{
   display: flex;
   justify-content: space-between;
