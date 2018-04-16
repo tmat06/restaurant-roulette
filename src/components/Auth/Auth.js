@@ -12,15 +12,9 @@ export default function Auth(props) {
         <div className='auth'>
             <div className='authHeader'>
                 <div></div>
-                <div></div>
-                <div className='signUpButton'></div>
             </div>
             <div className='titleContainer'>
-
-
                 <div className='title'>
-
-
                     <Transition
                         className='restaurantTitle'
                         component="div"
