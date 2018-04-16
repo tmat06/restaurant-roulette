@@ -172,7 +172,7 @@ class Dashboard extends Component {
                 flexDirection: 'column',
                 alignItems: 'center',
                 backgroundColor: '#FFA880',
-                
+
             },
             autocompleteItem: {
                 backgroundColor: '#FFA880',
@@ -257,7 +257,7 @@ class Dashboard extends Component {
                             <div className='searchHere'>
                                 Search Here:
                             </div>
-                            <div style={{display: 'flex', justifyContent: 'center'}}>
+                            <div style={{ display: 'flex', justifyContent: 'center' }}>
                                 <PlacesAutocomplete
                                     inputProps={inputProps}
                                     highlightFirstSuggestion={true}
@@ -268,9 +268,10 @@ class Dashboard extends Component {
                                 />
                             </div>
                         </div>
-
+                        <div>
+                            <Link to='/spin-results'><button onClick={() => this.handleEnter()}>SpinResults</button></Link>
+                        </div>
                         <br />
-                        <Link to='/spin-results'><button onClick={() => this.handleEnter()}>SpinResults</button></Link>
                         <br />
                         <a href="/auth/logout"><button>LogOut</button></a>
                         <br />
