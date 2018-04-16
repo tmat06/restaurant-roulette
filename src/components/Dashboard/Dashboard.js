@@ -177,12 +177,12 @@ class Dashboard extends Component {
 
             },
             autocompleteItem: {
+                zIndex: '2',
                 backgroundColor: '#FFA880',
                 color: '#F64548',
                 fontFamily: 'Carter One, cursive',
                 width: '45vw',
                 borderRadius: '25px',
-                zIndex: '2',
             },
         }
         console.log('this.props', this.props)
@@ -194,11 +194,11 @@ class Dashboard extends Component {
             <div>
                 <Nav />
                 <div className="dashboardContainer">
-                    <div >
-                        {this.displayName()}
-                    </div>
                     <div>
                         <div className='selectFieldsContainer'>
+                            <div >
+                                {this.displayName()}
+                            </div>
                             <h2 className='filterTitle'>Filters</h2>
                             <SelectField
                                 labelStyle={{ fontFamily: 'Luckiest Guy, cursive', color: '#F64548', fontSize: '25px', border: '10px', padding: '0px' }}
@@ -273,7 +273,7 @@ class Dashboard extends Component {
                             </div>
                         </div>
                         <div>
-                            <Link to='/spin-results'><MainButton name="Search" icon={<Search />} wholeWidth={false} style={{ color: '#F64548'}} onClick={() => this.handleEnter()} /></Link>
+                            <Link to='/spin-results'><MainButton name="Search" icon={<Search />} wholeWidth={false} style={{ color: '#F64548', zIndex: '`' }} onClick={() => this.handleEnter()} /></Link>
                         </div>
                     </div>
                 </div>
