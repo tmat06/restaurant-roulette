@@ -149,33 +149,37 @@ class Dashboard extends Component {
         }
         const myStyles = {
             root: {
-                width: '50vw',
-                borderRadius: '25px'
+                width: '80vw',
             },
             input: {
                 backgroundColor: '#FFE49F',
-                width: '50vw',
+                width: '100%',
                 fontFamily: 'Carter One, cursive',
+                color: '#F64548',
                 borderRadius: '25px',
+                fontSize: '25px',
                 display: 'flex',
                 justifyContent: 'center',
-                outline: 'none'
+                outline: 'none',
+                border: 'none',
+                boxShadow: '1px 1px 2px #FFA880'
             },
             autocompleteContainer: {
-                backgroundColor: 'green',
                 fontFamily: 'Carter One, cursive',
-                width: '50vw',
+                width: '80vw',
                 borderRadius: '25px',
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'center'
+                alignItems: 'center',
+                backgroundColor: '#FFA880',
+                
             },
             autocompleteItem: {
-                color: 'black',
+                backgroundColor: '#FFA880',
+                color: '#F64548',
                 fontFamily: 'Carter One, cursive',
                 width: '45vw',
                 borderRadius: '25px',
-
             },
         }
         console.log('this.props', this.props)
@@ -199,7 +203,7 @@ class Dashboard extends Component {
                                 iconStyle={{ fill: 'black' }}
                                 menuItemStyle={{ backgroundColor: '#FFA070', fontFamily: 'Luckiest Guy, cursive', fontSize: '16px', color: '#F64548', padding: '0px' }}
                                 listStyle={{ backgroundColor: '#FFA070' }}
-                                selectedMenuItemStyle={{ color: '#FFE49F' }}
+                                selectedMenuItemStyle={{ color: '#FFE49F', textShadow: '.5px .5px 1px #000' }}
 
                                 floatingLabelText="Open or Closed"
                                 value={this.state.openOrClosed}
@@ -216,7 +220,8 @@ class Dashboard extends Component {
                                 iconStyle={{ fill: 'black' }}
                                 menuItemStyle={{ backgroundColor: '#FFA070', fontFamily: 'Luckiest Guy, cursive', fontSize: '16px', color: '#F64548', padding: '0px' }}
                                 listStyle={{ backgroundColor: '#FFA070' }}
-                                selectedMenuItemStyle={{ color: '#FFE49F' }}
+                                selectedMenuItemStyle={{ color: '#FFE49F', textShadow: '.5px .5px 1px #000' }}
+
                                 floatingLabelText="Distance"
                                 value={this.state.selectField}
                                 onChange={this.updateSelect}
@@ -237,7 +242,8 @@ class Dashboard extends Component {
                                 iconStyle={{ fill: 'black' }}
                                 menuItemStyle={{ backgroundColor: '#FFA070', fontFamily: 'Luckiest Guy, cursive', fontSize: '16px', color: '#F64548', padding: '0px' }}
                                 listStyle={{ backgroundColor: '#FFA070' }}
-                                selectedMenuItemStyle={{ color: '#FFE49F' }}
+                                selectedMenuItemStyle={{ color: '#FFE49F', textShadow: '.5px .5px 1px #000' }}
+
                                 floatingLabelText="City or Address"
                                 value={this.state.cityOrAddress}
                                 onChange={this.updateCityOrAddress}
@@ -248,7 +254,19 @@ class Dashboard extends Component {
 
                         </div>
                         <div className='autoComplete'>
-                            <PlacesAutocomplete inputProps={inputProps} highlightFirstSuggestion={true} styles={myStyles} options={{ types: [this.state.cityOrAddress] }} onEnterKeyDown={() => this.handleEnter()} />
+                            <div className='searchHere'>
+                                Search Here:
+                            </div>
+                            <div style={{display: 'flex', justifyContent: 'center'}}>
+                                <PlacesAutocomplete
+                                    inputProps={inputProps}
+                                    highlightFirstSuggestion={true}
+                                    className='autoCompleteSearch'
+                                    styles={myStyles}
+                                    options={{ types: [this.state.cityOrAddress] }}
+                                    onEnterKeyDown={() => this.handleEnter()}
+                                />
+                            </div>
                         </div>
 
                         <br />
