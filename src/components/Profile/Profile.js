@@ -42,6 +42,8 @@ class Profile extends Component {
             <div>
                 Profile Baby
                 <br />
+                <a href="/auth/logout"><button>LogOut</button></a>
+                
                 <img src={this.props.user.img} alt="dog" style={{ height: '200px', width: '200px' }} className="profilePic" />
                 
                 {this.favoriteList()}

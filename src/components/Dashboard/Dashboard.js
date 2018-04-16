@@ -10,7 +10,8 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import Transition from 'react-motion-ui-pack';
 import { spring } from 'react-motion';
-import arrowForward from 'material-ui/svg-icons/navigation/arrow-forward';
+import Search from 'material-ui/svg-icons/action/search';
+import MainButton from './../MainButton/MainButton';
 
 
 
@@ -21,10 +22,12 @@ class Dashboard extends Component {
             address: 'Provo, UT',
             selectField: '500',
             cityOrAddress: '(cities)',
-            openOrClosed: true
+            openOrClosed: true,
+            spinResultsDisplay: false
         }
         this.onChange = (address) => this.setState({
-            address
+            address,
+            spinResultsDisplay: true
         })
         this.selectField = this.selectField.bind(this);
         this.updateSelect = this.updateSelect.bind(this);
@@ -66,7 +69,6 @@ class Dashboard extends Component {
                 }}
             >
                 {
-
                     <div className='greetingDisplayName'>
                         {greeting}{firstName[0]}
                     </div>
@@ -180,9 +182,11 @@ class Dashboard extends Component {
                 fontFamily: 'Carter One, cursive',
                 width: '45vw',
                 borderRadius: '25px',
+                zIndex: '2',
             },
         }
         console.log('this.props', this.props)
+        console.log('flip?', this.state.spinResultsDisplay)
         // console.log('this.state.selectField', this.state.selectField)
         // console.log('this.props.restaurantSearch', this.props.restaurantSearch)
         // console.log('this.props.restaurantList', this.props.restaurantList)
@@ -190,7 +194,7 @@ class Dashboard extends Component {
             <div>
                 <Nav />
                 <div className="dashboardContainer">
-                    <div style={{ height: '100px' }}>
+                    <div >
                         {this.displayName()}
                     </div>
                     <div>
@@ -269,14 +273,8 @@ class Dashboard extends Component {
                             </div>
                         </div>
                         <div>
-                            <Link to='/spin-results'><button onClick={() => this.handleEnter()}>SpinResults</button></Link>
+                            <Link to='/spin-results'><MainButton name="Search" icon={<Search />} wholeWidth={false} style={{ color: '#F64548'}} onClick={() => this.handleEnter()} /></Link>
                         </div>
-                        <br />
-                        <br />
-                        <a href="/auth/logout"><button>LogOut</button></a>
-                        <br />
-
-                        <Link to='/motion-styled-comp'><button>Transitions</button></Link>
                     </div>
                 </div>
             </div>

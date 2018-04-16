@@ -149,16 +149,23 @@
   .title{
     font-size: 75px;
   }
+
 }
 
 @media (max-width: 750px){ /* between */
   .title{
     font-size: 36px;
   }
+  .greetingDisplayName{
+    font-size: 40px;
+  }
 }
 
 @media (max-width: 360px){ /* smallest iphone 6/7/8*/
   .title{
     font-size: 32px;
+  }
+  .greetingDisplayName{
+    font-size: 30px;
   }
 }
