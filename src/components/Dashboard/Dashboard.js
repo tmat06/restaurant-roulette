@@ -23,7 +23,7 @@ class Dashboard extends Component {
             selectField: '500',
             cityOrAddress: '(cities)',
             openOrClosed: true,
-            spinResultsDisplay: false
+            spinResultsDisplay: false,
         }
         this.onChange = (address) => this.setState({
             address,
@@ -65,7 +65,7 @@ class Dashboard extends Component {
                 }}
                 leave={{
                     opacity: 0,
-                    translateY: -700
+                    translateY: -400
                 }}
             >
                 {
@@ -187,6 +187,7 @@ class Dashboard extends Component {
         }
         console.log('this.props', this.props)
         console.log('flip?', this.state.spinResultsDisplay)
+        
         // console.log('this.state.selectField', this.state.selectField)
         // console.log('this.props.restaurantSearch', this.props.restaurantSearch)
         // console.log('this.props.restaurantList', this.props.restaurantList)
