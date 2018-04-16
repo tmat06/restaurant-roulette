@@ -81,7 +81,6 @@ export function getUserInfo() {
 }
 
 export function updateRestaurantSearch(latLng) {
-    console.log('hit restaurantSearch', latLng)
     return {
         type: UPDATE_RESTAURANT_SEARCH,
         payload: latLng
@@ -89,7 +88,6 @@ export function updateRestaurantSearch(latLng) {
 }
 
 export function updateRestaurantList(restaurantList) {
-    console.log('hit in updateRestaurantList', restaurantList)
     return {
         type: UPDATE_RESTAURANT_LIST,
         payload: restaurantList

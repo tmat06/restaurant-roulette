@@ -110,6 +110,31 @@
   width: 100%;
 }
 
+.spinResultsContainer{
+  background-color: #FFA880;
+  width: 100%;
+}
+
+.restaurantDisplayList{
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid black;
+  border-radius: 15px;
+  width: 100%;
+  background-color: #FFE49F;
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 25px;
+}
+
+.restaurantDisplayList:hover{
+  background-color: #F64548;
+}
+
+.restaurantName{
+  height: 300px;
+  width: 300px;
+}
+
 .map-container{
   display: flex;
   justify-content: space-between;
