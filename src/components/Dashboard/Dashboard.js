@@ -10,6 +10,8 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import Transition from 'react-motion-ui-pack';
 import { spring } from 'react-motion';
+import arrowForward from 'material-ui/svg-icons/navigation/arrow-forward';
+
 
 
 class Dashboard extends Component {
@@ -156,7 +158,8 @@ class Dashboard extends Component {
                 fontFamily: 'Carter One, cursive',
                 borderRadius: '25px',
                 display: 'flex',
-                justifyContent: 'center'
+                justifyContent: 'center',
+                outline: 'none'
             },
             autocompleteContainer: {
                 backgroundColor: 'green',
@@ -180,26 +183,40 @@ class Dashboard extends Component {
         // console.log('this.props.restaurantSearch', this.props.restaurantSearch)
         // console.log('this.props.restaurantList', this.props.restaurantList)
         return (
-            <div className="dashboardContainer">
+            <div>
                 <Nav />
-                <div >
+                <div className="dashboardContainer">
                     <div style={{ height: '100px' }}>
                         {this.displayName()}
                     </div>
                     <div>
-
                         <div className='selectFieldsContainer'>
+                            <h2 className='filterTitle'>Filters</h2>
                             <SelectField
-                                labelStyle={{fontFamily: 'Luckiest Guy, cursive', color: '#F64548'}}                                
+                                labelStyle={{ fontFamily: 'Luckiest Guy, cursive', color: '#F64548', fontSize: '25px', border: '10px', padding: '0px' }}
+                                floatingLabelStyle={{ color: '#FFA070', fontFamily: 'Luckiest Guy, cursive', borderRadius: '25px' }}
+                                underlineStyle={{ borderColor: 'black' }}
+                                iconStyle={{ fill: 'black' }}
+                                menuItemStyle={{ backgroundColor: '#FFA070', fontFamily: 'Luckiest Guy, cursive', fontSize: '16px', color: '#F64548', padding: '0px' }}
+                                listStyle={{ backgroundColor: '#FFA070' }}
+                                selectedMenuItemStyle={{ color: '#FFE49F' }}
+
                                 floatingLabelText="Open or Closed"
-                                value={this.state.openOrClosed}                                
+                                value={this.state.openOrClosed}
                                 onChange={this.updateOpenOrClosed}
                             >
-                                <MenuItem value={true} primaryText='Open'/>
-                                <MenuItem value={false} primaryText='Open Or Closed'/>
+                                <MenuItem value={true} primaryText='Open' />
+                                <MenuItem value={false} primaryText='Open Or Closed' />
                             </SelectField>
 
                             <SelectField
+                                labelStyle={{ fontFamily: 'Luckiest Guy, cursive', color: '#F64548', fontSize: '25px', border: '10px', padding: '0px' }}
+                                floatingLabelStyle={{ color: '#FFA070', fontFamily: 'Luckiest Guy, cursive', borderRadius: '25px' }}
+                                underlineStyle={{ borderColor: 'black' }}
+                                iconStyle={{ fill: 'black' }}
+                                menuItemStyle={{ backgroundColor: '#FFA070', fontFamily: 'Luckiest Guy, cursive', fontSize: '16px', color: '#F64548', padding: '0px' }}
+                                listStyle={{ backgroundColor: '#FFA070' }}
+                                selectedMenuItemStyle={{ color: '#FFE49F' }}
                                 floatingLabelText="Distance"
                                 value={this.state.selectField}
                                 onChange={this.updateSelect}
@@ -214,6 +231,13 @@ class Dashboard extends Component {
 
 
                             <SelectField
+                                labelStyle={{ fontFamily: 'Luckiest Guy, cursive', color: '#F64548', fontSize: '25px', border: '10px', padding: '0px' }}
+                                floatingLabelStyle={{ color: '#FFA070', fontFamily: 'Luckiest Guy, cursive', borderRadius: '25px' }}
+                                underlineStyle={{ borderColor: 'black' }}
+                                iconStyle={{ fill: 'black' }}
+                                menuItemStyle={{ backgroundColor: '#FFA070', fontFamily: 'Luckiest Guy, cursive', fontSize: '16px', color: '#F64548', padding: '0px' }}
+                                listStyle={{ backgroundColor: '#FFA070' }}
+                                selectedMenuItemStyle={{ color: '#FFE49F' }}
                                 floatingLabelText="City or Address"
                                 value={this.state.cityOrAddress}
                                 onChange={this.updateCityOrAddress}
@@ -223,7 +247,7 @@ class Dashboard extends Component {
                             </SelectField>
 
                         </div>
-                        <div>
+                        <div className='autoComplete'>
                             <PlacesAutocomplete inputProps={inputProps} highlightFirstSuggestion={true} styles={myStyles} options={{ types: [this.state.cityOrAddress] }} onEnterKeyDown={() => this.handleEnter()} />
                         </div>
 
