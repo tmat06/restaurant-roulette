@@ -69,7 +69,7 @@ class Dashboard extends Component {
                 }}
             >
                 {
-                    <div className='greetingDisplayName'>
+                    <div className='greetingDisplayName' key='0'>
                         {greeting}{firstName[0]}
                     </div>
                 }
