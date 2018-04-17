@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getUserInfo, updateRestaurantSearch, updateRestaurantList, locationSearch, updateFavoriteRestaurants } from './../../ducks/reducer';
 import { Link } from 'react-router-dom';
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
+import MainButton from './../MainButton/MainButton';
 
 
 class ProfileButton extends Component {
@@ -13,6 +14,7 @@ class ProfileButton extends Component {
             newName: "",
             range: '500'
         }
+        this.handleEnterSave = this.handleEnterSave.bind(this);
     }
 
     handleEnterSave(address, range) {
@@ -69,17 +71,17 @@ class ProfileButton extends Component {
                 alert('saved restaurant has been deleted')
                 console.log(this.props)
                 axios.get('/savedLists', this.props.user.id)
-                .then((res) => {
-                    // console.log('res', res)
-                    // this.setState({
-                    //     favoriteRestaurants: [...res.data]
-                    // })
-                    this.props.updateFavoriteRestaurants(res.data)
+                    .then((res) => {
+                        // console.log('res', res)
+                        // this.setState({
+                        //     favoriteRestaurants: [...res.data]
+                        // })
+                        this.props.updateFavoriteRestaurants(res.data)
+                    }
+                    )
             }
             )
     }
-)
-}
 
 
     handleUpdate(e) {
@@ -87,7 +89,7 @@ class ProfileButton extends Component {
             newName: e.target.value
         })
     }
-    
+
     handleDistance(e) {
         this.setState({
             range: e.target.value
@@ -100,38 +102,46 @@ class ProfileButton extends Component {
             .then(res => {
                 alert('name has been updated to ' + this.state.newName)
                 axios.get('/savedLists', this.props.user.id)
-                .then((res) => {
-                    // console.log('res', res)
-                    // this.setState({
-                    //     favoriteRestaurants: [...res.data]
-                    // })
-                    this.props.updateFavoriteRestaurants(res.data)
-                    this.setState({
-                        newName: ''
+                    .then((res) => {
+                        // console.log('res', res)
+                        // this.setState({
+                        //     favoriteRestaurants: [...res.data]
+                        // })
+                        this.props.updateFavoriteRestaurants(res.data)
+                        this.setState({
+                            newName: ''
+                        })
                     })
             })
-        })
     }
 
-    updateRedux(props){
+    updateRedux(props) {
         axios.get(`/retrieveList/${props.listName}/${props.authID}`)
-        .then(res => {
-            this.props.updateRestaurantList(res.data)
-            alert('redux updated')
-        })
-        
+            .then(res => {
+                this.props.updateRestaurantList(res.data)
+                alert('redux updated')
+            })
+
     }
 
     render() {
         // console.log('this.props in profileButton', this.props)
         return (
             <div key={this.props.index}>
-                <Link to='/spin-results'><button onClick={() => this.handleEnterSave(this.props.listName, this.state.range)}>{this.props.listName}</button></Link>
+                <Link to='/spin-results' style={{ textDecoration: 'none' }}><MainButton name={this.props.listName} wholeWidth={true} style={{ color: '#F64548' }} handleEnterSave = {this.handleEnterSave} listName={this.props.listName} range={this.state.range} /></Link>
+
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2" />
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="button">Button</button>
+                    </div>
+                </div>
+
                 <input placeholder="distance" onChange={(e) => this.handleDistance(e)} />
                 <button onClick={() => this.deleteFavoriteRestaurant(this.props.listName)}>delete?</button>
-                <input placeholder="new nickname" onChange={(e) => this.handleUpdate(e)} value={this.state.newName}/>
+                <input placeholder="new nickname" onChange={(e) => this.handleUpdate(e)} value={this.state.newName} />
                 <button onClick={() => this.updateName(this.props)}>change name</button>
-                
+
             </div>
         )
 

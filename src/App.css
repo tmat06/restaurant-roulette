@@ -153,6 +153,26 @@
   width: 300px;
 }
 
+.profileImage{
+  background-color: #FFA880;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Luckiest Guy', cursive;
+}
+
+.profileMenu{
+  background-color: yellow;
+  border: 2px solid black;
+}
+
+.profileSavedList{
+  font-family: 'Luckiest Guy', cursive;
+  background-color: #F64548;
+  font-size: 25px;
+}
+
 .map-container{
   display: flex;
   justify-content: space-between;

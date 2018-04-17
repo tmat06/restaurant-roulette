@@ -3,6 +3,8 @@ import MainButton from './../MainButton/MainButton';
 import Drawer from 'material-ui/Drawer';
 import Profile from './../Profile/Profile';
 import Party from './../Party/Party';
+import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
+
 
 
 export default class Nav extends Component {
@@ -39,7 +41,7 @@ export default class Nav extends Component {
                     <Drawer
                         width={400}
                         open={this.state.open2}>
-                        <button onClick={() => this.handleToggle('2')}>$-----</button>
+                        <MainButton name="RETURN" icon={<ArrowBack />}  handleToggle={this.handleToggle} toggle={'2'} wholeWidth={true} style={{ color: '#F64548', borderRadius: '0px', display: 'flex', justifyContent: 'center' }} />
                         <Profile />
                     </Drawer>
                 </div>
@@ -50,7 +52,8 @@ export default class Nav extends Component {
                         width={400}
                         open={this.state.open1}
                         openSecondary={true}>
-                        <button onClick={() => this.handleToggle('1')}>---></button>
+                        <MainButton name="RETURN" icon={<ArrowBack />}  handleToggle={this.handleToggle} toggle={'1'} wholeWidth={true} style={{ color: '#F64548', borderRadius: '0px', display: 'flex', justifyContent: 'center' }} />
+                        
                         <Party />
                     </Drawer>
                 </div>

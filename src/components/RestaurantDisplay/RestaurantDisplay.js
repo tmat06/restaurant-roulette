@@ -30,10 +30,10 @@ export default class RestaurantDisplay extends Component {
             return (
                 <div className='restaurantDisplayList'>
                     <div className='restaurantName'>
-                        <div style={{textAlign: 'center', padding: '5px', backgroundColor: '#FFA880', borderRadius: '15px 15px 0 0'}}>
+                        <div style={{textAlign: 'center', padding: '5px 0', backgroundColor: '#FFA880', borderRadius: '14px 14px 0 0', width: '100%'}}>
                             {this.props.name}
                         </div>
-                        <div style={{textAlign: 'left', padding: '5px'}}>
+                        <div style={{textAlign: 'left', padding: '5px', fontSize: '16px'}}>
                             {this.props.restaurantAddress}
                         </div>
                         <div style={{textAlign: 'left', padding: '5px'}}>
@@ -67,7 +67,6 @@ export default class RestaurantDisplay extends Component {
     }
 
     render(props) {
-        console.log('this.props yi', this.props)
         return (
             <div>
                 {this.imgDisplay()}

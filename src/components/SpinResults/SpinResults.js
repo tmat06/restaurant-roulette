@@ -62,7 +62,6 @@ class SpinResults extends Component {
             return (
                 <div key={i}>
                     <RestaurantDisplay  name={val.name} photoRef={val.photos ? val.photos[0] : ""} rating={val.rating} />
-                    
                 </div>
             )
         })

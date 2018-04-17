@@ -5,18 +5,6 @@ import Transition from 'react-motion-ui-pack';
 import { spring } from 'react-motion';
 import setTimeout from 'react-timeout';
 
-function sayHi() {
-    return (
-        <div>
-            dog
-        </div>
-    )
-}
-
-function timedDelay() {
-    console.log('hit')
-    setTimeout(() => sayHi(), 300);
-}
 
 
 
@@ -28,7 +16,6 @@ export default function Auth(props) {
         <div className='auth'>
             <div className='authHeader'>
                 <div></div>
-                {timedDelay()}
             </div>
             <div className='titleContainer'>
                 <div className='title'>

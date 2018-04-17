@@ -194,8 +194,8 @@ class Dashboard extends Component {
         return (
             <div>
                 <Nav />
-                <div className="dashboardContainer">
-                    <div>
+                <div >
+                    <div className="dashboardContainer">
                         <div className='selectFieldsContainer'>
                             <div >
                                 {this.displayName()}
@@ -274,7 +274,7 @@ class Dashboard extends Component {
                             </div>
                         </div>
                         <div>
-                            <Link to='/spin-results'><MainButton name="Search" icon={<Search />} wholeWidth={false} style={{ color: '#F64548', zIndex: '`' }} onClick={() => this.handleEnter()} /></Link>
+                            <Link to='/spin-results' style={{textDecoration: 'none'}}><MainButton name="Search" icon={<Search />} wholeWidth={false} style={{ color: '#F64548', borderRadius: '25px' }} onClick={() => this.handleEnter()}/></Link>
                         </div>
                     </div>
                 </div>

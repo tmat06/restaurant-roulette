@@ -29,27 +29,44 @@ class Profile extends Component {
                         flip: false
                     });
                 })
-        } else{
+        } else {
             // console.log('no auth_id yet')
         }
 
     }
 
     render() {
-        // console.log('this.props in render', this.props)
+        console.log('this.props in render', this.props)
         // this.favoriteList();
         return (
-            <div>
-                Profile Baby
-                <br />
-                <a href="/auth/logout"><button>LogOut</button></a>
-                
-                <img src={this.props.user.img} alt="dog" style={{ height: '200px', width: '200px' }} className="profilePic" />
-                
-                {this.favoriteList()}
-                {this.props.favoriteRestaurants.map((val, i) => {
-                    return <ProfileButton index={i} listName={val.list_name} key={i} authID={this.props.user.auth_id} />
-                })}
+            <div >
+                <div className='profileImage'>
+                    <div>
+                        <div>
+
+                        <h3 style={{letterSpacing: '2px'}}>
+                            {this.props.user.display_name}
+                        </h3>
+                        </div>
+                        <p>
+                            Favorite Quotes
+                        </p>
+                    </div>
+                    <div>
+                        <img src={this.props.user.img} alt="dog" style={{ height: '200px', width: '200px', border: '2px solid black', boxShadow: '1px 1px 2px black' }} className="profilePic" />
+                    </div>
+                </div>
+                    <div className='profileSavedList'>
+                        Saved Lists
+                    </div>
+                <div className="profileMenu">
+                    {this.favoriteList()}
+                    {this.props.favoriteRestaurants.map((val, i) => {
+                        return <ProfileButton index={i} listName={val.list_name} key={i} authID={this.props.user.auth_id} />
+                    })}
+                    <a href="/auth/logout"><button>LogOut</button></a>
+
+                </div>
             </div>
         )
     }
