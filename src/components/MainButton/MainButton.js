@@ -7,6 +7,7 @@ let style = {
     fontSize: 20,
     borderRadius: 25,
     backgroundColor: '#FFE49F',
+    margin: '0px',
     hover: {
         backgroundColor: "#000000"
     },
@@ -39,6 +40,9 @@ export default function MainButton(props) {
                 }
                 if (props.handleEnterSave){
                     props.handleEnterSave(props.listName, props.range)
+                }
+                if (props.handleOpen){
+                    props.handleOpen()
                 }
             }
             }

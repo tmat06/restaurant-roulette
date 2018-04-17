@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import ProfileButton from './../ProfileButton/ProfileButton';
 import { updateFavoriteRestaurants } from './../../ducks/reducer';
+import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
+import FlatButton from 'material-ui/FlatButton';
+
+
 
 
 class Profile extends Component {
@@ -10,7 +14,8 @@ class Profile extends Component {
         super();
         this.state = {
             favoriteRestaurants: [],
-            flip: true
+            flip: true,
+            open2: false
         }
     }
 
@@ -39,14 +44,31 @@ class Profile extends Component {
         console.log('this.props in render', this.props)
         // this.favoriteList();
         return (
-            <div >
+            <div style={{ backgroundColor: '#F64548' }}>
+                <FlatButton
+                    style={{
+                        color: '#F64548',
+                        fontFamily: 'Carter One, cursive',
+                        fontSize: 20,
+                        borderRadius: 25,
+                        backgroundColor: '#FFE49F',
+                        margin: '0px',
+                        borderRadius: '0',
+                    }}
+                    label={'Return'}
+                    labelStyle={{ fontSize: 20 }}
+                    fullWidth={true}
+                    icon={<ArrowBack />}
+                    onClick={() => this.props.handleToggle(this.props.toggle)}
+                />
+
                 <div className='profileImage'>
                     <div>
                         <div>
 
-                        <h3 style={{letterSpacing: '2px'}}>
-                            {this.props.user.display_name}
-                        </h3>
+                            <h3 style={{ letterSpacing: '2px' }}>
+                                {this.props.user.display_name}
+                            </h3>
                         </div>
                         <p>
                             Favorite Quotes
@@ -56,8 +78,8 @@ class Profile extends Component {
                         <img src={this.props.user.img} alt="dog" style={{ height: '200px', width: '200px', border: '2px solid black', boxShadow: '1px 1px 2px black' }} className="profilePic" />
                     </div>
                 </div>
-                    <div className='profileSavedList'>
-                        Saved Lists
+                <div className='profileSavedList'>
+                    Saved Lists
                     </div>
                 <div className="profileMenu">
                     {this.favoriteList()}

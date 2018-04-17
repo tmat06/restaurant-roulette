@@ -59,9 +59,11 @@
   display: flex;
   justify-content: space-around;
   background-color: #FFE49F;
-  padding: 5px;
+  
   position: relative;
   z-index: 2;
+  margin: 0;
+  height: 50px;
 }
 
 .dashboardContainer{
@@ -155,22 +157,35 @@
 
 .profileImage{
   background-color: #FFA880;
-  padding: 10px 0;
+  padding: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: 'Luckiest Guy', cursive;
+  border: 2px solid black;
 }
 
 .profileMenu{
-  background-color: yellow;
-  border: 2px solid black;
+  background-color: #F64548;
 }
 
 .profileSavedList{
   font-family: 'Luckiest Guy', cursive;
   background-color: #F64548;
   font-size: 25px;
+  color: #FFE49F;
+  letter-spacing: 4px;
+}
+
+.profileSavedListMenu{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFE49F;
+  border: 2px solid black;
+  padding: 5px 0;
+  margin: 2px 0;
 }
 
 .map-container{

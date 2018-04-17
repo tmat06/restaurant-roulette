@@ -37,23 +37,22 @@ export default class Nav extends Component {
         return (
             <div className='navMenu'>
                 <div>
-                    <MainButton name="Profile" wholeWidth={false} style={{ backgroundColor: '#FFE49F' }} handleToggle={() => this.handleToggle('2')} />
+                    <MainButton name="Profile" wholeWidth={false} style={{ backgroundColor: '#FFE49F', boxShadow: '0' }} handleToggle={() => this.handleToggle('2')} />
                     <Drawer
                         width={400}
                         open={this.state.open2}>
-                        <MainButton name="RETURN" icon={<ArrowBack />}  handleToggle={this.handleToggle} toggle={'2'} wholeWidth={true} style={{ color: '#F64548', borderRadius: '0px', display: 'flex', justifyContent: 'center' }} />
-                        <Profile />
+                        <Profile style={{ margin: '0' }} handleToggle={this.handleToggle} toggle='2'/>
                     </Drawer>
                 </div>
 
                 <div>
-                    <MainButton name="Party" wholeWidth={false} style={{ backgroundColor: '#FFE49F' }} handleToggle={() => this.handleToggle('1')} />
+                    <MainButton name="Party" wholeWidth={false} style={{ backgroundColor: '#FFE49F', boxShadow: '0' }} handleToggle={() => this.handleToggle('1')} />
                     <Drawer
                         width={400}
                         open={this.state.open1}
                         openSecondary={true}>
-                        <MainButton name="RETURN" icon={<ArrowBack />}  handleToggle={this.handleToggle} toggle={'1'} wholeWidth={true} style={{ color: '#F64548', borderRadius: '0px', display: 'flex', justifyContent: 'center' }} />
-                        
+                        <MainButton name="RETURN" icon={<ArrowBack />} handleToggle={this.handleToggle} toggle={'1'} wholeWidth={true} style={{ color: '#F64548', borderRadius: '0px', display: 'flex', justifyContent: 'center', margin: '0' }} />
+
                         <Party />
                     </Drawer>
                 </div>
