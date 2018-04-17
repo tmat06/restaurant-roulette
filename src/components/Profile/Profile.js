@@ -82,7 +82,7 @@ class Profile extends Component {
                 <div className="profileMenu">
                     {this.favoriteList()}
                     {this.props.favoriteRestaurants.map((val, i) => {
-                        return <ProfileButton index={i} listName={val.list_name} key={i} history={this.props.history} authID={this.props.user.auth_id} />
+                        return <ProfileButton index={i} listName={val.list_name} key={i} history={this.props.history} fullWidth={false} authID={this.props.user.auth_id} />
                     })}
                     <a href="/auth/logout"><button>LogOut</button></a>
 

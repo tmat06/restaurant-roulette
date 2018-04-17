@@ -24,7 +24,6 @@ class SpinResults extends Component {
         axios.get(`/favoriteLists/${this.props.currentLocation}/${this.props.user.auth_id}`)
             .then(results => {
                 if (results.data.length != 0) {
-                    console.log('duplicate', results)
                     alert('duplicate')
                 } else {
                     axios.post('/favoriteLists', { currentLocation: this.props.currentLocation })
@@ -61,7 +60,7 @@ class SpinResults extends Component {
         // console.log('this.props.restaurantList', this.props.restaurantList)
         return restaurantList.map((val, i) => {
             return (
-                <div key={i}>
+                <div key={i} style={{width: '100%'}}>
                     <RestaurantDisplay name={val.name} photoRef={val.photos ? val.photos[0] : ""} rating={val.rating} />
                 </div>
             )
@@ -77,7 +76,7 @@ class SpinResults extends Component {
                 <div className='spinResults'>
                     <div className='nav-down'>
                         <div className='spinResultsNavButton'>
-                            <Link to='/dashboard'><FlatButton label='Search Again' className='spinResultsNavButton' labelStyle={{ fontSize: '25px' }} /></Link>
+                            <Link to='/dashboard'><FlatButton label='Change Search' className='spinResultsNavButton' labelStyle={{ fontSize: '25px' }} /></Link>
                         </div>
 
                         <div className='spinResultsNavButton'>
@@ -93,7 +92,7 @@ class SpinResults extends Component {
                     <div className='spinResultsContainer'>
                         {this.props.restaurantList.map((val, i) => {
                             return (
-                                <div key={i}>
+                                <div key={i} style={{width: '100%'}}>
                                     <RestaurantDisplay restaurantAddress={val.vicinity} handleDelete={this.handleDelete} index={i} name={val.name} photoRef={val.photos ? val.photos[0] : ""} rating={val.rating} openingHours={val.opening_hours ? val.opening_hours.open_now : false} />
                                 </div>
                             )

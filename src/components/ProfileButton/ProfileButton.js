@@ -175,7 +175,7 @@ class ProfileButton extends Component {
             <div key={this.props.index} className='profileSavedListMenu'>
                 <div>
 
-                    <MainButton name={this.props.listName} wholeWidth={true} style={{ color: '#F64548', borderRadius: '0', boxShadow: '1px 1px 2px black', marginBottom: '3px' }} handleOpen={this.handleOpen} />
+                    <MainButton name={this.props.listName} wholeWidth={false} style={{ color: '#F64548', borderRadius: '0', boxShadow: '1px 1px 2px black', marginBottom: '3px' }} handleOpen={this.handleOpen} />
                     <Dialog
                         title="Load Saved List"
                         actions={actions2}
