@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS Users (
 CREATE TABLE IF NOT EXISTS Restaurants (
     id SERIAL PRIMARY KEY,
     list_name TEXT,
+    address TEXT,    
     name TEXT,
     rating TEXT,
     user_id TEXT,
@@ -16,7 +17,8 @@ CREATE TABLE IF NOT EXISTS Restaurants (
 
 CREATE TABLE IF NOT EXISTS FavoriteLists (
     id SERIAL PRIMARY KEY,
-    name TEXT
+    name TEXT,
+    search_name TEXT
 );
 
 INSERT INTO Restaurants
