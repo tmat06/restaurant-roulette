@@ -103,20 +103,27 @@ class ProfileButton extends Component {
     }
 
     updateName(props) {
-
+        console.log(props)
         axios.put(`/savedLists/${props.listName}/${props.authID}/${this.state.newName}`)
             .then(res => {
                 alert('name has been updated to ' + this.state.newName)
-                axios.get('/savedLists', this.props.user.id)
-                    .then((res) => {
-                        // console.log('res', res)
-                        // this.setState({
-                        //     favoriteRestaurants: [...res.data]
-                        // })
-                        this.props.updateFavoriteRestaurants(res.data)
-                        this.setState({
-                            newName: ''
-                        })
+
+                axios.get(`/getNewRestaurantList/${this.state.newName}/${props.authID}`)
+                    .then((res) => {//returning ID for favorites
+                        axios.put(`/updateFavorites/${res.data[0].saved_id}/${this.state.newName}`)
+
+
+                        axios.get('/savedLists', this.props.user.id)
+                            .then((res) => {
+                                // console.log('res', res)
+                                // this.setState({
+                                //     favoriteRestaurants: [...res.data]
+                                // })
+                                this.props.updateFavoriteRestaurants(res.data)
+                                this.setState({
+                                    newName: ''
+                                })
+                            })
                     })
             })
     }
@@ -187,7 +194,7 @@ class ProfileButton extends Component {
                             fontFamily: 'Carter One, cursive',
                             borderRadius: 25,
                             backgroundColor: '#FFE49F',
-                            
+
                             hover: {
                                 backgroundColor: "#000000"
                             },

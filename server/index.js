@@ -140,5 +140,18 @@ app.get('/retrieveList/:listName/:user_id', (req, res) => {
     })
 })
 
+app.get('/getNewRestaurantList/:name/:id', (req, res) => {
+    app.get('db').get_restaurant_id(req.params.name, req.params.id)
+    .then(results => {
+        res.status(200).json(results)
+    })
+})
+
+app.put('/updateFavorites/:id/:name', (req, res) => {
+    app.get('db').update_favorites(req.params.id, req.params.name)
+    .then(results => {
+        res.sendStatus(200)
+    })
+})
 
 app.listen(SERVER_PORT, () => console.log(`Magic Happens at Port: ${SERVER_PORT}`))

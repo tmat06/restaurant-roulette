@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS Users (
 CREATE TABLE IF NOT EXISTS Restaurants (
     id SERIAL PRIMARY KEY,
     list_name TEXT,
+    address TEXT,    
     name TEXT,
     rating TEXT,
     user_id TEXT,
