@@ -61,8 +61,7 @@ class SpinResults extends Component {
         return restaurantList.map((val, i) => {
             return (
                 <div key={i}>
-                    <RestaurantDisplay name={val.name} photoRef={val.photos ? val.photos[0] : ""} rating={val.rating} />
-                    <button onClick={() => this.handleDelete(i)}>Delete</button>
+                    <RestaurantDisplay  name={val.name} photoRef={val.photos ? val.photos[0] : ""} rating={val.rating} />
                 </div>
             )
         })
@@ -80,13 +79,12 @@ class SpinResults extends Component {
                         {this.props.restaurantList.map((val, i) => {
                         return (
                             <div key={i}>
-                                <RestaurantDisplay name={val.name} photoRef={val.photos ? val.photos[0] : ""} rating={val.rating} />
-                                <button onClick={() => this.handleDelete(i)}>Delete</button>
+                                <RestaurantDisplay restaurantAddress={val.vicinity} handleDelete={this.handleDelete} index={i} name={val.name} photoRef={val.photos ? val.photos[0] : ""} rating={val.rating} openingHours={val.opening_hours ? val.opening_hours.open_now : false}/>
                             </div>
                         )
                     })
                     }
-                    <Link to='/runner-up'><button>Runner Ups</button></Link>
+                    <Link to='/runner-up'><button>Spin The Wheel</button></Link>
                     <Link to='/google-directions'><button>Directions</button></Link>
                     <button className="save-restaurant-button" onClick={() => this.handleSave()}>Save Search</button>
                 </div>

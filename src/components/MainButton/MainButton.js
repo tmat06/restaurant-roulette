@@ -34,6 +34,12 @@ export default function MainButton(props) {
                 if (props.selectField) {
                     props.selectField(props.primaryName)
                 }
+                if (props.handleToggle){
+                    props.handleToggle(props.toggle)
+                }
+                if (props.handleEnterSave){
+                    props.handleEnterSave(props.listName, props.range)
+                }
             }
             }
 

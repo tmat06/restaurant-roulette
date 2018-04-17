@@ -2,8 +2,12 @@ import React from 'react';
 import Face from 'material-ui/svg-icons/action/face';
 import MainButton from './../MainButton/MainButton';
 import Transition from 'react-motion-ui-pack';
-import {spring} from 'react-motion';
-// import Anime from 'react-anime';
+import { spring } from 'react-motion';
+import setTimeout from 'react-timeout';
+
+
+
+
 
 export default function Auth(props) {
     let title = ['R', 'e', 's', 't', 'a', 'u', 'r', 'a', 'n', 't']
@@ -52,7 +56,7 @@ export default function Auth(props) {
                         })}
                     </Transition>
                 </div>
-              
+
                 <div className='loginMenu'>
 
                     <Transition
@@ -67,14 +71,14 @@ export default function Auth(props) {
                             translateX: -700
                         }}
                     >
-                    <div className='loginButton'>
-                        <a href={process.env.REACT_APP_LOGIN}>
-                            <MainButton name="LOGIN" icon={<Face />} wholeWidth={false} style={{color: '#F64548'}}/>
-                        </a>
+                        <div className='loginButton'>
+                            <a href={process.env.REACT_APP_LOGIN}>
+                                <MainButton name="LOGIN" icon={<Face />} wholeWidth={false} style={{ color: '#F64548' }} />
+                            </a>
 
-                    </div>
+                        </div>
                     </Transition>
-                
+
                 </div>
             </div>
         </div>

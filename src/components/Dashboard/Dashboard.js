@@ -23,7 +23,7 @@ class Dashboard extends Component {
             selectField: '500',
             cityOrAddress: '(cities)',
             openOrClosed: true,
-            spinResultsDisplay: false
+            spinResultsDisplay: false,
         }
         this.onChange = (address) => this.setState({
             address,
@@ -65,7 +65,7 @@ class Dashboard extends Component {
                 }}
                 leave={{
                     opacity: 0,
-                    translateY: -700
+                    translateY: -400
                 }}
             >
                 {
@@ -187,14 +187,15 @@ class Dashboard extends Component {
         }
         console.log('this.props', this.props)
         console.log('flip?', this.state.spinResultsDisplay)
+        
         // console.log('this.state.selectField', this.state.selectField)
         // console.log('this.props.restaurantSearch', this.props.restaurantSearch)
         // console.log('this.props.restaurantList', this.props.restaurantList)
         return (
             <div>
                 <Nav />
-                <div className="dashboardContainer">
-                    <div>
+                <div >
+                    <div className="dashboardContainer">
                         <div className='selectFieldsContainer'>
                             <div >
                                 {this.displayName()}
@@ -273,7 +274,7 @@ class Dashboard extends Component {
                             </div>
                         </div>
                         <div>
-                            <Link to='/spin-results'><MainButton name="Search" icon={<Search />} wholeWidth={false} style={{ color: '#F64548', zIndex: '`' }} onClick={() => this.handleEnter()} /></Link>
+                            <Link to='/spin-results' style={{textDecoration: 'none'}}><MainButton name="Search" icon={<Search />} wholeWidth={false} style={{ color: '#F64548', borderRadius: '25px' }} onClick={() => this.handleEnter()}/></Link>
                         </div>
                     </div>
                 </div>
