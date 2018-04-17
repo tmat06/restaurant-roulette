@@ -41,7 +41,6 @@ class Profile extends Component {
     }
 
     render() {
-        console.log('this.props in render', this.props)
         // this.favoriteList();
         return (
             <div style={{ backgroundColor: '#F64548' }}>
@@ -50,7 +49,6 @@ class Profile extends Component {
                         color: '#F64548',
                         fontFamily: 'Carter One, cursive',
                         fontSize: 20,
-                        borderRadius: 25,
                         backgroundColor: '#FFE49F',
                         margin: '0px',
                         borderRadius: '0',
@@ -84,7 +82,7 @@ class Profile extends Component {
                 <div className="profileMenu">
                     {this.favoriteList()}
                     {this.props.favoriteRestaurants.map((val, i) => {
-                        return <ProfileButton index={i} listName={val.list_name} key={i} authID={this.props.user.auth_id} />
+                        return <ProfileButton index={i} listName={val.list_name} key={i} history={this.props.history} authID={this.props.user.auth_id} />
                     })}
                     <a href="/auth/logout"><button>LogOut</button></a>
 

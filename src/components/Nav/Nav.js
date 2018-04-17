@@ -37,11 +37,11 @@ export default class Nav extends Component {
         return (
             <div className='navMenu'>
                 <div>
-                    <MainButton name="Profile" wholeWidth={false} style={{ backgroundColor: '#FFE49F', boxShadow: '0' }} handleToggle={() => this.handleToggle('2')} />
+                    <MainButton name="Profile" wholeWidth={false} style={{ backgroundColor: '#FFE49F', boxShadow: '0'}} handleToggle={() => this.handleToggle('2')} />
                     <Drawer
                         width={400}
                         open={this.state.open2}>
-                        <Profile style={{ margin: '0' }} handleToggle={this.handleToggle} toggle='2'/>
+                        <Profile style={{ margin: '0' }} handleToggle={this.handleToggle} toggle='2' history={this.props.history}/>
                     </Drawer>
                 </div>
 
