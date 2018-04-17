@@ -134,12 +134,11 @@ class ProfileButton extends Component {
         this.setState({ open: !this.state.open })
     }
     handleOpen() {
-        console.log('hit handleOpen')
         this.setState({ openSavedList: !this.state.openSavedList })
     }
 
     render() {
-
+        console.log('this.props in profilebutton', this.props)
         const actions = [
             <div className="input-group mb-3">
                 <input type="text" className="form-control" placeholder="Write New Nickname" aria-label="Write New Nickname" aria-describedby="basic-addon2" onChange={(e) => this.handleUpdate(e)} />
@@ -160,7 +159,7 @@ class ProfileButton extends Component {
             <button onClick={() => this.handleOpen()}>cancel</button>
         ]
         // console.log('this.props in profileButton', this.props)
-        console.log('this.state.openSavedList', this.state.openSavedList)
+        // console.log('this.state.openSavedList', this.state.openSavedList)
         return (
             <div key={this.props.index} className='profileSavedListMenu'>
                 <div>

@@ -5,7 +5,7 @@ import { getUserInfo, updateRestaurantSearch, updateRestaurantList, locationSear
 import { connect } from 'react-redux';
 import axios from 'axios';
 import PlacesAutocomplete, { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
-import MotionStyledComp from './../MotionStyledComp/MotionStyledComp';
+// import MotionStyledComp from './../MotionStyledComp/MotionStyledComp';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 import Transition from 'react-motion-ui-pack';
@@ -88,6 +88,7 @@ class Dashboard extends Component {
                 this.props.updateRestaurantSearch(latLng);
                 axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${this.props.restaurantSearch.lat},${this.props.restaurantSearch.lng}&radius=${this.state.selectField}&type=restaurant&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8`)
                     .then((res) => {
+                        console.log('res.data.results', res.data.results)
                         if (!res.data.results.length) {
 
                             this.props.updateRestaurantList([{
@@ -112,7 +113,21 @@ class Dashboard extends Component {
                                         newList.push(val)
                                     }
                                 })
-                                this.props.updateRestaurantList(newList)
+                                if(!newList.length){
+                                    this.props.updateRestaurantList([{
+                                        name: "NO RESTAURANTS ARE NEARBY :(",
+                                        opening_hours: {
+                                            open_now: true
+                                        },
+                                        geometry: {
+                                            location: {
+                                                latLng
+                                            }
+                                        }
+                                    }])
+                                } else {
+                                    this.props.updateRestaurantList(newList)
+                                }
                             } else {
                                 this.props.updateRestaurantList(res.data.results)
                             }
@@ -185,15 +200,15 @@ class Dashboard extends Component {
                 borderRadius: '25px',
             },
         }
-        console.log('this.props', this.props)
-        console.log('flip?', this.state.spinResultsDisplay)
+        // console.log('this.props dashboard', this.props)
+        // console.log('flip?', this.state.spinResultsDisplay)
         
         // console.log('this.state.selectField', this.state.selectField)
         // console.log('this.props.restaurantSearch', this.props.restaurantSearch)
         // console.log('this.props.restaurantList', this.props.restaurantList)
         return (
             <div>
-                <Nav />
+                <Nav history={this.props.history}/>
                 <div >
                     <div className="dashboardContainer">
                         <div className='selectFieldsContainer'>

@@ -3,7 +3,7 @@ import Face from 'material-ui/svg-icons/action/face';
 import MainButton from './../MainButton/MainButton';
 import Transition from 'react-motion-ui-pack';
 import { spring } from 'react-motion';
-import setTimeout from 'react-timeout';
+// import setTimeout from 'react-timeout';
 
 
 
