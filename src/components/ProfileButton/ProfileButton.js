@@ -5,6 +5,8 @@ import { getUserInfo, updateRestaurantSearch, updateRestaurantList, locationSear
 import { Link } from 'react-router-dom';
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
 import MainButton from './../MainButton/MainButton';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
 
 
 class ProfileButton extends Component {
@@ -12,9 +14,13 @@ class ProfileButton extends Component {
         super()
         this.state = {
             newName: "",
-            range: '500'
+            range: '500',
+            open: false,
+            openSavedList: false,
         }
         this.handleEnterSave = this.handleEnterSave.bind(this);
+        this.handleToggle = this.handleToggle.bind(this);
+        this.handleOpen = this.handleOpen.bind(this);
     }
 
     handleEnterSave(address, range) {
@@ -124,24 +130,83 @@ class ProfileButton extends Component {
 
     }
 
+    handleToggle() {
+        this.setState({ open: !this.state.open })
+    }
+    handleOpen() {
+        console.log('hit handleOpen')
+        this.setState({ openSavedList: !this.state.openSavedList })
+    }
+
     render() {
-        // console.log('this.props in profileButton', this.props)
-        return (
-            <div key={this.props.index}>
-                <Link to='/spin-results' style={{ textDecoration: 'none' }}><MainButton name={this.props.listName} wholeWidth={true} style={{ color: '#F64548' }} handleEnterSave = {this.handleEnterSave} listName={this.props.listName} range={this.state.range} /></Link>
 
-                <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2" />
-                    <div class="input-group-append">
-                        <button class="btn btn-outline-secondary" type="button">Button</button>
-                    </div>
+        const actions = [
+            <div className="input-group mb-3">
+                <input type="text" className="form-control" placeholder="Write New Nickname" aria-label="Write New Nickname" aria-describedby="basic-addon2" onChange={(e) => this.handleUpdate(e)} />
+                <div className="input-group-append">
+                    <button className="btn btn-outline-secondary" type="button" onClick={() => this.updateName(this.props)}>Change Name</button>
                 </div>
+            </div>,
+            <button onClick={() => this.handleToggle()}>close</button>
+        ]
+        const actions2 = [
+            <div className="input-group mb-3">
+                <input type="text" className="form-control" placeholder="Give a Distance" aria-label="Give a Distance" aria-describedby="basic-addon2" onChange={(e) => this.handleDistance(e)} />
+                <div className="input-group-append">
 
-                <input placeholder="distance" onChange={(e) => this.handleDistance(e)} />
-                <button onClick={() => this.deleteFavoriteRestaurant(this.props.listName)}>delete?</button>
-                <input placeholder="new nickname" onChange={(e) => this.handleUpdate(e)} value={this.state.newName} />
-                <button onClick={() => this.updateName(this.props)}>change name</button>
+                    <Link to='/spin-results' style={{ textDecoration: 'none' }}><button className="btn btn-outline-secondary" type="button" onClick={() => this.handleEnterSave(this.props.listName, this.props.range)} >Load Results</button></Link>
+                </div>
+            </div>,
+            <button onClick={() => this.handleOpen()}>cancel</button>
+        ]
+        // console.log('this.props in profileButton', this.props)
+        console.log('this.state.openSavedList', this.state.openSavedList)
+        return (
+            <div key={this.props.index} className='profileSavedListMenu'>
+                <div>
 
+                    <MainButton name={this.props.listName} wholeWidth={true} style={{ color: '#F64548', borderRadius: '0', boxShadow: '1px 1px 2px black', marginBottom: '3px' }} handleOpen={this.handleOpen} />
+                    <Dialog
+                        title="Load Saved List"
+                        actions={actions2}
+                        modal={false}
+                        open={this.state.openSavedList}
+                        onRequestClose={this.handleOpen}
+                    />
+                </div>
+                <div>
+
+                </div>
+                <div>
+                    <FlatButton
+                        label={"Change Name"}
+                        fullWidth={true}
+                        onClick={() => this.handleToggle()}
+                        labelStyle={{ fontSize: '20px' }}
+                        style={{
+                            color: '#F64548',
+                            fontFamily: 'Carter One, cursive',
+                            borderRadius: 25,
+                            backgroundColor: '#FFE49F',
+                            
+                            hover: {
+                                backgroundColor: "#000000"
+                            },
+                            textAlign: 'left'
+                        }}
+
+                    />
+                    <Dialog
+                        title="Change Name"
+                        actions={actions}
+                        modal={false}
+                        open={this.state.open}
+                        onRequestClose={this.handleToggle}
+                    />
+                </div>
+                <div>
+                    <button onClick={() => this.deleteFavoriteRestaurant(this.props.listName)}>delete?</button>
+                </div>
             </div>
         )
 
