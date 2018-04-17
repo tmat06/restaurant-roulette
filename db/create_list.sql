@@ -1,5 +1,5 @@
 INSERT INTO FavoriteLists
-(name)
+(name, search_name)
 VALUES
-($1)
+($1, $1)
 RETURNING *;

@@ -89,8 +89,8 @@ app.get('/auth/logout', (req, res) => {
     res.redirect('http://localhost:3000/')
 })
 
-app.get('/favoriteLists/:name/:user_id', (req, res) => {
-    app.get('db').check_duplicates(req.params.name, req.params.user_id)
+app.get('/favoriteLists/:address/:user_id', (req, res) => {
+    app.get('db').check_duplicates(req.params.address, req.params.user_id)
     .then(results => {
         res.status(200).json(results)
     })
@@ -105,13 +105,12 @@ app.post('/favoriteLists', (req, res) => {
 
 app.post('/savedLists/:listName/:index', (req, res) => {
     req.body.restaurantList.map((val, i) => {
-        return app.get('db').save_list(req.params.listName, val.name, val.rating, req.body.user.auth_id, req.params.index)
+        return app.get('db').save_list(req.params.listName, val.name, val.rating, req.body.user.auth_id, req.params.index, req.params.listName)
     })
     res.sendStatus(200);
 })
 
 app.delete('/savedLists/:listName', (req, res) => {
-    console.log('hittin')
     app.get('db').delete_favorites(req.params.listName)
     .then(results => {
         res.status(200).json(results);
@@ -151,6 +150,18 @@ app.put('/updateFavorites/:id/:name', (req, res) => {
     app.get('db').update_favorites(req.params.id, req.params.name)
     .then(results => {
         res.sendStatus(200)
+    })
+})
+
+app.get('/getGeometry/:name/:auth_id', (req, res) => {
+    
+    console.log('hittin server')
+    console.log('req.params.name', req.params.name)
+    console.log('req.params.auth_id', req.params.auth_id)
+
+    app.get('db').get_address(req.params.name, req.params.auth_id)
+    .then(results => {
+        res.status(200).json(results)
     })
 })
 

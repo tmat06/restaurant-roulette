@@ -17,7 +17,8 @@ CREATE TABLE IF NOT EXISTS Restaurants (
 
 CREATE TABLE IF NOT EXISTS FavoriteLists (
     id SERIAL PRIMARY KEY,
-    name TEXT
+    name TEXT,
+    search_name TEXT
 );
 
 INSERT INTO Restaurants

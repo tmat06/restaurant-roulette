@@ -111,6 +111,7 @@ class Dashboard extends Component {
                                     // console.log('val', val)
                                     if (val.opening_hours && val.opening_hours.open_now) {
                                         newList.push(val)
+                                        console.log('val', val)
                                     }
                                 })
                                 if(!newList.length){
