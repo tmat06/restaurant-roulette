@@ -41,9 +41,12 @@ class Dashboard extends Component {
             })
         if (this.props.currentLocation) {
             this.setState({
-                address: this.props.currentLocation
+                address: this.props.currentLocation,
             })
         }
+        this.setState({
+            openOrClosed: true
+        })
 
     }
 
