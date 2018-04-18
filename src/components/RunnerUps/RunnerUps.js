@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 
 function RunnerUps(props) {
 
-    console.log('runnerUps', props.currentList)
 
     var currentList = [];
     let randomSpot = 0;
@@ -23,13 +22,17 @@ function RunnerUps(props) {
         currentList[randomSpot] = inputStudent;
     }
 
+    // let rouletteList = [...currentList];
+    // for(let i = 0; i < 20; i++){
+
+    // }
+
+    // console.log('rouletteList', rouletteList)
     return (
         <div>
             <Nav />
-            RunnerUps
-            <Link to='/spin-results'><button>Spin Results</button></Link>
-            {currentList.map((val, i) => {
-                console.log(val)
+            <Link to='/spin-results'><button>Modify List</button></Link>
+            {/* {currentList.map((val, i) => {
                 if (val.name === 'NO RESTAURANTS ARE NEARBY :(') {
                     return (
                         <div>Need Restaurants Before We Can Roulette</div>
@@ -51,7 +54,21 @@ function RunnerUps(props) {
                     )
 
                 }
-            })}
+            })} */}
+
+            {
+                props.currentList.map((val, i) => {
+                    console.log('hittin')
+                if (val.name === 'NO RESTAURANTS ARE NEARBY :(') {
+                    return (
+                        <div>Need Restaurants Before We Can Roulette</div>
+                    )
+                } else {
+                    // rouletteList.push(val.name);
+                }
+                // console.log('i', rouletteList)
+            }
+            )}
         </div>
     )
 }
