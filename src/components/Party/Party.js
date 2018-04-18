@@ -24,12 +24,11 @@ class Party extends Component{
     }
 
     sendMessage(message){
-        console.log('message', message);
         socket.emit('blast message', message);
     }
 
     render(){
-        const messages = this.state.messages.map(e => <p>{e}</p>)
+        const messages = this.state.messages.map((e,i) => <p key={i}>{e}</p>)
         return(
             <div>
                 Party Baby!

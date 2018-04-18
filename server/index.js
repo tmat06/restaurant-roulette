@@ -166,6 +166,13 @@ app.get('/getGeometry/:name/:auth_id', (req, res) => {
     })
 })
 
+app.get('/userList', (req, res) => {
+    app.get('db').get_users()
+    .then(usersList => {
+        res.status(200).json(usersList)
+    })
+})
+
 const io = socket(app.listen(SERVER_PORT, () => console.log(`Magic Happens at Port: ${SERVER_PORT}`)));
 
 io.on('connection', socket => {
