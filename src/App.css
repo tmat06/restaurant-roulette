@@ -258,6 +258,20 @@
 
 }
 
+.friendsBox{
+  background-color: #FFE49F;
+  border: 2px solid #FFA880;
+  margin: 5px;
+}
+
+.friendPic{
+  display: flex;
+  justify-content: left;
+  width: 100%;
+  padding: 5px;
+  /* align-items: center; */
+}
+
 @media (max-width: 880px){ /* ipad */
   
   .title{
