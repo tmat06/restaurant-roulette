@@ -24,10 +24,10 @@ class ProfileButton extends Component {
     }
 
     handleEnterSave(listName, authID) {
-        console.log('hittin', listName, authID)
+        // console.log('hittin', listName, authID)
         axios.get(`/getGeometry/${listName}/${authID}`)
             .then(address => { // will return address
-                console.log('address', address.data[0].address)
+                // console.log('address', address.data[0].address)
                 this.props.locationSearch(address.data[0].address)
                 console.log('geocode')
                 geocodeByAddress(address.data[0].address)
@@ -35,7 +35,7 @@ class ProfileButton extends Component {
                     .then(latLng => {
                         console.log('Success', latLng)
                         this.props.updateRestaurantSearch(latLng);
-                        console.log('range', this.state.range)
+                        // console.log('range', this.state.range)
                         axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latLng.lat},${latLng.lng}&radius=${this.state.range}&type=restaurant&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8`)
                             .then((res) => {
                                 if (!res.data.results.length) {
@@ -75,11 +75,11 @@ class ProfileButton extends Component {
     }
 
     deleteFavoriteRestaurant(listName) {
-        console.log('bingo banjo', listName)
+        // console.log('bingo banjo', listName)
         axios.delete(`/savedLists/${listName}`)
             .then(res => {
                 alert('saved restaurant has been deleted')
-                console.log(this.props)
+                // console.log(this.props)
                 axios.get('/savedLists', this.props.user.id)
                     .then((res) => {
                         // console.log('res', res)
@@ -149,7 +149,7 @@ class ProfileButton extends Component {
     }
 
     render() {
-        console.log('this.props in profilebutton', this.props)
+        // console.log('this.props in profilebutton', this.props)
         const actions = [
             <div className="input-group mb-3">
                 <input type="text" className="form-control" placeholder="Write New Nickname" aria-label="Write New Nickname" aria-describedby="basic-addon2" onChange={(e) => this.handleUpdate(e)} />
@@ -169,7 +169,7 @@ class ProfileButton extends Component {
             </div>,
             <button onClick={() => this.handleOpen()}>cancel</button>
         ]
-        console.log('this.props in profileButton', this.props)
+        // console.log('this.props in profileButton', this.props)
         // console.log('this.state.openSavedList', this.state.openSavedList)
         return (
             <div key={this.props.index} className='profileSavedListMenu'>

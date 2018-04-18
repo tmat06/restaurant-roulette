@@ -6,6 +6,7 @@ const session = require('express-session')
 const Auth0Strategy = require('passport-auth0')
 const cors = require('cors');
 const axios = require('axios');
+const socket = require('socket.io')
 require('dotenv').config();
 
 const {
@@ -165,4 +166,11 @@ app.get('/getGeometry/:name/:auth_id', (req, res) => {
     })
 })
 
-app.listen(SERVER_PORT, () => console.log(`Magic Happens at Port: ${SERVER_PORT}`))
+const io = socket(app.listen(SERVER_PORT, () => console.log(`Magic Happens at Port: ${SERVER_PORT}`)));
+
+io.on('connection', socket => {
+    socket.on('blast message', input => {
+        io.sockets.emit('generate response', input);
+    })
+})
+
