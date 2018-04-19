@@ -36,7 +36,9 @@ class ProfileButton extends Component {
                         console.log('Success', latLng)
                         this.props.updateRestaurantSearch(latLng);
                         // console.log('range', this.state.range)
-                        axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latLng.lat},${latLng.lng}&radius=${this.state.range}&type=restaurant&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8`)
+                        axios.get(`/googlePlacesSearch/${latLng.lat}/${latLng.lng}/${this.state.range}`)
+
+                        // axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latLng.lat},${latLng.lng}&radius=${this.state.range}&type=restaurant&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8`)
                             .then((res) => {
                                 if (!res.data.results.length) {
 

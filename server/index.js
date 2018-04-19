@@ -10,6 +10,7 @@ const socket = require('socket.io')
 require('dotenv').config();
 
 const {
+    GOOGLE_API_KEY,
     SERVER_PORT,
     SERVER_SECRET,
     DOMAIN,
@@ -92,6 +93,14 @@ app.get('/auth/me', function(req, res){
 app.get('/auth/logout', (req, res) => {
     req.logOut();
     res.redirect(FAILURE_REDIRECT)
+})
+
+
+app.get('/googlePlacesSearch/:lat/:lng/:radius', (req, res) => {
+    axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${req.params.lat},${req.params.lng}&radius=${req.params.radius}&type=restaurant&key=${GOOGLE_API_KEY}`)
+    .then(results => {
+        res.status(200).json(results.data)
+    })
 })
 
 app.get('/favoriteLists/:address/:user_id', (req, res) => {
