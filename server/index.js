@@ -16,12 +16,16 @@ const {
     CLIENT_ID,
     CLIENT_SECRET,
     CALLBACK_URL,
-    CONNECTION_STRING
+    CONNECTION_STRING,
+    SUCCESS_REDIRECT,
+    FAILURE_REDIRECT
 } = process.env;
 
 const app = express();
 app.use(bodyParser.json());
 app.use(cors());
+
+app.use( express.static( `${__dirname}/../build` ) );
 
 massive(CONNECTION_STRING).then(db => {
     app.set('db', db);
@@ -73,8 +77,8 @@ passport.deserializeUser((id, done) => {
 })
 app.get('/auth', passport.authenticate('auth0'));
 app.get('/auth/callback', passport.authenticate('auth0',{
-    successRedirect: 'http://localhost:3000/#/dashboard', //after build it will need to change from 3000 to 3005
-    failureRedirect: 'http://localhost:3000'
+    successRedirect: SUCCESS_REDIRECT, //after build it will need to change from 3000 to 3005
+    failureRedirect: FAILURE_REDIRECT
 }))
 
 app.get('/auth/me', function(req, res){
@@ -87,7 +91,7 @@ app.get('/auth/me', function(req, res){
 
 app.get('/auth/logout', (req, res) => {
     req.logOut();
-    res.redirect('http://localhost:3000/')
+    res.redirect(FAILURE_REDIRECT)
 })
 
 app.get('/favoriteLists/:address/:user_id', (req, res) => {

@@ -101,8 +101,8 @@ class SpinResults extends Component {
                         }
                     </div>
 
-                    <div className='spinResultsNavButton' style={{ display: 'flex', justifyContent: 'center', position: 'fixed', top: '93vh', width: '100%', height: '60px', backgroundColor: '#FFE49F'}}>
-                        <Link to='/runner-up'><FlatButton className='spinResultsNavButton' label='Spin The Wheel' fullWidth={true} labelStyle={{ fontSize: '60px' }} style={{ boxShadow: '1px 1px 1px black', backgroundColor: '#FFA880', borderRadius: '25px' }} /></Link>
+                    <div className='spinResultsNavButton' style={{ display: 'flex', justifyContent: 'center', position: 'fixed', top: '89.5vh', width: '100%', height: '90px', backgroundColor: '#FFE49F', padding: '5px 0'}}>
+                        <Link to='/runner-up'><FlatButton className='spinResultsNavButton' label='Let Fate Decide' fullWidth={true} labelStyle={{ fontSize: '60px' }} style={{ boxShadow: '1px 1px 1px black', backgroundColor: '#F64548', borderRadius: '25px', height: '80px', color: '#FFE49F', textShadow: '1px 1px 2px black'}} /></Link>
                     </div>
 
                     <div className="spinResultsFooter"></div>
