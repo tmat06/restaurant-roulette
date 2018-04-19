@@ -93,8 +93,8 @@ class SpinResults extends Component {
                     <div className='spinResultsContainer'>
                         {this.props.restaurantList.map((val, i) => {
                             return (
-                                <div key={i} style={{width: '100%'}}>
-                                    <RestaurantDisplay restaurantAddress={val.vicinity} handleDelete={this.handleDelete} index={i} name={val.name} photoRef={val.photos ? val.photos[0] : ""} rating={val.rating} openingHours={val.opening_hours ? val.opening_hours.open_now : false} />
+                                <div key={i} style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
+                                    <RestaurantDisplay restaurantAddress={val.vicinity} handleDelete={this.handleDelete} index={i} name={val.name} photoRef={val.photos ? val.photos[0] : ""} rating={val.rating} openingHours={val.opening_hours ? val.opening_hours.open_now : false} style={{display: 'flex', justifyContent: 'center'}}/>
                                 </div>
                             )
                         })

@@ -145,20 +145,20 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: #FFA880;
+  background-color: #F64548;
   width: 100%;
 }
 
 .restaurantDisplayList{
   display: flex;
   justify-content: space-around;
-  border: 2px solid black;
+  box-shadow: 1px 1px 1px black;
   border-radius: 15px;
-  width: 100%;
   background-color: #FFE49F;
   font-family: 'Luckiest Guy', cursive;
   font-size: 25px;
   padding: 5px;
+  margin: 3px;
 }
 
 /* .restaurantDisplayList:hover{
@@ -169,10 +169,11 @@
   display: flex;
   flex-direction: column;
   align-items: left;
-  border: 2px solid black;
+  box-shadow: 1px 1px 1px black;
   border-radius: 15px;
   height: 300px;
   width: 300px;
+  margin-right: 4px;
 }
 
 .restaurantImage{
@@ -180,7 +181,7 @@
   margin: 0;
   padding: 0;
   height: 300px;
-  width: 300px;
+  
 }
 
 .spinResultsFooter{
