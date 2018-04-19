@@ -176,8 +176,14 @@ app.get('/userList', (req, res) => {
 const io = socket(app.listen(SERVER_PORT, () => console.log(`Magic Happens at Port: ${SERVER_PORT}`)));
 
 io.on('connection', socket => {
+
     socket.on('blast message', input => {
         io.sockets.emit('generate response', input);
-    })
+    });
+
+    socket.on('room', input => {
+        socket.join(input);
+    });
 })
+
 

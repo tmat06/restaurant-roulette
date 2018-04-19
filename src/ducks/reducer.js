@@ -13,28 +13,7 @@ const initialState = {
     restaurantList: [],
     currentLocation: '',
     favoriteRestaurants: [],
-    friends: [
-        {
-            name: 'Tommy',
-            img: 'https://pbs.twimg.com/profile_images/948761950363664385/Fpr2Oz35_400x400.jpg'
-        },
-        {
-            name: 'Timmy',
-            img: 'https://pbs.twimg.com/profile_images/948761950363664385/Fpr2Oz35_400x400.jpg'
-        },
-        {
-            name: 'Tammy',
-            img: 'https://pbs.twimg.com/profile_images/948761950363664385/Fpr2Oz35_400x400.jpg'
-        },
-        {
-            name: 'Jimmy',
-            img: 'https://pbs.twimg.com/profile_images/948761950363664385/Fpr2Oz35_400x400.jpg'
-        },
-        {
-            name: 'Mommy',
-            img: 'https://pbs.twimg.com/profile_images/948761950363664385/Fpr2Oz35_400x400.jpg'
-        },
-    ]
+    friends: []
 }
 
 const UPDATE_USER_INFO = 'UPDATE_USER_INFO';

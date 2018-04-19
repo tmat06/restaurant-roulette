@@ -271,6 +271,38 @@
   padding: 5px;
   /* align-items: center; */
 }
+.winnerBox{
+  margin: 50px 5px;
+  border: 5px solid #FFA880;
+}
+
+.winnerTitle{
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 50px;
+  text-shadow: 1px 1px 1px black;
+}
+
+.winnerRestaurant{
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 70px;
+  text-shadow: 2px 2px 2px black;
+  color: #F64548;
+}
+
+.winnerBoxBlock{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.runnerUpBox{
+  margin: 10px;
+  font-family: 'Luckiest Guy', cursive;
+  text-shadow: 1px 1px 1px black;
+  font-size: 40px;
+  color: #f64548;
+}
 
 @media (max-width: 880px){ /* ipad */
   

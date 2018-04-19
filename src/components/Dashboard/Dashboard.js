@@ -33,6 +33,7 @@ class Dashboard extends Component {
         this.updateSelect = this.updateSelect.bind(this);
         this.updateCityOrAddress = this.updateCityOrAddress.bind(this);
         this.updateOpenOrClosed = this.updateOpenOrClosed.bind(this);
+        this.handleEnter = this.handleEnter.bind(this);
     }
     componentDidMount() {
         this.props.getUserInfo()
@@ -293,7 +294,7 @@ class Dashboard extends Component {
                             </div>
                         </div>
                         <div>
-                            <Link to='/spin-results' style={{textDecoration: 'none'}}><MainButton name="Search" icon={<Search />} wholeWidth={false} style={{ color: '#F64548', borderRadius: '25px' }} onClick={() => this.handleEnter()}/></Link>
+                            <Link to='/spin-results' style={{textDecoration: 'none'}}><MainButton name="Search" icon={<Search />} wholeWidth={false} style={{ color: '#F64548', borderRadius: '25px' }} handleEnter={this.handleEnter}/></Link>
                         </div>
                     </div>
                 </div>
