@@ -8,6 +8,7 @@ import { updateRestaurantList, deleteRestaurantFromList } from './../../ducks/re
 import FlatButton from 'material-ui/FlatButton';
 
 
+
 class SpinResults extends Component {
     constructor(props) {
         super(props)

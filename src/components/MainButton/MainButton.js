@@ -44,6 +44,9 @@ export default function MainButton(props) {
                 if (props.handleOpen){
                     props.handleOpen()
                 }
+                if (props.handleEnter){
+                    props.handleEnter()
+                }
             }
             }
 

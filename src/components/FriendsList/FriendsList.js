@@ -34,16 +34,17 @@ class FriendsList extends Component {
                 // console.log('hittin dawg')
                 // console.log(val.display_name)
                 console.log(val.img)
-
-                return (
-                    <div key={i} className='friendsBox'>
-                        <h2>{val.display_name}</h2>
-                        <div className='friendPic'>
-                            <img src={val.img} alt="tommy" height="100px" width="100px" />
-                            <button>Add To Chat</button>
+                if (val.img) {
+                    return (
+                        <div key={i} className='friendsBox'>
+                            <h2>{val.display_name}</h2>
+                            <div className='friendPic'>
+                                <img src={val.img} alt="tommy" height="100px" width="100px" />
+                                <button>Add To Chat</button>
+                            </div>
                         </div>
-                    </div>
-                )
+                    )
+                }
             }
         })
     }
@@ -61,7 +62,7 @@ class FriendsList extends Component {
         )
     }
 }
-    
+
 
 function mapStateToProps(state) {
     return {
