@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Transition from 'react-motion-ui-pack';
 import { spring } from 'react-motion';
 import FlatButton from 'material-ui/FlatButton';
+import Paper from 'material-ui/Paper';
 
 function RunnerUps(props) {
     let list1 = [
@@ -68,6 +69,10 @@ function RunnerUps(props) {
         list[randomSpot] = inputStudent;
     }
     console.log('worked', list)
+    mapThisList = [];
+    list.map((val, i) => {
+        
+    })
 
     // let rouletteList = [...list]; //adds multiple restaurants to list for spin
     // let j = rouletteList.length;
@@ -109,7 +114,10 @@ function RunnerUps(props) {
                                 translateX: -700
                             }}
                         >
-                            <div key={i} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#FFE49F', height: '200px', width: '100%', boxShadow: '2px 2px 1px black' }} className='winnerBox'>
+                            <Paper style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#FFE49F', height: '200px', width: '100%'}}
+                            zDepth={5}
+                            key={i}>
+
                                 <div></div>
 
                                 <div className='winnerBoxBlock'>
@@ -131,11 +139,11 @@ function RunnerUps(props) {
                                 </div>
 
                                 <div></div>
-                            </div>
+                            </Paper>
                         </Transition>
                     )
                 } else {
-
+                    
                     return (
                         <Transition
                             className='restaurantTitle'
@@ -149,14 +157,17 @@ function RunnerUps(props) {
                                 translateX: -700
                             }}
                         >
-                            <div key={i} style={{ backgroundColor: '#FFE49F', height: '100px', width: '100%', border: '2px solid #FFA880', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 5px' }} className='runnerUpBox'>
+                        <Paper 
+                        key={i}
+                        style={{backgroundColor: '#FFE49F', height: '100px', width: '45%', border: '2px solid #FFA880', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 5px' }}
+                        zDepth={1}
+                        >
                                 <div style={{ textAlign: 'left', padding: '5px', borderRadius: '25px', backgroundColor: '#F64548', color: '#FFE49F' }} >{i + 1}. </div>
                                 {val.name}
                                 <div>
                                     <Link to='/restaurant-page'><FlatButton label='Info' fullWidth={false} style={{ backgroundColor: '#FFA880', fontFamily: 'Luckiest Guy, cursive', color: '#F64548', height: '60px' }} /></Link>
-
                                 </div>
-                            </div>
+                        </Paper>
                         </Transition>
                     )
                 }
