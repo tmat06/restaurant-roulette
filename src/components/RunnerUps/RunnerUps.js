@@ -91,10 +91,10 @@ function RunnerUps(props) {
         <div style={{ display: 'flex', flexDirection: 'column', backgroundColor: '#F64548' }}>
             <Nav />
             <div>
-                <Link to='/spin-results'><FlatButton label='Back to List' fullWidth={true} style={{ height: '80px', width: '100%', backgroundColor: '#FFA880', boxShadow: '1px 1px 1px black', fontFamily: 'Luckiest Guy, cursive', fontSize: '50px' }} /></Link>
+                <Link to='/spin-results'><FlatButton label='Back to List' fullWidth={true} labelStyle={{fontSize: '30px'}} style={{ height: '80px', width: '100%', backgroundColor: '#FFA880', boxShadow: '1px 1px 1px black', fontFamily: 'Luckiest Guy, cursive', color: '#FFE49F', textShadow: '1px 1px 1px black' }} /></Link>
 
             </div>
-            {list1.map((val, i) => { //change list1 to list
+            {list.map((val, i) => { //change list1 to list
                 if (i === 0) {
                     return (
                         <Transition

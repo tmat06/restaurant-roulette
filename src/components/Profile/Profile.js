@@ -62,7 +62,7 @@ class Profile extends Component {
 
                 <div className='profileImage'>
                     <div>
-                        <div>
+                        <div className='profileTitleBox'>
 
                             <h3 style={{ letterSpacing: '2px' }}>
                                 {this.props.user.display_name}
@@ -84,7 +84,7 @@ class Profile extends Component {
                     {this.props.favoriteRestaurants.map((val, i) => {
                         return <ProfileButton index={i} listName={val.list_name} key={i} history={this.props.history} fullWidth={false} authID={this.props.user.auth_id} />
                     })}
-                    <a href="/auth/logout"><button>LogOut</button></a>
+                    <a href={process.env.REACT_APP_LOGOUT}><button>LogOut</button></a>
 
                 </div>
             </div>
