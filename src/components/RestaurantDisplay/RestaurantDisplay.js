@@ -4,13 +4,17 @@ import FlatButton from 'material-ui/FlatButton';
 import Divider from 'material-ui/Divider';
 import Drawer from 'material-ui/Drawer';
 import RestaurantPage from './../RestaurantPage/RestaurantPage';
+import LocalDining from 'material-ui/svg-icons/maps/local-dining';
+import Close from 'material-ui/svg-icons/navigation/close';
+
+
 
 export default class RestaurantDisplay extends Component {
     constructor(props) {
         super(props)
         this.state = {
             img: '',
-            
+
         }
     }
 
@@ -75,17 +79,17 @@ export default class RestaurantDisplay extends Component {
                         </div>
 
 
-                        <div style={{ textAlign: 'left', padding: '5px' }}>
+                        <div className='restaurantListButtons'>
 
 
-                            <Link to='/restaurant-page'><FlatButton label='RestaurantPage' labelStyle={{fontSize: '25px'}} style={{margin: '2px', backgroundColor: '#F64548', color: '#FFE49F', fontFamily: 'Carter one, cursive', borderRadius: '15px', textShadow: '1px 1px 1px black'}} /></Link>
-                            <FlatButton label='Delete' onClick={() => this.props.handleDelete(this.props.index)} labelStyle={{fontSize: '25px'}} style={{margin: '2px', backgroundColor: '#F64548', color: '#FFE49F', fontFamily: 'Carter one, cursive', borderRadius: '15px', textShadow: '1px 1px 1px black'}} />
+                            <Link to='/restaurant-page'><FlatButton label='Info' icon={<LocalDining/>} labelStyle={{ fontSize: '25px' }} style={{ margin: '2px', backgroundColor: '#F64548', color: '#FFE49F', fontFamily: 'Carter one, cursive', borderRadius: '15px', textShadow: '1px 1px 1px black' }} /></Link>
+                            <FlatButton label='Delete' icon={<Close/>} onClick={() => this.props.handleDelete(this.props.index)} labelStyle={{ fontSize: '25px' }} style={{ margin: '2px', backgroundColor: '#F64548', color: '#FFE49F', fontFamily: 'Carter one, cursive', borderRadius: '15px', textShadow: '1px 1px 1px black' }} />
 
                             {/* <button onClick={() => this.props.handleDelete(this.props.index)}>Delete</button> */}
                         </div>
                     </div>
                     <div className='restaurantImage'>
-                        <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${this.props.photoRef.photo_reference}&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8`} alt="restaurant pic" height="300" width="350" />
+                        <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${this.props.photoRef.photo_reference}&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8`} alt="restaurant pic" className='restaurantImage' />
                     </div>
                     <div style={{ paddingLeft: '5px' }}>
                     </div>
