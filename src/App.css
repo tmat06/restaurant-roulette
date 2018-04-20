@@ -345,6 +345,10 @@
   color: #f64548;
 }
 
+.backToList{
+  margin-top: 50px;
+}
+
 @media (max-width: 880px){ /* ipad */
   
   .title{

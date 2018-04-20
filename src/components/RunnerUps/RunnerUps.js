@@ -92,8 +92,8 @@ function RunnerUps(props) {
     return (
         <div style={{ display: 'flex', flexDirection: 'column', backgroundColor: '#F64548' }}>
             <Nav />
-            <div>
-                <Link to='/spin-results'><FlatButton label='Back to List' fullWidth={true} labelStyle={{fontSize: '30px'}} style={{ height: '80px', width: '100%', backgroundColor: '#F64548', boxShadow: '1px 1px 1px black', fontFamily: 'Luckiest Guy, cursive', color: '#FFE49F', textShadow: '1px 1px 1px black' }} /></Link>
+            <div style={{ marginTop: '50px' }}>
+                <Link to='/spin-results'><FlatButton label='Back to List' fullWidth={true} labelStyle={{ fontSize: '30px' }} className='backToList' style={{ height: '80px', width: '100%', backgroundColor: '#F64548', boxShadow: '1px 1px 1px black', fontFamily: 'Luckiest Guy, cursive', color: '#FFE49F', textShadow: '1px 1px 1px black' }} /></Link>
 
             </div>
             {list.map((val, i) => { //change list1 to list
@@ -111,9 +111,9 @@ function RunnerUps(props) {
                                 translateX: -700
                             }}
                         >
-                            <Paper style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#FFE49F', height: '200px', width: '100%'}}
-                            zDepth={5}
-                            key={i}>
+                            <Paper style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#FFE49F', height: '100%', width: '100%', marginBottom: '10px', marginTop: '10px' }}
+                                zDepth={5}
+                                key={i}>
 
                                 <div></div>
 
@@ -124,14 +124,14 @@ function RunnerUps(props) {
 
                                 <div >
                                     <div className='winnerBoxBlock' >
-                                    <div style={{width: '300px'}}>
-                                        <Link to='/restaurant-page'><FlatButton label='Info' fullWidth={true} style={{ backgroundColor: '#FFA880', fontFamily: 'Luckiest Guy, cursive', color: '#F64548', height: '60px', width: '100%'}} /></Link>
+                                        <div style={{ width: '300px' }}>
+                                            <Link to='/restaurant-page'><FlatButton label='Info' fullWidth={true} style={{ backgroundColor: '#FFA880', fontFamily: 'Luckiest Guy, cursive', color: '#F64548', height: '60px', width: '100%' }} /></Link>
 
-                                    </div>
-                                    <div style={{width: '300px'}}>
+                                        </div>
+                                        <div style={{ width: '300px' }}>
 
-                                        <Link to='/google-directions'><FlatButton label='Map' fullWidth={false} style={{ backgroundColor: '#FFA880', fontFamily: 'Luckiest Guy, cursive', color: '#F64548', height: '60px', width: '100%'}} /></Link>
-                                    </div>
+                                            <Link to='/google-directions'><FlatButton label='Map' fullWidth={false} style={{ backgroundColor: '#FFA880', fontFamily: 'Luckiest Guy, cursive', color: '#F64548', height: '60px', width: '100%' }} /></Link>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -143,7 +143,7 @@ function RunnerUps(props) {
                     return (
                         <Transition
                             className='restaurantTitle'
-                            style={{display: 'flex', flexDirection: 'row'}}
+                            style={{ display: 'flex', flexDirection: 'row' }}
                             component="div"
                             enter={{
                                 opacity: 1,
@@ -154,17 +154,17 @@ function RunnerUps(props) {
                                 translateX: -700
                             }}
                         >
-                        <Paper 
-                        key={i}
-                        style={{backgroundColor: '#FFE49F', height: '100px', width: '45%', border: '2px solid #FFA880', display: 'flex',flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: '0 5px' }}
-                        zDepth={1}
-                        >
+                            <Paper
+                                key={i}
+                                style={{ backgroundColor: '#FFE49F', height: '100px', width: '45%', border: '2px solid #FFA880', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: '0 5px' }}
+                                zDepth={1}
+                            >
                                 <div style={{ textAlign: 'left', padding: '5px', borderRadius: '25px', backgroundColor: '#F64548', color: '#FFE49F' }} >{i + 1}. </div>
                                 {val.name}
                                 <div>
                                     <Link to='/restaurant-page'><FlatButton label='Info' fullWidth={false} style={{ backgroundColor: '#FFA880', fontFamily: 'Luckiest Guy, cursive', color: '#F64548', height: '60px' }} /></Link>
                                 </div>
-                        </Paper>
+                            </Paper>
                         </Transition>
                     )
                 }
