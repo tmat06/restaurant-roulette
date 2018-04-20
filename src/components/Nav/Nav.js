@@ -39,7 +39,8 @@ export default class Nav extends Component {
                 <div>
                     <MainButton name="Profile" wholeWidth={false} style={{ backgroundColor: '#FFE49F', boxShadow: '0'}} handleToggle={() => this.handleToggle('2')} />
                     <Drawer
-                        width={400}
+                    // className='drawerWidth'
+                        width={400} //400
                         open={this.state.open2}>
                         <Profile style={{ margin: '0' }} handleToggle={this.handleToggle} toggle='2' history={this.props.history}/>
                     </Drawer>

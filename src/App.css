@@ -67,6 +67,10 @@
   height: 50px;
 }
 
+/* .drawerWidth{
+  width: 500% !important;
+} */
+
 .dashboardContainer{
   display: flex;
   flex-direction: column;
@@ -142,6 +146,7 @@
   font-family: 'Carter One', cursive !important;
   width: 100%;
   color: #FFE49F;
+  text-align: center;
 }
 
 .spinResultsContainer{
@@ -185,7 +190,12 @@
   margin: 0;
   padding: 0;
   height: 300px;
-  
+  width: 350px;
+}
+
+restaurantDisplayButtons{
+  text-align: left; 
+  padding: 5px;
 }
 
 .spinResultsFooter{
@@ -322,6 +332,26 @@
     font-size: 75px;
   }
 
+  .restaurantDisplayList{
+    align-items: center;
+  }
+
+  .restaurantName{
+    /* height: 200px;
+    width: 250px; */
+    height: 250px;
+    width: 300px;
+  }
+
+  .restaurantImage{
+    align-items: center;
+    height: 250px;
+    width: 300px;
+  }
+
+  .nav-down{
+    justify-content: space-between;
+  }
 }
 
 @media (max-width: 750px){ /* between */
@@ -330,6 +360,22 @@
   }
   .greetingDisplayName{
     font-size: 40px;
+  }
+
+  .restaurantName{
+    height: 200px;
+    width: 250px;
+  }
+
+
+
+  .restaurantImage{
+    height: 200px;
+    width: 250px;
+  }
+  
+  .restaurantDisplayButtons{
+
   }
 }
 
@@ -340,4 +386,15 @@
   .greetingDisplayName{
     font-size: 30px;
   }
+
+  .restaurantName{
+    height: 150px;
+    width: 200px;
+  }
+
+  .restaurantImage{
+    height: 150px;
+    width: 200px;
+  }
+  
 }
