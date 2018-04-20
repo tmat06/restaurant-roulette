@@ -65,7 +65,7 @@ class Dashboard extends Component {
                 component="div"
                 enter={{
                     opacity: 1,
-                    translateY: spring(0, { stiffness: 80, damping: 15 })
+                    translateY: spring(0, { stiffness: 80, damping: 28 })
                 }}
                 leave={{
                     opacity: 0,

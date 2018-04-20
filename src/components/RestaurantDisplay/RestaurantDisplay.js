@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import FlatButton from 'material-ui/FlatButton';
+import Divider from 'material-ui/Divider';
+import Drawer from 'material-ui/Drawer';
+import RestaurantPage from './../RestaurantPage/RestaurantPage';
 
 export default class RestaurantDisplay extends Component {
     constructor(props) {
         super(props)
         this.state = {
             img: '',
+            
         }
     }
 
@@ -41,7 +46,15 @@ export default class RestaurantDisplay extends Component {
                                 {this.openRestaurant()}
                             </div>
                             <div style={{ textAlign: 'left', padding: '5px' }}>
-                                <Link to='/restaurant-page'><button>RestaurantPage</button></Link>
+
+
+
+
+
+
+
+
+
                                 <button onClick={() => this.props.handleDelete(this.props.index)}>Delete</button>
                             </div>
                         </div>
@@ -60,17 +73,15 @@ export default class RestaurantDisplay extends Component {
                         <div style={{ textAlign: 'center', padding: '5px 0', backgroundColor: '#FFA880', borderRadius: '14px 14px 0 0', width: '100%' }}>
                             {this.props.name}
                         </div>
-                        {/* <div style={{ textAlign: 'left', padding: '5px', fontSize: '16px' }}>
-                            {this.props.restaurantAddress}
-                        </div> */}
-                        {/* <div style={{ textAlign: 'left', padding: '5px' }}>
-                            {this.openRestaurant()}
-                            <p>Rating: {this.props.rating}</p>
 
-                        </div> */}
+
                         <div style={{ textAlign: 'left', padding: '5px' }}>
-                            <Link to='/restaurant-page'><button>RestaurantPage</button></Link>
-                            <button onClick={() => this.props.handleDelete(this.props.index)}>Delete</button>
+
+
+                            <Link to='/restaurant-page'><FlatButton label='RestaurantPage' labelStyle={{fontSize: '25px'}} style={{margin: '2px', backgroundColor: '#F64548', color: '#FFE49F', fontFamily: 'Carter one, cursive', borderRadius: '15px', textShadow: '1px 1px 1px black'}} /></Link>
+                            <FlatButton label='Delete' onClick={() => this.props.handleDelete(this.props.index)} labelStyle={{fontSize: '25px'}} style={{margin: '2px', backgroundColor: '#F64548', color: '#FFE49F', fontFamily: 'Carter one, cursive', borderRadius: '15px', textShadow: '1px 1px 1px black'}} />
+
+                            {/* <button onClick={() => this.props.handleDelete(this.props.index)}>Delete</button> */}
                         </div>
                     </div>
                     <div className='restaurantImage'>

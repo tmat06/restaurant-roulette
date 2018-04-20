@@ -69,10 +69,7 @@ function RunnerUps(props) {
         list[randomSpot] = inputStudent;
     }
     console.log('worked', list)
-    mapThisList = [];
-    list.map((val, i) => {
-        
-    })
+
 
     // let rouletteList = [...list]; //adds multiple restaurants to list for spin
     // let j = rouletteList.length;
@@ -96,7 +93,7 @@ function RunnerUps(props) {
         <div style={{ display: 'flex', flexDirection: 'column', backgroundColor: '#F64548' }}>
             <Nav />
             <div>
-                <Link to='/spin-results'><FlatButton label='Back to List' fullWidth={true} labelStyle={{fontSize: '30px'}} style={{ height: '80px', width: '100%', backgroundColor: '#FFA880', boxShadow: '1px 1px 1px black', fontFamily: 'Luckiest Guy, cursive', color: '#FFE49F', textShadow: '1px 1px 1px black' }} /></Link>
+                <Link to='/spin-results'><FlatButton label='Back to List' fullWidth={true} labelStyle={{fontSize: '30px'}} style={{ height: '80px', width: '100%', backgroundColor: '#F64548', boxShadow: '1px 1px 1px black', fontFamily: 'Luckiest Guy, cursive', color: '#FFE49F', textShadow: '1px 1px 1px black' }} /></Link>
 
             </div>
             {list.map((val, i) => { //change list1 to list
@@ -143,10 +140,10 @@ function RunnerUps(props) {
                         </Transition>
                     )
                 } else {
-                    
                     return (
                         <Transition
                             className='restaurantTitle'
+                            style={{display: 'flex', flexDirection: 'row'}}
                             component="div"
                             enter={{
                                 opacity: 1,
@@ -159,7 +156,7 @@ function RunnerUps(props) {
                         >
                         <Paper 
                         key={i}
-                        style={{backgroundColor: '#FFE49F', height: '100px', width: '45%', border: '2px solid #FFA880', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 5px' }}
+                        style={{backgroundColor: '#FFE49F', height: '100px', width: '45%', border: '2px solid #FFA880', display: 'flex',flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: '0 5px' }}
                         zDepth={1}
                         >
                                 <div style={{ textAlign: 'left', padding: '5px', borderRadius: '25px', backgroundColor: '#F64548', color: '#FFE49F' }} >{i + 1}. </div>

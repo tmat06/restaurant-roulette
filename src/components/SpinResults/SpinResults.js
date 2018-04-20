@@ -77,15 +77,15 @@ class SpinResults extends Component {
                 <div className='spinResults'>
                     <div className='nav-down'>
                         <div className='spinResultsNavButton'>
-                            <Link to='/dashboard'><FlatButton label='Change Search' className='spinResultsNavButton' labelStyle={{ fontSize: '25px' }} /></Link>
+                            <Link to='/dashboard'><FlatButton label='Change Search' className='spinResultsNavButton' labelStyle={{ fontSize: '25px', color: '#FFE49F', textShadow: '1px 1px 1px black' }} /></Link>
                         </div>
 
                         <div className='spinResultsNavButton'>
-                            <Link to='/google-directions'><FlatButton label='Map' className='spinResultsNavButton' labelStyle={{ fontSize: '25px' }} /></Link>
+                            <Link to='/google-directions'><FlatButton label='Map' className='spinResultsNavButton' labelStyle={{ fontSize: '25px', color: '#FFE49F', textShadow: '1px 1px 1px black' }} /></Link>
                         </div>
 
                         <div className='spinResultsNavButton'>
-                            <FlatButton label='Save This Search' className='spinResultsNavButton' labelStyle={{ fontSize: '25px' }} onClick={() => this.handleSave()} />
+                            <FlatButton label='Save This Search' className='spinResultsNavButton' labelStyle={{ fontSize: '25px', color: '#FFE49F', textShadow: '1px 1px 1px black' }} onClick={() => this.handleSave()} />
                         </div>
 
                     </div>

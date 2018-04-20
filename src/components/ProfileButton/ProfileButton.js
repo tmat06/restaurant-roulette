@@ -38,7 +38,7 @@ class ProfileButton extends Component {
                         // console.log('range', this.state.range)
                         axios.get(`/googlePlacesSearch/${latLng.lat}/${latLng.lng}/${this.state.range}`)
 
-                        // axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latLng.lat},${latLng.lng}&radius=${this.state.range}&type=restaurant&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8`)
+                            // axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${latLng.lat},${latLng.lng}&radius=${this.state.range}&type=restaurant&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8`)
                             .then((res) => {
                                 if (!res.data.results.length) {
 
@@ -200,11 +200,10 @@ class ProfileButton extends Component {
                             fontFamily: 'Carter One, cursive',
                             borderRadius: 25,
                             backgroundColor: '#FFE49F',
-
+                            textAlign: 'left',
                             hover: {
-                                backgroundColor: "#000000"
-                            },
-                            textAlign: 'left'
+                                background: 'blue'
+                              }
                         }}
 
                     />
@@ -217,7 +216,17 @@ class ProfileButton extends Component {
                     />
                 </div>
                 <div>
-                    <button onClick={() => this.deleteFavoriteRestaurant(this.props.listName)}>delete?</button>
+                    <FlatButton
+                        label='Delete'
+                        style={{
+                            color: '#F64548',
+                            fontFamily: 'Carter One, cursive',
+                            borderRadius: 25,
+                            backgroundColor: '#FFE49F',
+                            textAlign: 'left'
+                        }} 
+                        labelStyle={{fontSize: '16px'}}
+                        onClick={() => this.deleteFavoriteRestaurant(this.props.listName)} />
                 </div>
             </div>
         )

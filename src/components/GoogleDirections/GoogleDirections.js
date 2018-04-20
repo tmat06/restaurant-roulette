@@ -23,13 +23,13 @@ class GoogleDirections extends Component {
                         <Link to='/spin-results'><button>Spin Results</button></Link>
                         <div className='side-map-menu'>
                             {this.props.restaurantList.map((val, i) => {
-                                if (val.opening_hours.open_now) {
+                                // if (val.opening_hours.open_now) {
                                 return <div className='side-map-buttons' key={i}>
                                     {val.name}
                                 </div>
-                                }
+                                // }
                             })}
-                        
+
                         </div>
                     </div>
                     <div className='google-map'>
@@ -43,14 +43,14 @@ class GoogleDirections extends Component {
                             />
                             {
                                 this.props.restaurantList.map((val, i) => {
-                                    if (val.opening_hours.open_now) {
-                                        return <AnyReactComponent
-                                            lat={val.geometry.location.lat}
-                                            lng={val.geometry.location.lng}
-                                            text={val.name}
-                                            key={i}
-                                        />
-                                    }
+                                    // if (val.opening_hours.open_now) {
+                                    return <AnyReactComponent
+                                        lat={val.geometry.location.lat}
+                                        lng={val.geometry.location.lng}
+                                        text={val.name}
+                                        key={i}
+                                    />
+                                    // }
 
                                 })
                             }
