@@ -91,7 +91,7 @@ export default class RestaurantDisplay extends Component {
                     <div className='restaurantImage'>
                         <img src={`https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=${this.props.photoRef.photo_reference}&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8`} alt="restaurant pic" className='restaurantImage' />
                     </div>
-                    <div style={{ paddingLeft: '5px' }}>
+                    <div className='restaurantImagePaddingLeft'>
                     </div>
                 </div>
             )

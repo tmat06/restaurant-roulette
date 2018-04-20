@@ -76,16 +76,16 @@ class SpinResults extends Component {
                 <Nav />
                 <div className='spinResults'>
                     <div className='nav-down'>
-                        <div className='spinResultsNavButton'>
-                            <Link to='/dashboard'><FlatButton label='Change Search' className='spinResultsNavButton' labelStyle={{ fontSize: '25px', color: '#FFE49F', textShadow: '1px 1px 1px black' }} /></Link>
+                        <div>
+                            <Link to='/dashboard'><FlatButton label='Search Again' className='spinResultsNavButton' labelStyle={{ fontSize: '25px', color: '#FFE49F', textShadow: '1px 1px 1px black' }} /></Link>
                         </div>
 
-                        <div className='spinResultsNavButton'>
+                        <div>
                             <Link to='/google-directions'><FlatButton label='Map' className='spinResultsNavButton' labelStyle={{ fontSize: '25px', color: '#FFE49F', textShadow: '1px 1px 1px black' }} /></Link>
                         </div>
 
-                        <div className='spinResultsNavButton'>
-                            <FlatButton label='Save This Search' className='spinResultsNavButton' labelStyle={{ fontSize: '25px', color: '#FFE49F', textShadow: '1px 1px 1px black' }} onClick={() => this.handleSave()} />
+                        <div>
+                            <FlatButton label='Save Search' className='spinResultsNavButton' labelStyle={{ fontSize: '25px', color: '#FFE49F', textShadow: '1px 1px 1px black' }} onClick={() => this.handleSave()} />
                         </div>
 
                     </div>
@@ -93,15 +93,15 @@ class SpinResults extends Component {
                     <div className='spinResultsContainer'>
                         {this.props.restaurantList.map((val, i) => {
                             return (
-                                <div key={i} style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
-                                    <RestaurantDisplay restaurantAddress={val.vicinity} handleDelete={this.handleDelete} index={i} name={val.name} photoRef={val.photos ? val.photos[0] : ""} rating={val.rating} openingHours={val.opening_hours ? val.opening_hours.open_now : false} style={{display: 'flex', justifyContent: 'center'}}/>
+                                <div key={i} className='restaurantDisplayContainer' style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
+                                    <RestaurantDisplay restaurantAddress={val.vicinity} handleDelete={this.handleDelete} index={i} name={val.name} photoRef={val.photos ? val.photos[0] : ""} rating={val.rating} openingHours={val.opening_hours ? val.opening_hours.open_now : false} style={{display: 'flex', justifyContent: 'center', width: '100%'}}/>
                                 </div>
                             )
                         })
                         }
                     </div>
 
-                    <div className='spinResultsNavButton' style={{ display: 'flex', justifyContent: 'center', position: 'fixed', top: '89.5vh', width: '100%', height: '90px', backgroundColor: '#FFE49F', padding: '5px 0'}}>
+                    <div className='spinResultsNavButton'>
                         <Link to='/runner-up'><FlatButton className='spinResultsNavButton' label='Let Fate Decide' fullWidth={true} labelStyle={{ fontSize: '60px' }} style={{ boxShadow: '1px 1px 1px black', backgroundColor: '#F64548', borderRadius: '25px', height: '80px', color: '#FFE49F', textShadow: '1px 1px 2px black'}} /></Link>
                     </div>
 
