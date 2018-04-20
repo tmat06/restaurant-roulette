@@ -7,7 +7,7 @@ import axios from 'axios';
 import { updateRestaurantList, deleteRestaurantFromList } from './../../ducks/reducer';
 import FlatButton from 'material-ui/FlatButton';
 import Shuffle from 'material-ui/svg-icons/av/shuffle';
-
+import Dialog from 'material-ui/Dialog';
 
 
 class SpinResults extends Component {
@@ -68,6 +68,8 @@ class SpinResults extends Component {
             )
         })
     }
+
+
 
     render() {
         // console.log('this.props.restaurantList', this.props.restaurantList)

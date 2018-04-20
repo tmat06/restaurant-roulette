@@ -6,6 +6,7 @@ import Drawer from 'material-ui/Drawer';
 import RestaurantPage from './../RestaurantPage/RestaurantPage';
 import LocalDining from 'material-ui/svg-icons/maps/local-dining';
 import Close from 'material-ui/svg-icons/navigation/close';
+import Dialog from 'material-ui/Dialog/Dialog';
 
 
 
@@ -14,6 +15,7 @@ export default class RestaurantDisplay extends Component {
         super(props)
         this.state = {
             img: '',
+            open: false
 
         }
     }
@@ -34,6 +36,12 @@ export default class RestaurantDisplay extends Component {
         }
     }
 
+    handleOpen(open) {
+        this.setState({
+            open
+        })
+    }
+
     imgDisplay() {
         if (this.props.name !== "NO RESTAURANTS ARE NEARBY :(") {
             if (!this.props.photoRef.photo_reference) {
@@ -51,14 +59,6 @@ export default class RestaurantDisplay extends Component {
                             </div>
                             <div style={{ textAlign: 'left', padding: '5px' }}>
 
-
-
-
-
-
-
-
-
                                 <button onClick={() => this.props.handleDelete(this.props.index)}>Delete</button>
                             </div>
                         </div>
@@ -71,6 +71,15 @@ export default class RestaurantDisplay extends Component {
                     </div>
                 )
             }
+
+            const actions = [
+                <FlatButton
+                    label="Close"
+                    primary={true}
+                    onClick={() => this.handleOpen(false)}
+                    />
+            ];
+            console.log('this.props in restaurantDisplay', this.props)
             return (
                 <div className='restaurantDisplayList'>
                     <div className='restaurantName'>
@@ -81,9 +90,25 @@ export default class RestaurantDisplay extends Component {
 
                         <div className='restaurantListButtons'>
 
+                            <FlatButton label='Info' icon={<LocalDining />} labelStyle={{ fontSize: '25px' }} style={{ margin: '2px', backgroundColor: '#F64548', color: '#FFE49F', fontFamily: 'Carter one, cursive', borderRadius: '15px', textShadow: '1px 1px 1px black' }} onClick={() => this.handleOpen('true')} />
 
-                            <Link to='/restaurant-page'><FlatButton label='Info' icon={<LocalDining/>} labelStyle={{ fontSize: '25px' }} style={{ margin: '2px', backgroundColor: '#F64548', color: '#FFE49F', fontFamily: 'Carter one, cursive', borderRadius: '15px', textShadow: '1px 1px 1px black' }} /></Link>
-                            <FlatButton label='Delete' icon={<Close/>} onClick={() => this.props.handleDelete(this.props.index)} labelStyle={{ fontSize: '25px' }} style={{ margin: '2px', backgroundColor: '#F64548', color: '#FFE49F', fontFamily: 'Carter one, cursive', borderRadius: '15px', textShadow: '1px 1px 1px black' }} />
+                            
+                            
+                            <Dialog
+                                titleStyle={{fontFamily: 'Luckiest Guy, cursive'}}
+                                title={this.props.name}
+                                actions={actions}
+                                modal={false}
+                                open={this.state.open}
+                                onRequestClose={() => this.handleOpen(false)}
+                            >
+                                <RestaurantPage name={this.props.name} style={{fontFamily: 'Luckiest Guy, cursive'}} openingHours={this.props.openingHours? this.props.openingHours: ''} rating={this.props.rating} address={this.props.restaurantAddress}/>
+                            </Dialog>
+
+
+                            
+                            {/* <Link to='/restaurant-page'><FlatButton label='Info' icon={<LocalDining/>} labelStyle={{ fontSize: '25px' }} style={{ margin: '2px', backgroundColor: '#F64548', color: '#FFE49F', fontFamily: 'Carter one, cursive', borderRadius: '15px', textShadow: '1px 1px 1px black' }} /></Link> */}
+                            <FlatButton label='Delete' icon={<Close />} onClick={() => this.props.handleDelete(this.props.index)} labelStyle={{ fontSize: '25px' }} style={{ margin: '2px', backgroundColor: '#F64548', color: '#FFE49F', fontFamily: 'Carter one, cursive', borderRadius: '15px', textShadow: '1px 1px 1px black' }} />
 
                             {/* <button onClick={() => this.props.handleDelete(this.props.index)}>Delete</button> */}
                         </div>
