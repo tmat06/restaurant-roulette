@@ -8,7 +8,6 @@ import FlatButton from 'material-ui/FlatButton';
 
 
 
-
 class Profile extends Component {
     constructor() {
         super();
@@ -43,7 +42,7 @@ class Profile extends Component {
     render() {
         // this.favoriteList();
         return (
-            <div style={{ backgroundColor: '#F64548' }}>
+            <div style={{ backgroundColor: '#F64548', height: '100%' }}>
                 <FlatButton
                     style={{
                         color: '#F64548',
@@ -61,15 +60,14 @@ class Profile extends Component {
                 />
 
                 <div className='profileImage'>
-                    <div>
+                    <div style={{ height: '200px', display: 'flex', justifyContent: 'space-around', flexDirection: 'column', alignItems: 'center' }}>
                         <div className='profileTitleBox'>
-
                             <h3 style={{ letterSpacing: '2px' }}>
                                 {this.props.user.display_name}
                             </h3>
                         </div>
                         <p>
-                            Favorite Quotes
+                            <a href={process.env.REACT_APP_LOGOUT}><FlatButton label='LogOut' style={{color: '#FFE49F', borderRadius: '15px', textShadow: '1px 1px 1px black'}} labelStyle={{fontSize: '20px', fontFamily: 'Carter one, cursive', backgroundColor: '#F64548'}}/></a>
                         </p>
                     </div>
                     <div>
@@ -84,7 +82,6 @@ class Profile extends Component {
                     {this.props.favoriteRestaurants.map((val, i) => {
                         return <ProfileButton index={i} listName={val.list_name} key={i} history={this.props.history} fullWidth={false} authID={this.props.user.auth_id} />
                     })}
-                    <a href={process.env.REACT_APP_LOGOUT}><button>LogOut</button></a>
 
                 </div>
             </div>
