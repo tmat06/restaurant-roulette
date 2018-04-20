@@ -131,22 +131,32 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-   width: 100%;
-   height: 60px;
-   transition: top 0.2s ease-in-out;
-   background-color: #F64548;
-   color: #FFE49F;
+  width: 100%;
+  height: 60px;
+  /* transition: top 0.2s ease-in-out; */
+  background-color: #F64548;
+  color: #FFE49F;
+  margin-top: '200px';
 }
 
-.nav-up{
+/* .nav-up{
   top: -58px;
-}
+} */
 
 .spinResultsNavButton{
   font-family: 'Carter One', cursive !important;
   width: 100%;
   color: #FFE49F;
+
+
   text-align: center;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 0;
+  height: 90px;
+  background-color: #FFE49F;
+  padding: 5px 0;
 }
 
 .spinResultsContainer{
@@ -193,9 +203,13 @@
   width: 350px;
 }
 
-restaurantDisplayButtons{
+.restaurantDisplayButtons{
   text-align: left; 
   padding: 5px;
+}
+
+.restaurantImagePaddingLeft{
+  padding-left: '5px';
 }
 
 .spinResultsFooter{
@@ -352,6 +366,7 @@ restaurantDisplayButtons{
   .nav-down{
     justify-content: space-between;
   }
+
 }
 
 @media (max-width: 750px){ /* between */
@@ -359,24 +374,41 @@ restaurantDisplayButtons{
     font-size: 36px;
   }
   .greetingDisplayName{
-    font-size: 40px;
+    font-size: 30px;
+  }
+
+  /* .restaurantName{
+    height: 200px;
+    width: 100%;
+  } */
+  restaurantDisplayList{
+    width: 100%;
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .spinResultsContainer{
+    width: 100%;
+  }
+
+  .restaurantImagePaddingLeft{
+    padding-left: 0px;
   }
 
   .restaurantName{
-    height: 200px;
-    width: 250px;
+    height: 100%;
   }
-
-
 
   .restaurantImage{
+    height: 0;
+    width: 0;
+  }
+
+  .restaurantDisplayContainer{
     height: 200px;
-    width: 250px;
   }
   
-  .restaurantDisplayButtons{
-
-  }
 }
 
 @media (max-width: 360px){ /* smallest iphone 6/7/8*/
@@ -388,13 +420,22 @@ restaurantDisplayButtons{
   }
 
   .restaurantName{
-    height: 150px;
-    width: 200px;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+  }
+  
+  .restaurantDisplayList{
+    width: 100%;
+
+
   }
 
-  .restaurantImage{
+
+
+  /* .restaurantImage{
     height: 150px;
     width: 200px;
-  }
+  } */
   
 }
