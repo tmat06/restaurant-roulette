@@ -151,8 +151,6 @@
   font-family: 'Carter One', cursive !important;
   width: 100%;
   color: #FFE49F;
-
-
   text-align: center;
   display: flex;
   justify-content: center;
@@ -215,6 +213,11 @@
 
 .restaurantImagePaddingLeft{
   padding-left: '5px';
+}
+
+.restaurantPopUp{
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 20px;
 }
 
 .spinResultsFooter{
@@ -349,10 +352,26 @@
   margin-top: 50px;
 }
 
+.runnerUpStyle{
+  font-family: 'Luckiest Guy', cursive;
+  font-size: 20px;
+  color: #f64548;
+}
+
 @media (max-width: 880px){ /* ipad */
   
   .title{
     font-size: 75px;
+  }
+  
+  .winnerTitle{
+    font-size: 45px;
+  }
+
+  
+  
+  .winnerRestaurant{
+    font-size: 50px;
   }
 
   .restaurantDisplayList{
@@ -374,6 +393,10 @@
 
   .nav-down{
     justify-content: space-between;
+  }
+
+  .restaurantPopUp{
+    font-size: 15px;
   }
 
 }

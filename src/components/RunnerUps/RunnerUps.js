@@ -6,17 +6,26 @@ import Transition from 'react-motion-ui-pack';
 import { spring } from 'react-motion';
 import FlatButton from 'material-ui/FlatButton';
 import Paper from 'material-ui/Paper';
+import Dialog from 'material-ui/Dialog';
+import RestaurantPage from './../RestaurantPage/RestaurantPage';
 
-function RunnerUps(props) {
-    let list1 = [
-        { name: 'joe' },
-        { name: 'joe' },
-        { name: 'joe' },
-        { name: 'joe' },
-        { name: 'joe' },
-        { name: 'joe' },
+class RunnerUps extends Component {
+    constructor(){
+        super()
+        this.state = {
+            open: null,
+            list: []
+        }
+    }
+    // let list1 = [
+    //     { name: 'joe' },
+    //     { name: 'joe' },
+    //     { name: 'joe' },
+    //     { name: 'joe' },
+    //     { name: 'joe' },
+    //     { name: 'joe' },
 
-    ]
+    // ]
 
 
     // spin(rouletteList) {
@@ -53,22 +62,27 @@ function RunnerUps(props) {
     // }
 
 
-    var list = [];
-    let randomSpot = 0;
-    for (let i = 0; i < props.currentList.length; i++) {
-        list[i] = "";
-    }
-    console.log('list', list)
-
-    for (var i = 0; i < props.currentList.length; i++) { //randomizes the list
-        randomSpot = Math.floor(Math.random() * props.currentList.length);
-        while (list[randomSpot]) {
-            randomSpot = Math.floor(Math.random() * props.currentList.length);
+    componentDidMount(){
+        var list = [];
+        let randomSpot = 0;
+        for (let i = 0; i < this.props.currentList.length; i++) {
+            list[i] = "";
         }
-        var inputStudent = props.currentList[i];
-        list[randomSpot] = inputStudent;
+        console.log('list', list)
+    
+        for (var i = 0; i < this.props.currentList.length; i++) { //randomizes the list
+            randomSpot = Math.floor(Math.random() * this.props.currentList.length);
+            while (list[randomSpot]) {
+                randomSpot = Math.floor(Math.random() * this.props.currentList.length);
+            }
+            var inputStudent = this.props.currentList[i];
+            list[randomSpot] = inputStudent;
+        }
+        console.log('worked', list)
+        this.setState({
+            list: [...list]
+        })
     }
-    console.log('worked', list)
 
 
     // let rouletteList = [...list]; //adds multiple restaurants to list for spin
@@ -84,11 +98,26 @@ function RunnerUps(props) {
     // }
 
 
-
+    handleOpen(i){
+        this.setState({
+            open: i
+        })
+    }
 
     // console.log('rouletteList', rouletteList)
 
-    console.log('list1', list1)
+    render(){
+
+
+
+        const actions = [
+            <FlatButton
+                label="Close"
+                primary={true}
+                onClick={() => this.handleOpen(false)}
+                />
+        ];
+        
     return (
         <div style={{ display: 'flex', flexDirection: 'column', backgroundColor: '#F64548' }}>
             <Nav />
@@ -96,13 +125,14 @@ function RunnerUps(props) {
                 <Link to='/spin-results'><FlatButton label='Back to List' fullWidth={true} labelStyle={{ fontSize: '30px' }} className='backToList' style={{ height: '80px', width: '100%', backgroundColor: '#F64548', boxShadow: '1px 1px 1px black', fontFamily: 'Luckiest Guy, cursive', color: '#FFE49F', textShadow: '1px 1px 1px black' }} /></Link>
 
             </div>
-            {list.map((val, i) => { //change list1 to list
+            {this.state.list.map((val, i) => { //change list1 to list
+            // console.log('val', val)
                 if (i === 0) {
                     return (
                         <Transition
                             className='restaurantTitle'
                             component="div"
-                            enter={{
+                            enter={{ 
                                 opacity: 1,
                                 translateX: spring(0, { stiffness: 70, damping: 10 + i })
                             }}
@@ -125,7 +155,21 @@ function RunnerUps(props) {
                                 <div >
                                     <div className='winnerBoxBlock' >
                                         <div style={{ width: '300px' }}>
-                                            <Link to='/restaurant-page'><FlatButton label='Info' fullWidth={true} style={{ backgroundColor: '#FFA880', fontFamily: 'Luckiest Guy, cursive', color: '#F64548', height: '60px', width: '100%' }} /></Link>
+
+                                            <FlatButton label='Info' fullWidth={true} style={{ backgroundColor: '#FFA880', fontFamily: 'Luckiest Guy, cursive', color: '#F64548', height: '60px', width: '100%' }} onClick={() => this.handleOpen(i)}/>
+                                            <Dialog
+                                                titleStyle={{ fontFamily: 'Luckiest Guy, cursive' }}
+                                                title={val.name}
+                                                actions={actions}
+                                                modal={false}
+                                                open={this.state.open === i}
+                                                onRequestClose={() => this.handleOpen(null)}
+                                            >
+                                                <RestaurantPage name={val.name} style={{ fontFamily: 'Luckiest Guy, cursive' }} openingHours={val.openingHours ? val.openingHours : ''} rating={val.rating} address={val.vicinity} />
+                                            </Dialog>
+
+
+                                            {/* <Link to='/restaurant-page'><FlatButton label='Info' fullWidth={true} style={{ backgroundColor: '#FFA880', fontFamily: 'Luckiest Guy, cursive', color: '#F64548', height: '60px', width: '100%' }} /></Link> */}
 
                                         </div>
                                         <div style={{ width: '300px' }}>
@@ -140,6 +184,9 @@ function RunnerUps(props) {
                         </Transition>
                     )
                 } else {
+                    if(i > 5){
+                        console.log('over 5')
+                    } else {
                     return (
                         <Transition
                             className='restaurantTitle'
@@ -159,20 +206,33 @@ function RunnerUps(props) {
                                 style={{ backgroundColor: '#FFE49F', height: '100px', width: '45%', border: '2px solid #FFA880', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: '0 5px' }}
                                 zDepth={1}
                             >
-                                <div style={{ textAlign: 'left', padding: '5px', borderRadius: '25px', backgroundColor: '#F64548', color: '#FFE49F' }} >{i + 1}. </div>
-                                {val.name}
+                                <div style={{ textAlign: 'left', padding: '5px', borderRadius: '25px', backgroundColor: '#F64548', color: '#FFE49F', fontFamily: 'Luckiest Guy, cursive' }} >{i + 1}. </div>
+                                <div className='runnerUpStyle'>{val.name}</div>
                                 <div>
-                                    <Link to='/restaurant-page'><FlatButton label='Info' fullWidth={false} style={{ backgroundColor: '#FFA880', fontFamily: 'Luckiest Guy, cursive', color: '#F64548', height: '60px' }} /></Link>
+
+                                            <FlatButton label='Info' fullWidth={true} style={{ backgroundColor: '#FFA880', fontFamily: 'Luckiest Guy, cursive', color: '#F64548', height: '60px', width: '100%' }} onClick={() => this.handleOpen(i)}/>
+                                            <Dialog
+                                                titleStyle={{ fontFamily: 'Luckiest Guy, cursive' }}
+                                                title={val.name}
+                                                actions={actions}
+                                                modal={false}
+                                                open={this.state.open === i}
+                                                onRequestClose={() => this.handleOpen(null)}
+                                            >
+                                                <RestaurantPage name={val.name} style={{ fontFamily: 'Luckiest Guy, cursive' }} openingHours={val.openingHours ? val.openingHours : ''} rating={val.rating} address={val.vicinity} />
+                                            </Dialog>
+                                    {/* <Link to='/restaurant-page'><FlatButton label='Info' fullWidth={false} style={{ backgroundColor: '#FFA880', fontFamily: 'Luckiest Guy, cursive', color: '#F64548', height: '60px' }} /></Link> */}
                                 </div>
                             </Paper>
                         </Transition>
                     )
-                }
+                }}
             })
             }
         </div>
-
     )
+}
+    
 }
 
 function mapStateToProps(state) {
