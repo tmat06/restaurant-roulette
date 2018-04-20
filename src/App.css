@@ -60,11 +60,13 @@
   display: flex;
   justify-content: space-around;
   background-color: #FFE49F;
-  
-  position: relative;
+  position: fixed;
+  top: 0;
   z-index: 2;
   margin: 0;
   height: 50px;
+  width: 100%;
+
 }
 
 /* .drawerWidth{
@@ -136,7 +138,9 @@
   /* transition: top 0.2s ease-in-out; */
   background-color: #F64548;
   color: #FFE49F;
-  margin-top: '200px';
+  position: fixed;
+  top: 50px;
+  z-index: 2;
 }
 
 /* .nav-up{
@@ -166,6 +170,7 @@
   align-items: center;
   background-color: #F64548;
   width: 100%;
+  margin-top: 110px;
 }
 
 .restaurantDisplayList{
@@ -338,6 +343,10 @@
   text-shadow: 1px 1px 1px black;
   font-size: 40px;
   color: #f64548;
+}
+
+.backToList{
+  margin-top: 50px;
 }
 
 @media (max-width: 880px){ /* ipad */

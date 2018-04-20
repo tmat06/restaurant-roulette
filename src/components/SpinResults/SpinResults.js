@@ -6,6 +6,7 @@ import RestaurantDisplay from './../RestaurantDisplay/RestaurantDisplay';
 import axios from 'axios';
 import { updateRestaurantList, deleteRestaurantFromList } from './../../ducks/reducer';
 import FlatButton from 'material-ui/FlatButton';
+import Shuffle from 'material-ui/svg-icons/av/shuffle';
 
 
 
@@ -61,7 +62,7 @@ class SpinResults extends Component {
         // console.log('this.props.restaurantList', this.props.restaurantList)
         return restaurantList.map((val, i) => {
             return (
-                <div key={i} style={{width: '100%'}}>
+                <div key={i} style={{ width: '100%' }}>
                     <RestaurantDisplay name={val.name} photoRef={val.photos ? val.photos[0] : ""} rating={val.rating} />
                 </div>
             )
@@ -93,8 +94,8 @@ class SpinResults extends Component {
                     <div className='spinResultsContainer'>
                         {this.props.restaurantList.map((val, i) => {
                             return (
-                                <div key={i} className='restaurantDisplayContainer' style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
-                                    <RestaurantDisplay restaurantAddress={val.vicinity} handleDelete={this.handleDelete} index={i} name={val.name} photoRef={val.photos ? val.photos[0] : ""} rating={val.rating} openingHours={val.opening_hours ? val.opening_hours.open_now : false} style={{display: 'flex', justifyContent: 'center', width: '100%'}}/>
+                                <div key={i} className='restaurantDisplayContainer' style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
+                                    <RestaurantDisplay restaurantAddress={val.vicinity} handleDelete={this.handleDelete} index={i} name={val.name} photoRef={val.photos ? val.photos[0] : ""} rating={val.rating} openingHours={val.opening_hours ? val.opening_hours.open_now : false} style={{ display: 'flex', justifyContent: 'center', width: '100%' }} />
                                 </div>
                             )
                         })
@@ -102,7 +103,7 @@ class SpinResults extends Component {
                     </div>
 
                     <div className='spinResultsNavButton'>
-                        <Link to='/runner-up'><FlatButton className='spinResultsNavButton' label='Let Fate Decide' fullWidth={true} labelStyle={{ fontSize: '60px' }} style={{ boxShadow: '1px 1px 1px black', backgroundColor: '#F64548', borderRadius: '25px', height: '80px', color: '#FFE49F', textShadow: '1px 1px 2px black'}} /></Link>
+                        <Link to='/runner-up' style={{width: '100%'}}><FlatButton className='spinResultsNavButton' label='Shuffle' icon={<Shuffle style={{ height: '60px', width: '60px' }} />} fullWidth={true} labelStyle={{ fontSize: '50px' }} style={{ boxShadow: '1px 1px 1px black', backgroundColor: '#F64548', borderRadius: '25px', height: '80px', color: '#FFE49F', textShadow: '1px 1px 2px black' }} /></Link>
                     </div>
 
                     <div className="spinResultsFooter"></div>
