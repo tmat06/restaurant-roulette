@@ -296,7 +296,7 @@ class Dashboard extends Component {
                             </div>
                         </div>
                         <div>
-                            <Link to='/spin-results' style={{textDecoration: 'none'}}><FlatButton label="Search" icon={<Search />} labelStyle={{fontFamily: 'Luckiest Guy, cursive', fontSize: '25px'}} wholeWidth={false} style={{ color: '#F64548', borderRadius: '25px', backgroundColor: '#FFE49F' }} onClick={this.handleEnter()}/></Link>
+                            <Link to='/spin-results' style={{textDecoration: 'none'}}><FlatButton label="Search" icon={<Search />} labelStyle={{fontFamily: 'Luckiest Guy, cursive', fontSize: '25px'}} wholeWidth={false} style={{ color: '#F64548', borderRadius: '25px', backgroundColor: '#FFE49F' }} onClick={() => this.handleEnter()}/></Link>
                         </div>
                     </div>
                 </div>
