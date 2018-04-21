@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { getUserInfo, updateRestaurantSearch, updateRestaurantList, locationSearch, updateFavoriteRestaurants } from './../../ducks/reducer';
 import { Link } from 'react-router-dom';
 import { geocodeByAddress, getLatLng } from 'react-places-autocomplete';
-import MainButton from './../MainButton/MainButton';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 
@@ -14,7 +13,7 @@ class ProfileButton extends Component {
         super()
         this.state = {
             newName: "",
-            range: '500',
+            range: '1000',
             open: false,
             openSavedList: false,
         }
@@ -176,8 +175,15 @@ class ProfileButton extends Component {
         return (
             <div key={this.props.index} className='profileSavedListMenu'>
                 <div>
+                    <div></div>
+                    <FlatButton
+                        label={this.props.listName}
+                        fullWidth={false}
+                        labelStyle={{ fontFamily: 'Carter one, cursive', fontSize: '25px' }}
+                        style={{ color: '#F64548', borderRadius: '0', textShadow: '1px 1px 1px black', marginBottom: '3px' }}
+                        onClick={() => this.handleOpen()}
+                    />
 
-                    <MainButton name={this.props.listName} wholeWidth={false} style={{ color: '#F64548', borderRadius: '0', textShadow: '1px 1px 1px black', marginBottom: '3px' }} handleOpen={this.handleOpen} />
                     <Dialog
                         title="Load Saved List"
                         actions={actions2}
@@ -186,10 +192,9 @@ class ProfileButton extends Component {
                         onRequestClose={this.handleOpen}
                     />
                 </div>
+
                 <div>
 
-                </div>
-                <div>
                     <FlatButton
                         label={"Change Name"}
                         fullWidth={true}
@@ -203,7 +208,7 @@ class ProfileButton extends Component {
                             textAlign: 'left',
                             hover: {
                                 background: 'blue'
-                              }
+                            }
                         }}
 
                     />
@@ -224,10 +229,11 @@ class ProfileButton extends Component {
                             borderRadius: 25,
                             backgroundColor: '#FFE49F',
                             textAlign: 'left'
-                        }} 
-                        labelStyle={{fontSize: '16px'}}
+                        }}
+                        labelStyle={{ fontSize: '16px' }}
                         onClick={() => this.deleteFavoriteRestaurant(this.props.listName)} />
                 </div>
+
             </div>
         )
 

@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import FlatButton from 'material-ui/FlatButton';
-import Divider from 'material-ui/Divider';
-import Drawer from 'material-ui/Drawer';
 import RestaurantPage from './../RestaurantPage/RestaurantPage';
 import LocalDining from 'material-ui/svg-icons/maps/local-dining';
 import Close from 'material-ui/svg-icons/navigation/close';
@@ -79,7 +76,7 @@ export default class RestaurantDisplay extends Component {
                     onClick={() => this.handleOpen(false)}
                     />
             ];
-            console.log('this.props in restaurantDisplay', this.props)
+            // console.log('this.props in restaurantDisplay', this.props)
             return (
                 <div className='restaurantDisplayList'>
                     <div className='restaurantName'>
@@ -90,7 +87,7 @@ export default class RestaurantDisplay extends Component {
 
                         <div className='restaurantListButtons'>
 
-                            <FlatButton label='Info' icon={<LocalDining />} labelStyle={{ fontSize: '25px' }} style={{ margin: '2px', backgroundColor: '#F64548', color: '#FFE49F', fontFamily: 'Carter one, cursive', borderRadius: '15px', textShadow: '1px 1px 1px black' }} onClick={() => this.handleOpen('true')} />
+                            <FlatButton label='Info' icon={<LocalDining />} labelStyle={{ fontSize: '25px' }} style={{ zIndex: '1', margin: '2px', backgroundColor: '#F64548', color: '#FFE49F', fontFamily: 'Carter one, cursive', borderRadius: '15px', textShadow: '1px 1px 1px black' }} onClick={() => this.handleOpen('true')} />
 
                             
                             

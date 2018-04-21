@@ -4,7 +4,7 @@ import Drawer from 'material-ui/Drawer';
 import Profile from './../Profile/Profile';
 import Party from './../Party/Party';
 import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
-
+import FlatButton from 'material-ui/FlatButton';
 
 
 export default class Nav extends Component {
@@ -33,21 +33,40 @@ export default class Nav extends Component {
         }
     }
 
+
+
     render() {
+
+        let style = {
+            color: '#F64548',
+            fontFamily: 'Carter One, cursive',
+            fontSize: 20,
+            borderRadius: 25,
+            backgroundColor: '#FFE49F',
+            margin: '0px',
+            backgroundColor: '#FFE49F', 
+            boxShadow: '0' 
+        }
+
         return (
-            <div className='navMenu'>
+            <div className='navMenu' style={{ zIndex: '2' }}>
                 <div>
-                    <MainButton name="Profile" wholeWidth={false} style={{ backgroundColor: '#FFE49F', boxShadow: '0'}} handleToggle={() => this.handleToggle('2')} />
+                    <FlatButton label="Profile" fullWidth={false} style={style} onClick={() => this.handleToggle('2')} labelStyle={{fontSize: '30px'}} />
+                    {/* <MainButton name="Profile" wholeWidth={false} style={{ backgroundColor: '#FFE49F', boxShadow: '0' }} handleToggle={() => this.handleToggle('2')} /> */}
+
                     <Drawer
-                    // className='drawerWidth'
+                        // className='drawerWidth'
                         width={400} //400
                         open={this.state.open2}>
-                        <Profile style={{ margin: '0' }} handleToggle={this.handleToggle} toggle='2' history={this.props.history}/>
+                        <Profile style={{ margin: '0' }} handleToggle={this.handleToggle} toggle='2' history={this.props.history} />
                     </Drawer>
                 </div>
 
                 <div>
-                    <MainButton name="Party" wholeWidth={false} style={{ backgroundColor: '#FFE49F', boxShadow: '0' }} handleToggle={() => this.handleToggle('1')} />
+
+                    <FlatButton label="Chat" fullWidth={false} style={style} onClick={() => this.handleToggle('1')} labelStyle={{fontSize: '30px'}}/>
+
+                    {/* <MainButton name="Party" wholeWidth={false} style={{ backgroundColor: '#FFE49F', boxShadow: '0' }} handleToggle={() => this.handleToggle('1')} /> */}
                     <Drawer
                         width={400}
                         open={this.state.open1}

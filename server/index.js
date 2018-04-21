@@ -186,12 +186,12 @@ app.get('/userList', (req, res) => {
     })
 })
 
-app.get('/norrisQuote', (req, res) => {
-    axios.get('https://api.chucknorris.io/jokes/random?category=dev')
-    .then(quote => {
-        res.status(200).json(quote.data)
-    })
-})
+// app.get('/norrisQuote', (req, res) => {
+//     axios.get('https://api.chucknorris.io/jokes/random?category=dev')
+//     .then(quote => {
+//         res.status(200).json(quote.data)
+//     })
+// })
 
 const io = socket(app.listen(SERVER_PORT, () => console.log(`Magic Happens at Port: ${SERVER_PORT}`)));
 
