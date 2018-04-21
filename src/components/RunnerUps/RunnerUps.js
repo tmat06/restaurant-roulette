@@ -10,11 +10,19 @@ import Dialog from 'material-ui/Dialog';
 import RestaurantPage from './../RestaurantPage/RestaurantPage';
 
 class RunnerUps extends Component {
-    constructor(){
+    constructor() {
         super()
         this.state = {
             open: null,
-            list: []
+            list: [],
+            list1: [
+                { name: 'Four Seasons Hot Pot & Dumplings' },
+                { name: 'Four Seasons Hot Pot & Dumplings' },
+                { name: 'Great China Restaurant' },
+                { name: 'Wild Ginger' },
+                { name: 'McDonalds' },
+                { name: 'joe' },
+            ]
         }
     }
     // let list1 = [
@@ -62,14 +70,14 @@ class RunnerUps extends Component {
     // }
 
 
-    componentDidMount(){
+    componentDidMount() {
         var list = [];
         let randomSpot = 0;
         for (let i = 0; i < this.props.currentList.length; i++) {
             list[i] = "";
         }
         console.log('list', list)
-    
+
         for (var i = 0; i < this.props.currentList.length; i++) { //randomizes the list
             randomSpot = Math.floor(Math.random() * this.props.currentList.length);
             while (list[randomSpot]) {
@@ -98,7 +106,7 @@ class RunnerUps extends Component {
     // }
 
 
-    handleOpen(i){
+    handleOpen(i) {
         this.setState({
             open: i
         })
@@ -106,7 +114,7 @@ class RunnerUps extends Component {
 
     // console.log('rouletteList', rouletteList)
 
-    render(){
+    render() {
 
 
 
@@ -115,102 +123,105 @@ class RunnerUps extends Component {
                 label="Close"
                 primary={true}
                 onClick={() => this.handleOpen(false)}
-                />
+            />
         ];
-        
-    return (
-        <div style={{ display: 'flex', flexDirection: 'column', backgroundColor: '#F64548' }}>
-            <Nav />
-            <div style={{ marginTop: '50px' }}>
-                <Link to='/spin-results'><FlatButton label='Back to List' fullWidth={true} labelStyle={{ fontSize: '30px' }} className='backToList' style={{ height: '80px', width: '100%', backgroundColor: '#F64548', boxShadow: '1px 1px 1px black', fontFamily: 'Luckiest Guy, cursive', color: '#FFE49F', textShadow: '1px 1px 1px black' }} /></Link>
 
-            </div>
-            {this.state.list.map((val, i) => { //change list1 to list
-            // console.log('val', val)
-                if (i === 0) {
-                    return (
-                        <Transition
-                            className='restaurantTitle'
-                            component="div"
-                            enter={{ 
-                                opacity: 1,
-                                translateX: spring(0, { stiffness: 70, damping: 10 + i })
-                            }}
-                            leave={{
-                                opacity: 0,
-                                translateX: -700
-                            }}
-                        >
-                            <Paper style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#FFE49F', height: '100%', width: '100%', marginBottom: '10px', marginTop: '10px' }}
-                                zDepth={5}
-                                key={i}>
+        return (
+            <div style={{ display: 'flex', flexDirection: 'column', backgroundColor: '#F64548' }}>
+                <Nav />
+                <div style={{ marginTop: '50px' }}>
+                    <Link to='/spin-results'><FlatButton label='Back to List' fullWidth={true} labelStyle={{ fontSize: '30px' }} className='backToList' style={{ height: '80px', width: '100%', backgroundColor: '#F64548', boxShadow: '1px 1px 1px black', fontFamily: 'Luckiest Guy, cursive', color: '#FFE49F', textShadow: '1px 1px 1px black' }} /></Link>
 
-                                <div></div>
+                </div>
+                {this.state.list1.map((val, i) => { //change list1 to list
+                    // console.log('val', val)
+                    if (i === 0) {
+                        return (
+                            <Transition
+                                className='restaurantTitle'
+                                component="div"
+                                enter={{
+                                    opacity: 1,
+                                    translateX: spring(0, { stiffness: 70, damping: 10 + i })
+                                }}
+                                leave={{
+                                    opacity: 0,
+                                    translateX: -700
+                                }}
+                            >
+                                <Paper
+                                    className='paperClass'
+                                    style={{backgroundColor: '#FFE49F'}}
+                                    zDepth={5}
+                                    key={i}>
 
-                                <div className='winnerBoxBlock'>
-                                    <div className='winnerTitle' >Winner!!!</div>
-                                    <div className='winnerRestaurant'>{val.name}</div>
-                                </div>
+                                    <div></div>
 
-                                <div >
-                                    <div className='winnerBoxBlock' >
-                                        <div style={{ width: '300px' }}>
+                                    <div className='winnerBoxBlock'>
+                                        <div className='winnerTitle' >Winner!!!</div>
+                                        <div className='winnerRestaurant'>{val.name}</div>
+                                    </div>
 
-                                            <FlatButton label='Info' fullWidth={true} style={{ backgroundColor: '#FFA880', fontFamily: 'Luckiest Guy, cursive', color: '#F64548', height: '60px', width: '100%' }} onClick={() => this.handleOpen(i)}/>
-                                            <Dialog
-                                                titleStyle={{ fontFamily: 'Luckiest Guy, cursive' }}
-                                                title={val.name}
-                                                actions={actions}
-                                                modal={false}
-                                                open={this.state.open === i}
-                                                onRequestClose={() => this.handleOpen(null)}
-                                            >
-                                                <RestaurantPage name={val.name} style={{ fontFamily: 'Luckiest Guy, cursive' }} openingHours={val.openingHours ? val.openingHours : ''} rating={val.rating} address={val.vicinity} />
-                                            </Dialog>
+                                    <div >
+                                        <div className='winnerBoxBlock' >
+                                            <div style={{ width: '300px' }}>
+
+                                                <FlatButton label='Info' fullWidth={true} style={{ backgroundColor: '#FFA880', fontFamily: 'Luckiest Guy, cursive', color: '#F64548', height: '60px', width: '100%' }} onClick={() => this.handleOpen(i)} />
+                                                <Dialog
+                                                    titleStyle={{ fontFamily: 'Luckiest Guy, cursive' }}
+                                                    title={val.name}
+                                                    actions={actions}
+                                                    modal={false}
+                                                    open={this.state.open === i}
+                                                    onRequestClose={() => this.handleOpen(null)}
+                                                >
+                                                    <RestaurantPage name={val.name} style={{ fontFamily: 'Luckiest Guy, cursive' }} openingHours={val.openingHours ? val.openingHours : ''} rating={val.rating} address={val.vicinity} />
+                                                </Dialog>
 
 
-                                            {/* <Link to='/restaurant-page'><FlatButton label='Info' fullWidth={true} style={{ backgroundColor: '#FFA880', fontFamily: 'Luckiest Guy, cursive', color: '#F64548', height: '60px', width: '100%' }} /></Link> */}
+                                                {/* <Link to='/restaurant-page'><FlatButton label='Info' fullWidth={true} style={{ backgroundColor: '#FFA880', fontFamily: 'Luckiest Guy, cursive', color: '#F64548', height: '60px', width: '100%' }} /></Link> */}
 
-                                        </div>
-                                        <div style={{ width: '300px' }}>
+                                            </div>
+                                            <div style={{ width: '300px' }}>
 
-                                            <Link to='/google-directions'><FlatButton label='Map' fullWidth={false} style={{ backgroundColor: '#FFA880', fontFamily: 'Luckiest Guy, cursive', color: '#F64548', height: '60px', width: '100%' }} /></Link>
+                                                <Link to='/google-directions'><FlatButton label='Map' fullWidth={false} style={{ backgroundColor: '#FFA880', fontFamily: 'Luckiest Guy, cursive', color: '#F64548', height: '60px', width: '100%' }} /></Link>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div></div>
-                            </Paper>
-                        </Transition>
-                    )
-                } else {
-                    if(i > 5){
-                        console.log('over 5')
+                                    <div></div>
+                                </Paper>
+                            </Transition>
+                        )
                     } else {
-                    return (
-                        <Transition
-                            className='restaurantTitle'
-                            style={{ display: 'flex', flexDirection: 'row' }}
-                            component="div"
-                            enter={{
-                                opacity: 1,
-                                translateX: spring(0, { stiffness: 30, damping: 10 + i })
-                            }}
-                            leave={{
-                                opacity: 0,
-                                translateX: -700
-                            }}
-                        >
-                            <Paper
-                                key={i}
-                                style={{ backgroundColor: '#FFE49F', height: '100px', width: '45%', border: '2px solid #FFA880', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: '0 5px' }}
-                                zDepth={1}
-                            >
-                                <div style={{ textAlign: 'left', padding: '5px', borderRadius: '25px', backgroundColor: '#F64548', color: '#FFE49F', fontFamily: 'Luckiest Guy, cursive' }} >{i + 1}. </div>
-                                <div className='runnerUpStyle'>{val.name}</div>
-                                <div>
+                        if (i > 5) {
+                            console.log('over 5')
+                        } else {
+                            return (
+                                <Transition
+                                    className='restaurantTitle'
+                                    style={{ display: 'flex', flexDirection: 'row' }}
+                                    component="div"
+                                    enter={{
+                                        opacity: 1,
+                                        translateX: spring(0, { stiffness: 30, damping: 10 + i })
+                                    }}
+                                    leave={{
+                                        opacity: 0,
+                                        translateX: -700
+                                    }}
+                                >
+                                    <Paper
+                                        key={i}
+                                        className='runnerUpBox'
+                                        style={{backgroundColor: '#FFE49F'}}
+                                        zDepth={1}
+                                    >
+                                        <div style={{ textAlign: 'left', padding: '5px', borderRadius: '25px', backgroundColor: '#F64548', color: '#FFE49F', fontFamily: 'Luckiest Guy, cursive' }} >{i + 1}. </div>
+                                        <div className='runnerUpStyle'>{val.name}</div>
+                                        <div>
 
-                                            <FlatButton label='Info' fullWidth={true} style={{ backgroundColor: '#FFA880', fontFamily: 'Luckiest Guy, cursive', color: '#F64548', height: '60px', width: '100%' }} onClick={() => this.handleOpen(i)}/>
+                                            <FlatButton label='Info' fullWidth={true} style={{ backgroundColor: '#FFA880', fontFamily: 'Luckiest Guy, cursive', color: '#F64548', height: '60px', width: '100%' }} onClick={() => this.handleOpen(i)} />
                                             <Dialog
                                                 titleStyle={{ fontFamily: 'Luckiest Guy, cursive' }}
                                                 title={val.name}
@@ -221,18 +232,19 @@ class RunnerUps extends Component {
                                             >
                                                 <RestaurantPage name={val.name} style={{ fontFamily: 'Luckiest Guy, cursive' }} openingHours={val.openingHours ? val.openingHours : ''} rating={val.rating} address={val.vicinity} />
                                             </Dialog>
-                                    {/* <Link to='/restaurant-page'><FlatButton label='Info' fullWidth={false} style={{ backgroundColor: '#FFA880', fontFamily: 'Luckiest Guy, cursive', color: '#F64548', height: '60px' }} /></Link> */}
-                                </div>
-                            </Paper>
-                        </Transition>
-                    )
-                }}
-            })
-            }
-        </div>
-    )
-}
-    
+                                            {/* <Link to='/restaurant-page'><FlatButton label='Info' fullWidth={false} style={{ backgroundColor: '#FFA880', fontFamily: 'Luckiest Guy, cursive', color: '#F64548', height: '60px' }} /></Link> */}
+                                        </div>
+                                    </Paper>
+                                </Transition>
+                            )
+                        }
+                    }
+                })
+                }
+            </div>
+        )
+    }
+
 }
 
 function mapStateToProps(state) {

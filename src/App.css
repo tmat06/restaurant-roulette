@@ -358,6 +358,38 @@
   color: #f64548;
 }
 
+.paperClass{
+  display: flex;
+  justify-content: space-between;
+  /* flex-direction: column; */
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.runnerUpBox{
+  background-color: #FFE49F;
+  height: 100px;
+  width: 45%;
+  border: 2px solid #FFA880;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5px;
+}
+
+@media (max-width: 980px){
+  .winnerTitle{
+    font-size: 40px;
+  }
+  .paperClass{
+    font-size: 45px;
+  }
+}
+
 @media (max-width: 880px){ /* ipad */
   
   .title{
@@ -365,10 +397,8 @@
   }
   
   .winnerTitle{
-    font-size: 45px;
+    font-size: 30px;
   }
-
-  
   
   .winnerRestaurant{
     font-size: 50px;
@@ -379,8 +409,6 @@
   }
 
   .restaurantName{
-    /* height: 200px;
-    width: 250px; */
     height: 250px;
     width: 300px;
   }
@@ -398,6 +426,19 @@
   .restaurantPopUp{
     font-size: 15px;
   }
+
+.paperClass{
+  flex-direction: column;
+
+  }
+
+.runnerUpStyle{
+  font-size: 15px;
+}
+
+.runnerUpBox{
+  width: 100%;
+}
 
 }
 
@@ -439,6 +480,14 @@
 
   .restaurantDisplayContainer{
     height: 200px;
+  }
+
+  .restaurantTitle{
+    flex-direction: row;
+  }
+
+  .winnerRestaurant{
+    font-size: 30px;
   }
   
 }
