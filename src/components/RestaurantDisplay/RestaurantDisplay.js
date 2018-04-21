@@ -128,9 +128,8 @@ export default class RestaurantDisplay extends Component {
                     </div>
                     <div className='restaurantImage'>
 
-                        <img src={'https://i.imgflip.com/1c6w3u.jpg'} alt='old guy shrugging' height="300" width="350" />
+                        <img src={'https://i.imgflip.com/1c6w3u.jpg'} alt='old guy shrugging' className="restaurantImage" />
                     </div>
-                    <p>Rating: N/A</p>
                 </div>
             )
         }
