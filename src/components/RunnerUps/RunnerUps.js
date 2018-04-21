@@ -133,7 +133,7 @@ class RunnerUps extends Component {
                     <Link to='/spin-results'><FlatButton label='Back to List' fullWidth={true} labelStyle={{ fontSize: '30px' }} className='backToList' style={{ height: '80px', width: '100%', backgroundColor: '#F64548', boxShadow: '1px 1px 1px black', fontFamily: 'Luckiest Guy, cursive', color: '#FFE49F', textShadow: '1px 1px 1px black' }} /></Link>
 
                 </div>
-                {this.state.list1.map((val, i) => { //change list1 to list
+                {this.state.list.map((val, i) => { //change list1 to list
                     // console.log('val', val)
                     if (i === 0) {
                         return (
