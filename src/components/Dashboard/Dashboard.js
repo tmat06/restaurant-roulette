@@ -11,7 +11,8 @@ import MenuItem from 'material-ui/MenuItem';
 import Transition from 'react-motion-ui-pack';
 import { spring } from 'react-motion';
 import Search from 'material-ui/svg-icons/action/search';
-import MainButton from './../MainButton/MainButton';
+import FlatButton from 'material-ui/FlatButton';
+
 
 
 
@@ -20,7 +21,7 @@ class Dashboard extends Component {
         super()
         this.state = {
             address: 'Provo, UT',
-            selectField: '500',
+            selectField: '1000',
             cityOrAddress: '(cities)',
             openOrClosed: true,
             spinResultsDisplay: false,
@@ -116,7 +117,7 @@ class Dashboard extends Component {
                                     // console.log('val', val)
                                     if (val.opening_hours && val.opening_hours.open_now) {
                                         newList.push(val)
-                                        console.log('val', val)
+                                        // console.log('val', val)
                                     }
                                 })
                                 if(!newList.length){
@@ -295,7 +296,7 @@ class Dashboard extends Component {
                             </div>
                         </div>
                         <div>
-                            <Link to='/spin-results' style={{textDecoration: 'none'}}><MainButton name="Search" icon={<Search />} wholeWidth={false} style={{ color: '#F64548', borderRadius: '25px' }} handleEnter={this.handleEnter}/></Link>
+                            <Link to='/spin-results' style={{textDecoration: 'none'}}><FlatButton label="Search" icon={<Search />} labelStyle={{fontFamily: 'Luckiest Guy, cursive', fontSize: '25px'}} wholeWidth={false} style={{ color: '#F64548', borderRadius: '25px', backgroundColor: '#FFE49F' }} onClick={this.handleEnter()}/></Link>
                         </div>
                     </div>
                 </div>

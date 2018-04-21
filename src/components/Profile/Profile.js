@@ -18,29 +18,34 @@ class Profile extends Component {
         }
     }
 
-    favoriteList() {
-        // console.log("this.props", this.props)
-        if (this.props.user.auth_id && this.state.flip) {
-            // console.log('has auth_id', this.props)
-            axios.get('/savedLists', this.props.user.id)
-                .then((res) => {
-                    // console.log('res', res)
-                    // this.setState({
-                    //     favoriteRestaurants: [...res.data]
-                    // })
-                    this.props.updateFavoriteRestaurants(res.data)
-                    this.setState({
-                        flip: false
-                    });
-                })
-        } else {
-            // console.log('no auth_id yet')
-        }
-
+    componentDidMount(){
+        axios.get('/savedLists', this.props.user.id)
+        .then((res) => {
+            this.props.updateFavoriteRestaurants(res.data)
+        })
     }
+
+    // favoriteList() {
+    //     // console.log("this.props", this.props)
+    //     if (this.props.user.auth_id && this.state.flip) {
+    //         // console.log('has auth_id', this.props)
+    //         axios.get('/savedLists', this.props.user.id)
+    //             .then((res) => {
+    //                 // console.log('res', res)
+    //                 // this.setState({
+    //                 //     favoriteRestaurants: [...res.data]
+    //                 // })
+    //                 this.props.updateFavoriteRestaurants(res.data)
+    //             })
+    //     } else {
+    //         // console.log('no auth_id yet')
+    //     }
+
+    // }
 
     render() {
         // this.favoriteList();
+        // console.log('this.props.favoriteRestaurants in Profile.js', this.props.favoriteRestaurants)
         return (
             <div style={{ backgroundColor: '#F64548', height: '100%' }}>
                 <FlatButton
@@ -78,7 +83,7 @@ class Profile extends Component {
                     Saved Lists
                     </div>
                 <div className="profileMenu">
-                    {this.favoriteList()}
+
                     {this.props.favoriteRestaurants.map((val, i) => {
                         return <ProfileButton index={i} listName={val.list_name} key={i} history={this.props.history} fullWidth={false} authID={this.props.user.auth_id} />
                     })}

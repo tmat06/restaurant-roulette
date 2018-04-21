@@ -54,7 +54,7 @@ class Party extends Component {
     }
 
     render() {
-        console.log('this.props in party', this.props)
+        // console.log('this.props in party', this.props)
         const messages = this.state.messages.map((e, i) => <p key={i}>{e}</p>)
         return (
             <div style={{ height: '100vh', backgroundColor: '#F64548' }}>

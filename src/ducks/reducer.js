@@ -32,7 +32,7 @@ export default function reducer(state = initialState, action) {
             return Object.assign({}, state, { restaurantSearch: action.payload });
 
         case UPDATE_RESTAURANT_LIST:
-            console.log('in reducer', action.payload)
+            // console.log('in reducer', action.payload)
             return Object.assign({}, state, { restaurantList: action.payload });
 
         case LOCATION_SEARCH:

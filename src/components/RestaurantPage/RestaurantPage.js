@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Nav from './../Nav/Nav';
-import { Link } from 'react-router-dom';
 
 export default class RestaurantPage extends Component {
     constructor() {

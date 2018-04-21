@@ -4,10 +4,10 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import RestaurantDisplay from './../RestaurantDisplay/RestaurantDisplay';
 import axios from 'axios';
-import { updateRestaurantList, deleteRestaurantFromList } from './../../ducks/reducer';
+import { updateRestaurantList, deleteRestaurantFromList, updateFavoriteRestaurants } from './../../ducks/reducer';
 import FlatButton from 'material-ui/FlatButton';
 import Shuffle from 'material-ui/svg-icons/av/shuffle';
-import Dialog from 'material-ui/Dialog';
+
 
 
 class SpinResults extends Component {
@@ -32,7 +32,13 @@ class SpinResults extends Component {
                         .then((res) => {
                             axios.post(`/savedLists/${this.props.currentLocation}/${res.data[0].id}`, this.props)
                                 .then((res) => {
-                                    alert('saved ', res)
+                                    alert('saved ')
+                                    axios.get('/savedLists', this.props.user.id)
+                                        .then((res) => {
+                                            this.props.updateFavoriteRestaurants(res.data)
+                                        })
+                                    // axios.get('/')
+                                    // this.props.updateFavoriteRestaurants(this.props.user.auth_id)
                                 })
                         })
                 }
@@ -105,7 +111,7 @@ class SpinResults extends Component {
                     </div>
 
                     <div className='spinResultsNavButton'>
-                        <Link to='/runner-up' style={{width: '100%'}}><FlatButton className='spinResultsNavButton' label='Shuffle' icon={<Shuffle style={{ height: '60px', width: '60px' }} />} fullWidth={true} labelStyle={{ fontSize: '50px' }} style={{ boxShadow: '1px 1px 1px black', backgroundColor: '#F64548', borderRadius: '25px', height: '80px', color: '#FFE49F', textShadow: '1px 1px 2px black' }} /></Link>
+                        <Link to='/runner-up' style={{ width: '100%' }}><FlatButton className='spinResultsNavButton' label='Shuffle' icon={<Shuffle style={{ height: '60px', width: '60px' }} />} fullWidth={true} labelStyle={{ fontSize: '50px' }} style={{ boxShadow: '1px 1px 1px black', backgroundColor: '#F64548', borderRadius: '25px', height: '80px', color: '#FFE49F', textShadow: '1px 1px 2px black' }} /></Link>
                     </div>
 
                     <div className="spinResultsFooter"></div>
@@ -122,7 +128,8 @@ function mapStateToProps(state) {
         restaurantSearch: state.restaurantSearch,
         restaurantList: state.restaurantList,
         currentLocation: state.currentLocation,
+        favoriteRestaurants: state.favoriteRestaurants
     };
 }
 
-export default connect(mapStateToProps, { updateRestaurantList, deleteRestaurantFromList })(SpinResults);
+export default connect(mapStateToProps, { updateRestaurantList, deleteRestaurantFromList, updateFavoriteRestaurants })(SpinResults);
