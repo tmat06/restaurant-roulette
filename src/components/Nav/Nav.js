@@ -52,7 +52,7 @@ export default class Nav extends Component {
                         width={400}
                         open={this.state.open1}
                         openSecondary={true}>
-                        <MainButton name="RETURN" icon={<ArrowBack />} handleToggle={this.handleToggle} toggle={'1'} wholeWidth={true} style={{ color: '#F64548', borderRadius: '0px', display: 'flex', justifyContent: 'center', margin: '0' }} />
+                        <MainButton name="RETURN" icon={<ArrowBack />} handleToggle={this.handleToggle} toggle={'1'} wholeWidth={true} style={{ color: '#F64548', borderRadius: '0px', display: 'flex', justifyContent: 'center', margin: '0', position: 'fixed', top: '0', height: '50px' }} />
 
                         <Party />
                     </Drawer>
