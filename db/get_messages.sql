@@ -1,4 +1,4 @@
 select *
 from Messages
 ORDER BY id DESC
-LIMIT 8;
+LIMIT 9;

@@ -108,7 +108,6 @@ class ProfileButton extends Component {
     }
 
     updateName(props) {
-        console.log(props)
         axios.put(`/savedLists/${props.listName}/${props.authID}/${this.state.newName}`)
             .then(res => {
                 alert('name has been updated to ' + this.state.newName)
