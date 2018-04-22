@@ -45,7 +45,6 @@ class Party extends Component {
     componentDidMount() {
         axios.get('/chatMessage')
             .then(messages => {
-                console.log('messages in Party', messages)
                 this.setState({
                     messages: [...messages.data]
                 })
@@ -81,10 +80,9 @@ class Party extends Component {
 
     render() {
         // console.log('this.props in party', this.props)
-        console.log(this.state.messages)
         const messages = this.state.messages.map((e, i) => <p key={i}>{e}</p>)
         return (
-            <div style={{ height: '100vh', backgroundColor: '#F64548' }}>
+            <div className='homie' style={{ height: '88vh', backgroundColor: '#F64548' }}>
                 <FlatButton
                     style={{
                         color: '#F64548',
@@ -105,14 +103,14 @@ class Party extends Component {
                 </div>
 
 
-                <div style={{ marginTop: '20px', marginBottom: '20px', height: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column-reverse', padding: '50px' }} >
+                <div className='thisGuy' style={{ margin: '0', height: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column-reverse', justifyContent: 'space-around', alignItems: 'left', padding: '20px 0 60px 0', backgroundColor: '#F64548' }} >
                     {this.state.messages.map((val, i) => {
-                        console.log('val', val)
                         return (
-                            <div key={i} style={{ display: 'flex' }} >
-                                <div>
+                            <div key={i} className='dog' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around', alignItems: 'left', width: '100%', backgroundColor: '#FFE49F', fontFamily: 'Luckiest Guy, cursive', fontSize: '20px', color: '#F64548'}} >
+                                <div style={{display: 'flex', textShadow: '1px 1px 1px black', fontSize: '25px'}}>
                                     {val.name}
                                 </div>
+                                <div></div>
                                 <div>
                                     {val.message}
                                 </div>

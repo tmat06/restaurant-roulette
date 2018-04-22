@@ -17,9 +17,7 @@ class GoogleDirections extends Component {
         zoom: 17
     }
     render() {
-        console.log(this.props.center)
-        console.log(this.props.zoom)
-        console.log('restaurants', this.props.restaurantList)
+
 
         return (
             <div>
@@ -42,7 +40,7 @@ class GoogleDirections extends Component {
 
                         </div>
                     </div> */}
-                    <div className='google-map'>
+                    <div className='google-map' style={{backgroundColor: '#F64548'}}>
                         <GoogleMapReact
                             defaultCenter={this.props.restaurantSearch}
                             defaultZoom={this.props.zoom}>

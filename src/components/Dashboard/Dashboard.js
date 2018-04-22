@@ -83,9 +83,7 @@ class Dashboard extends Component {
     }
 
     handleEnter() {
-        console.log('this.state.address', this.state.address)
         this.props.locationSearch(this.state.address)
-        console.log('geocode')
         geocodeByAddress(this.state.address)
             .then(results => getLatLng(results[0]))
             .then(latLng => {
@@ -94,7 +92,6 @@ class Dashboard extends Component {
                 axios.get(`/googlePlacesSearch/${this.props.restaurantSearch.lat}/${this.props.restaurantSearch.lng}/${this.state.selectField}`)
                 // axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${this.props.restaurantSearch.lat},${this.props.restaurantSearch.lng}&radius=${this.state.selectField}&type=restaurant&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8`)
                     .then((res) => {
-                        console.log('res.data.results', res.data.results)
                         if (!res.data.results.length) {
 
                             this.props.updateRestaurantList([{

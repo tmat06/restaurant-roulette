@@ -76,7 +76,6 @@ class RunnerUps extends Component {
         for (let i = 0; i < this.props.currentList.length; i++) {
             list[i] = "";
         }
-        console.log('list', list)
 
         for (var i = 0; i < this.props.currentList.length; i++) { //randomizes the list
             randomSpot = Math.floor(Math.random() * this.props.currentList.length);
@@ -86,7 +85,6 @@ class RunnerUps extends Component {
             var inputStudent = this.props.currentList[i];
             list[randomSpot] = inputStudent;
         }
-        console.log('worked', list)
         this.setState({
             list: [...list]
         })
@@ -195,7 +193,6 @@ class RunnerUps extends Component {
                         )
                     } else {
                         if (i > 5) {
-                            console.log('over 5')
                         } else {
                             return (
                                 <Transition

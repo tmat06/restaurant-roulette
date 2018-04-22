@@ -61,7 +61,7 @@ export default class Nav extends Component {
                     </Drawer>
                 </div>
 
-                <div>
+                <div className='him'>
 
                     <FlatButton label="Chat" fullWidth={false} style={style} onClick={() => this.handleToggle('1')} labelStyle={{fontSize: '30px'}}/>
 
@@ -69,9 +69,11 @@ export default class Nav extends Component {
                     <Drawer
                         width={400}
                         open={this.state.open1}
-                        openSecondary={true}>
-
-                        <Party  handleToggle={this.handleToggle} toggle='1'/>
+                        openSecondary={true}
+                        containerStyle={{backgroundColor: '#F64548'}}
+                        >
+                        
+                        <Party  handleToggle={this.handleToggle} toggle='1' style={{backgroundColor: '#F64548'}}/>
                     </Drawer>
                 </div>
 
