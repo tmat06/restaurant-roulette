@@ -199,7 +199,7 @@ class Dashboard extends Component {
 
             },
             autocompleteItem: {
-                zIndex: '2',
+                zIndex: '1',
                 backgroundColor: '#FFA880',
                 color: '#F64548',
                 fontFamily: 'Carter One, cursive',
@@ -218,6 +218,7 @@ class Dashboard extends Component {
                 <Nav history={this.props.history}/>
                 <div >
                     <div className="dashboardContainer">
+                    <div></div>
                         <div className='selectFieldsContainer'>
                             <div >
                                 {this.displayName()}
