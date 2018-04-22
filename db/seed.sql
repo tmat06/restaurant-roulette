@@ -21,6 +21,12 @@ CREATE TABLE IF NOT EXISTS FavoriteLists (
     search_name TEXT
 );
 
+CREATE TABLE IF NOT EXISTS Messages (
+    id SERIAL PRIMARY KEY,
+    name TEXT,
+    message TEXT
+);
+
 INSERT INTO Restaurants
 (id, list_name, name, rating, user_id, saved_id)
 VALUES

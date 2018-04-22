@@ -193,6 +193,20 @@ app.get('/userList', (req, res) => {
 //     })
 // })
 
+app.post('/chatMessage/:name/:message', (req, res) => {
+    app.get('db').post_message(req.params.name, req.params.message)
+    .then(results => {
+        res.status(200).json(results)
+    })
+})
+
+app.get('/chatMessage', (req, res) => {
+    app.get('db').get_messages()
+    .then(results => {
+        res.status(200).json(results)
+    })
+})
+
 const io = socket(app.listen(SERVER_PORT, () => console.log(`Magic Happens at Port: ${SERVER_PORT}`)));
 
 io.on('connection', socket => {
