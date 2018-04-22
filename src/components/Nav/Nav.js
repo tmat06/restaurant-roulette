@@ -76,7 +76,6 @@ export default class Nav extends Component {
                         <Party  handleToggle={this.handleToggle} toggle='1' style={{backgroundColor: '#F64548'}}/>
                     </Drawer>
                 </div>
-                console.log('this is for updating github')
 
 
             </div>
