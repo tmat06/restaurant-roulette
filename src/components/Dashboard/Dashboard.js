@@ -89,7 +89,7 @@ class Dashboard extends Component {
             .then(latLng => {
                 console.log('Success', latLng)
                 this.props.updateRestaurantSearch(latLng);
-                axios.get(`/googlePlacesSearch/${this.props.restaurantSearch.lat}/${this.props.restaurantSearch.lng}/${this.state.selectField}`)
+                axios.get(`/googlePlacesSearch/${latLng.lat}/${latLng.lng}/${this.state.selectField}`)
                 // axios.get(`https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${this.props.restaurantSearch.lat},${this.props.restaurantSearch.lng}&radius=${this.state.selectField}&type=restaurant&key=AIzaSyAwNoy6oxdhhbqwCYXfevpt7-Q908UE4_8`)
                     .then((res) => {
                         if (!res.data.results.length) {
