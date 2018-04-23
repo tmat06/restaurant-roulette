@@ -82,7 +82,7 @@ class Party extends Component {
         // console.log('this.props in party', this.props)
         const messages = this.state.messages.map((e, i) => <p key={i}>{e}</p>)
         return (
-            <div className='homie' style={{ height: '88vh', backgroundColor: '#F64548' }}>
+            <div className='homie' style={{ height: '81vh', backgroundColor: '#F64548' }}>
                 <FlatButton
                     style={{
                         color: '#F64548',
@@ -103,10 +103,10 @@ class Party extends Component {
                 </div>
 
 
-                <div className='thisGuy' style={{ margin: '0', height: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column-reverse', justifyContent: 'space-around', alignItems: 'left', padding: '20px 0 60px 0', backgroundColor: '#F64548' }} >
+                <div className='thisGuy' style={{ margin: '0', height: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column-reverse', justifyContent: 'space-between', alignItems: 'left', padding: '20px 0 5px 0', backgroundColor: '#F64548' }} >
                     {this.state.messages.map((val, i) => {
                         return (
-                            <div key={i} className='dog' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around', alignItems: 'left', width: '100%', backgroundColor: '#FFE49F', fontFamily: 'Luckiest Guy, cursive', fontSize: '20px', color: '#F64548'}} >
+                            <div key={i} className='dog' style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-around', alignItems: 'left', width: '100%', backgroundColor: '#FFE49F', fontFamily: 'Luckiest Guy, cursive', fontSize: '20px', color: '#F64548', padding: '0 0 0 20px'}} >
                                 <div style={{display: 'flex', textShadow: '1px 1px 1px black', fontSize: '25px'}}>
                                     {val.name}
                                 </div>
@@ -119,7 +119,7 @@ class Party extends Component {
                     })}
                 </div>
 
-                <div style={{ bottom: '0', position: 'fixed', height: '100px', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-around', backgroundColor: '#FFE49F', borderRadius: '15px' }}>
+                <div style={{ height: '100px', width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-around', backgroundColor: '#FFE49F', borderRadius: '15px' }}>
                     {/* <button onClick={() => {this.joinRoom('room1')}}>room1</button>
                     <button onClick={() => {this.joinRoom('room2')}}>room2</button> */}
                     <input type='text' value={this.state.newMessage} onChange={(e) => { this.handleChange(e) }} />
