@@ -21,14 +21,28 @@ class Party extends Component {
             rooms: []
         }
         socket.on('generate response', (data) => {
+            console.log('got socket reponse:', data)
             let newMessage = [...this.state.messages];
             newMessage.push(data.message);
+
+            axios.get('/chatMessage')
+            .then(messages => {
+                console.log("messages after send", messages.data)
+                this.setState({
+                    messages: [...messages.data]
+                })
+            })
             // const roomArr = [...this.state.rooms];
             // roomArr.map(val => {
             //   if (val.name === data.name) val.messages.push(data.message); //checks if name of chat matches one of the chat rooms user has joined
             //   return val;
             // });
+            // axios.get('/chatMessage')
+            //     .then(response => {
+
+            //     })
             this.setState({ messages: newMessage, newMessage: '' });
+            this.rerenderMe(data)
         });
     }
 
@@ -41,7 +55,22 @@ class Party extends Component {
     //         newRoom: '', rooms
     //     });
     // }
+    rerenderMe(data){
+        console.log('rerendering...')
+        let newMessage = [...this.state.messages];
+        newMessage.push(data.message);
+        // const roomArr = [...this.state.rooms];
+        // roomArr.map(val => {
+        //   if (val.name === data.name) val.messages.push(data.message); //checks if name of chat matches one of the chat rooms user has joined
+        //   return val;
+        // });
+        // axios.get('/chatMessage')
+        //     .then(response => {
 
+        //     })
+        console.log('new maessage: ',newMessage)
+        this.setState({ messages: newMessage, newMessage: '' });
+    }
     componentDidMount() {
         axios.get('/chatMessage')
             .then(messages => {
@@ -56,6 +85,9 @@ class Party extends Component {
     }
 
     sendMessage(roomName, displayName, message) {
+        // 
+        socket.emit('blast message', { name: 'testname', displayName: 'testname', message:'message' });
+
         axios.post(`/chatMessage/${displayName}/${message}`)
             .then(results => {
                 console.log('posted?')
@@ -67,7 +99,6 @@ class Party extends Component {
                         })
                     })
             })
-        socket.emit('blast message', { name: roomName, displayName, message });
         // let newMessage = [...this.state.roomName];
         // newMessage = newMessage.map(room => {
         //     if (room.name === roomName){
