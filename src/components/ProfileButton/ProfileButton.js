@@ -79,7 +79,6 @@ class ProfileButton extends Component {
         // console.log('bingo banjo', listName)
         axios.delete(`/savedLists/${listName}`)
             .then(res => {
-                alert('saved restaurant has been deleted')
                 // console.log(this.props)
                 axios.get('/savedLists', this.props.user.id)
                     .then((res) => {
@@ -110,7 +109,6 @@ class ProfileButton extends Component {
     updateName(props) {
         axios.put(`/savedLists/${props.listName}/${props.authID}/${this.state.newName}`)
             .then(res => {
-                alert('name has been updated to ' + this.state.newName)
 
                 axios.get(`/getNewRestaurantList/${this.state.newName}/${props.authID}`)
                     .then((res) => {//returning ID for favorites
@@ -127,6 +125,7 @@ class ProfileButton extends Component {
                                 this.setState({
                                     newName: ''
                                 })
+                                this.handleToggle();
                             })
                     })
             })
@@ -136,7 +135,6 @@ class ProfileButton extends Component {
         axios.get(`/retrieveList/${props.listName}/${props.authID}`)
             .then(res => {
                 this.props.updateRestaurantList(res.data)
-                alert('redux updated')
             })
 
     }

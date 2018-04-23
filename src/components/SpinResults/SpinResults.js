@@ -32,7 +32,6 @@ class SpinResults extends Component {
                         .then((res) => {
                             axios.post(`/savedLists/${this.props.currentLocation}/${res.data[0].id}`, this.props)
                                 .then((res) => {
-                                    alert('saved ')
                                     axios.get('/savedLists', this.props.user.id)
                                         .then((res) => {
                                             this.props.updateFavoriteRestaurants(res.data)
